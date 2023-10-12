@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/09/21 10:23:11.000.658,=C:\Users\ViniciusAbreudeOlive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/10/11 10:02:44.008,=C:\Users\ViniciusAbreudeOlive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/10/11 10:05:40.180,C:\Users\ViniciusAbreudeOlive\Desktop\Projetos-Delphi\Pojetos-Delphi-GestaoEstoque\Forms\U_Principal.dfm=C:\Users\ViniciusAbreudeOlive\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2023/10/11 10:05:40.180,C:\Users\ViniciusAbreudeOlive\Desktop\Projetos-Delphi\Pojetos-Delphi-GestaoEstoque\Forms\U_Principal.pas=C:\Users\ViniciusAbreudeOlive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/10/11 10:06:09.919,C:\Users\ViniciusAbreudeOlive\Desktop\Projetos-Delphi\Pojetos-Delphi-GestaoEstoque\Projeto\Controle_Estoque.dproj=C:\Users\ViniciusAbreudeOlive\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
