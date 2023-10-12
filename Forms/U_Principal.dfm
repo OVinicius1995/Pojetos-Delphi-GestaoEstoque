@@ -541,7 +541,9 @@ object frmPrincipal: TfrmPrincipal
     FFCFFFFC0000801FFFCFFFFC0000C03FFFCFFFFC0000FFFFFFCFFFFC0000FFFF
     FFCFFFFC0000FFFFFFCFFFFC0000FFFFFFCFFFFFFFFCFFFFFFCFFFFFFFFCFFFF
     FFCFFFFFFFFCFFFFFFCFFFFFFFFCFFFFFFC000000000FFFFFFC000000000}
+  Menu = mmuMenus
   Position = poOwnerFormCenter
+  WindowState = wsMaximized
   TextHeight = 16
   object Panel1: TPanel
     Left = 0
@@ -5812,6 +5814,7 @@ object frmPrincipal: TfrmPrincipal
         000000000000}
       Layout = blGlyphTop
       StyleName = 'Windows'
+      OnClick = spbFecharClick
     end
   end
   object stbDataHora: TStatusBar
@@ -5844,5 +5847,117 @@ object frmPrincipal: TfrmPrincipal
     OnTimer = tmrDataHoraTimer
     Left = 1200
     Top = 408
+  end
+  object mmuMenus: TMainMenu
+    Left = 632
+    Top = 248
+    object mmuCadastro: TMenuItem
+      Caption = 'Cadastro'
+      object mmuUsuario: TMenuItem
+        Caption = 'Usu'#225'rio'
+      end
+      object mmuSp: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mmuEmpresa: TMenuItem
+        Caption = 'Empresa'
+      end
+      object N1: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mmuClientes: TMenuItem
+        Caption = 'Clientes'
+      end
+      object N2: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mmuFornecedores: TMenuItem
+        Caption = 'Fornecedores'
+      end
+      object N3: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mmuProdutos: TMenuItem
+        Caption = 'Produtos'
+      end
+      object N4: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mmuFormasPgto: TMenuItem
+        Caption = 'Formas de Pagamento'
+      end
+      object N5: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mmuSair: TMenuItem
+        Caption = 'Sair'
+        OnClick = mmuSairClick
+      end
+    end
+    object mmuMovimentos: TMenuItem
+      Caption = 'Movimentos'
+      object mmuCompras: TMenuItem
+        Caption = 'Compras'
+      end
+      object N6: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mmuVendas: TMenuItem
+        Caption = 'Vendas'
+      end
+    end
+    object mmuRelatorios: TMenuItem
+      Caption = 'Relatorios'
+      object mmuListaUsuarios: TMenuItem
+        Caption = 'Lista de Usu'#225'rios'
+      end
+      object N7: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mmuListaFornecedores: TMenuItem
+        Caption = 'Lista de Fornecedores'
+      end
+      object N8: TMenuItem
+        Caption = '-'
+      end
+      object Listadeclientes1: TMenuItem
+        Caption = 'Lista de Clientes'
+      end
+      object N9: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mmuListaProdutos: TMenuItem
+        Caption = 'Lista de Produtos'
+      end
+      object N10: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mmuListaCompras: TMenuItem
+        Caption = 'Lista de Compras'
+      end
+      object N11: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mmuListaVendas: TMenuItem
+        Caption = 'Lista de Vendas'
+      end
+    end
+    object mmuAbout: TMenuItem
+      Caption = 'About'
+      object mmuAboutInfo: TMenuItem
+        Caption = 'Sistema de gest'#227'o de estoque vers'#227'o 1.0'
+      end
+    end
   end
 end
