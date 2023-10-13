@@ -5841,7 +5841,8 @@ object frmPrincipal: TfrmPrincipal
         Width = 50
       end>
     UseSystemFont = False
-    ExplicitTop = 460
+    ExplicitTop = 453
+    ExplicitWidth = 1277
   end
   object tmrDataHora: TTimer
     OnTimer = tmrDataHoraTimer

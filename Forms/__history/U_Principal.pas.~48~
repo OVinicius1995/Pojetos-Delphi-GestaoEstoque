@@ -83,7 +83,7 @@ begin
       stbDataHora.Panels[2].Text := TimeToStr(time);
 
 
-        case AnsiIndexStr(FormatDateTime('dddd',now), ['segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado','domingo']) of
+        case AnsiIndexStr(FormatDateTime('dddd',now), ['segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta','sábado','domingo']) of
 
           0 : stbDataHora.Panels[0].Text := '' + FormatDateTime('dddd","dd" de "mmmm" de "yyyy',now).Replace('s','S');
           1 : stbDataHora.Panels[0].Text := '' + FormatDateTime('dddd","dd" de "mmmm" de "yyyy',now).Replace('t','T');
