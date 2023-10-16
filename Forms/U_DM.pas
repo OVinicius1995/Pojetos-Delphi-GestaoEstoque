@@ -3,10 +3,17 @@ unit U_DM;
 interface
 
 uses
-  System.SysUtils, System.Classes;
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
+  FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Phys.IBBase,
+  FireDAC.Comp.Client, Data.DB;
 
 type
-  TDataModule1 = class(TDataModule)
+  TdmConexao = class(TDataModule)
+    fdcConexao: TFDConnection;
+    fdtTransacao: TFDTransaction;
+    fdpLinkConexao: TFDPhysFBDriverLink;
   private
     { Private declarations }
   public
@@ -14,7 +21,7 @@ type
   end;
 
 var
-  DataModule1: TDataModule1;
+  dmConexao: TdmConexao;
 
 implementation
 

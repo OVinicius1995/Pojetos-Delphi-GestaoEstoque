@@ -107,9 +107,13 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Forms\U_DM.pas">
-            <Form>DataModule1</Form>
+            <Form>dmConexao</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_padrao.pas">
+            <Form>frmPadrao</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

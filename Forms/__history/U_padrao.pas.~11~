@@ -1,0 +1,144 @@
+unit U_padrao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Vcl.DBCtrls;
+
+type
+  TfrmPadrao = class(TForm)
+    pnlCabecalho: TPanel;
+    pnlFooter: TPanel;
+    btnNovo: TBitBtn;
+    btnAtualizar: TBitBtn;
+    btnDeletar: TBitBtn;
+    btnEditar: TBitBtn;
+    btnGravar: TBitBtn;
+    btnCancelar: TBitBtn;
+    btnPesquisar: TBitBtn;
+    dbnNavegacaoDadosBD: TDBNavigator;
+    fdqQueryPadrao: TFDQuery;
+    dtsPadrao: TDataSource;
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnDeletarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
+    procedure trataBotoes();
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPadrao: TfrmPadrao;
+
+implementation
+
+{$R *.dfm}
+
+uses U_DM;
+
+
+procedure TfrmPadrao.trataBotoes;
+begin
+     btnNovo.Enabled      := not btnNovo.Enabled;
+     btnDeletar.Enabled   := not btnDeletar.Enabled;
+     btnEditar.Enabled    := not btnEditar.Enabled;
+     btnGravar.Enabled    := not btnGravar.Enabled;
+     btnAtualizar.Enabled := not btnAtualizar.Enabled
+
+end;
+
+
+procedure TfrmPadrao.btnNovoClick(Sender: TObject);
+begin
+//Cria um novo registro
+    trataBotoes;
+    fdqQueryPadrao.Append;
+end;
+
+
+procedure TfrmPadrao.btnDeletarClick(Sender: TObject);
+begin
+//Deleta registro
+    trataBotoes;
+     if MessageDlg('Deseja deletar o registro?',TMsgDlgType.mtConfirmation,[mbOK,mbNo],0) = mrOk then
+     begin
+       fdqQueryPadrao.Delete;
+       MessageDlg('Registro deletado com sucesso!',TMsgDlgType.mtInformation,[TMsgDlgBtn.mbOK],0);
+     trataBotoes;
+     end
+
+     else
+     begin
+     trataBotoes;
+       Abort;
+     end;
+
+end;
+
+procedure TfrmPadrao.btnEditarClick(Sender: TObject);
+begin
+//Edita o registro
+    trataBotoes;
+     if MessageDlg('Deseja editar o registro?',TMsgDlgType.mtConfirmation,[mbOK,mbNo],0) = mrOk then
+     begin
+       fdqQueryPadrao.Edit;
+       MessageDlg('Registro alterado com sucesso!',TMsgDlgType.mtInformation,[TMsgDlgBtn.mbOK],0);
+     end
+
+     else
+     begin
+     trataBotoes;
+       Abort;
+     end;
+
+end;
+
+
+procedure TfrmPadrao.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+      if key = #13 then
+      begin
+          key :=#0;
+          Perform(WM_NEXTDLGCTL,0,0);
+      end;
+end;
+
+
+procedure TfrmPadrao.btnGravarClick(Sender: TObject);
+begin
+//Grava o registro
+    trataBotoes;
+      fdqQueryPadrao.Post;
+      MessageDlg('Registro gravado com sucesso!',TMsgDlgType.mtConfirmation,[mbOK],0);
+end;
+
+
+procedure TfrmPadrao.btnCancelarClick(Sender: TObject);
+begin
+//Cancela a ação
+    trataBotoes;
+     fdqQueryPadrao.Cancel;
+     MessageDlg('Ação cancelada!',TMsgDlgType.mtWarning,[mbOK],0);
+end;
+
+procedure TfrmPadrao.btnAtualizarClick(Sender: TObject);
+begin
+//Atualiza o registro
+    trataBotoes;
+       fdqQueryPadrao.Refresh;
+       MessageDlg('Registro atualizado com sucesso!',TMsgDlgType.mtConfirmation,[mbOK],0);
+end;
+
+
+end.
