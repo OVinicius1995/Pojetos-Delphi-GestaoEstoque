@@ -24,8 +24,7 @@ object frmPadrao: TfrmPadrao
     Color = clActiveCaption
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -8
-    ExplicitTop = 72
+    ExplicitWidth = 747
   end
   object pnlFooter: TPanel
     Left = 0
@@ -36,7 +35,8 @@ object frmPadrao: TfrmPadrao
     Color = clActiveCaption
     ParentBackground = False
     TabOrder = 1
-    ExplicitWidth = 628
+    ExplicitTop = 383
+    ExplicitWidth = 747
   end
   object btnNovo: TBitBtn
     Left = 26

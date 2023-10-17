@@ -73,7 +73,7 @@ implementation
 procedure TfrmCadastraEmpresa.btnNovoClick(Sender: TObject);
 begin
   inherited;
-  dbeRazaoSocial.text := DateToStr(now);
+  dbeCadastro.text := DateToStr(now);
   dbeRazaoSocial.SetFocus;
 end;
 

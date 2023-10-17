@@ -93,15 +93,15 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
   end
   object Label12: TLabel [11]
     Left = 532
-    Top = 188
+    Top = 148
     Width = 32
     Height = 15
     Caption = 'LOGO'
     FocusControl = dbiLogo
   end
   object Label13: TLabel [12]
-    Left = 529
-    Top = 147
+    Left = 252
+    Top = 59
     Width = 60
     Height = 15
     Caption = 'CADASTRO'
@@ -163,7 +163,7 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
   end
   object dbeRazaoSocial: TDBEdit [24]
     Left = 1
-    Top = 105
+    Top = 107
     Width = 500
     Height = 23
     DataField = 'RAZAO_SOCIAL'
@@ -262,7 +262,7 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
   end
   object dbiLogo: TDBImage [35]
     Left = 532
-    Top = 209
+    Top = 169
     Width = 211
     Height = 134
     DataField = 'LOGO'
@@ -271,9 +271,9 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
     TabStop = False
   end
   object dbeCadastro: TDBEdit [36]
-    Left = 529
-    Top = 166
-    Width = 214
+    Left = 318
+    Top = 55
+    Width = 156
     Height = 23
     DataField = 'CADASTRO'
     DataSource = dtsPadrao
@@ -292,7 +292,7 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
   end
   object btnFoto: TBitBtn [38]
     Left = 561
-    Top = 349
+    Top = 309
     Width = 75
     Height = 25
     Caption = 'Foto'
@@ -377,7 +377,7 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
   end
   object btnClear: TBitBtn [39]
     Left = 642
-    Top = 349
+    Top = 309
     Width = 75
     Height = 25
     Caption = 'Clear'
