@@ -1607,6 +1607,7 @@ object frmPrincipal: TfrmPrincipal
         000000000000}
       Layout = blGlyphTop
       StyleName = 'Windows'
+      OnClick = spbEmpresaClick
     end
     object spbClientes: TSpeedButton
       Left = 259

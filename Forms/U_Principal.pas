@@ -58,8 +58,10 @@ type
     procedure tmrDataHoraTimer(Sender: TObject);
     procedure spbFecharClick(Sender: TObject);
     procedure mmuSairClick(Sender: TObject);
-    procedure spbUsuarioClick(Sender: TObject);
     procedure abreTelaUsuario();
+    procedure spbUsuarioClick(Sender: TObject);
+    procedure spbEmpresaClick(Sender: TObject);
+
 
   private
     { Private declarations }
@@ -74,7 +76,7 @@ implementation
 
 {$R *.dfm}
 
-uses StrUtils, U_Usuario;
+uses StrUtils, U_Usuario, U_Empresa;
 
 
 procedure TfrmPrincipal.tmrDataHoraTimer(Sender: TObject);
@@ -99,6 +101,12 @@ begin
 
 end;
 
+
+procedure TfrmPrincipal.spbEmpresaClick(Sender: TObject);
+begin
+      frmCadastraEmpresa := TfrmCadastraEmpresa.Create(self);
+      frmCadastraEmpresa.ShowModal();
+end;
 
 procedure TfrmPrincipal.spbFecharClick(Sender: TObject);
 begin
@@ -138,8 +146,9 @@ end;
 
 procedure TfrmPrincipal.spbUsuarioClick(Sender: TObject);
 begin
-      abreTelaUsuario;
+     abreTelaUsuario();
 end;
+
 
 procedure TfrmPrincipal.mmuSairClick(Sender: TObject);
 begin
