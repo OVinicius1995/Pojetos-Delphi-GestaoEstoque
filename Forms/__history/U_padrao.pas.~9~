@@ -1,0 +1,101 @@
+unit U_padrao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Vcl.DBCtrls;
+
+type
+  TfrmPadrao = class(TForm)
+    pnlCabecalho: TPanel;
+    pnlFooter: TPanel;
+    btnNovo: TBitBtn;
+    btnAtualizar: TBitBtn;
+    btnDeletar: TBitBtn;
+    btnEditar: TBitBtn;
+    btnGravar: TBitBtn;
+    btnCancelar: TBitBtn;
+    btnPesquisar: TBitBtn;
+    dbnNavegacaoDadosBD: TDBNavigator;
+    fdqQueryPadrao: TFDQuery;
+    dtsPadrao: TDataSource;
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnDeletarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPadrao: TfrmPadrao;
+
+implementation
+
+{$R *.dfm}
+
+uses U_DM;
+
+
+procedure TfrmPadrao.btnNovoClick(Sender: TObject);
+begin
+    fdqQueryPadrao.Append;
+end;
+
+
+procedure TfrmPadrao.btnDeletarClick(Sender: TObject);
+begin
+     if MessageDlg('Deseja deletar o registro?',TMsgDlgType.mtConfirmation,[mbOK,mbNo],0) = mrOk then
+     begin
+       fdqQueryPadrao.Delete;
+       MessageDlg('Registro deletado com sucesso!',TMsgDlgType.mtInformation,[TMsgDlgBtn.mbOK],0);
+     end
+
+     else
+     begin
+       Abort;
+     end;
+
+end;
+
+procedure TfrmPadrao.btnEditarClick(Sender: TObject);
+begin
+     if MessageDlg('Deseja editar o registro?',TMsgDlgType.mtConfirmation,[mbOK,mbNo],0) = mrOk then
+     begin
+       fdqQueryPadrao.Edit;
+       MessageDlg('Registro alterado com sucesso!',TMsgDlgType.mtInformation,[TMsgDlgBtn.mbOK],0);
+     end
+
+     else
+     begin
+       Abort;
+     end;
+
+end;
+
+
+procedure TfrmPadrao.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+      if key = #13 then
+      begin
+          key :=#0;
+          Perform(WM_NEXTDLGCTL,0,0);
+      end;
+end;
+
+procedure TfrmPadrao.btnCancelarClick(Sender: TObject);
+begin
+     fdqQueryPadrao.Cancel;
+     MessageDlg('Ação cancelada!',TMsgDlgType.mtConfirmation,[mbOK],0);
+end;
+
+
+end.
