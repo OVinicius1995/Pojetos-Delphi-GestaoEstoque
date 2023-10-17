@@ -58,6 +58,8 @@ type
     procedure tmrDataHoraTimer(Sender: TObject);
     procedure spbFecharClick(Sender: TObject);
     procedure mmuSairClick(Sender: TObject);
+    procedure spbUsuarioClick(Sender: TObject);
+    procedure abreTelaUsuario();
 
   private
     { Private declarations }
@@ -72,7 +74,7 @@ implementation
 
 {$R *.dfm}
 
-uses StrUtils;
+uses StrUtils, U_Usuario;
 
 
 procedure TfrmPrincipal.tmrDataHoraTimer(Sender: TObject);
@@ -100,7 +102,43 @@ end;
 
 procedure TfrmPrincipal.spbFecharClick(Sender: TObject);
 begin
-    close;
+
+  if Application.MessageBox('Deseja encerrar o sistema?','Saindo do sistema.',MB_YESNOCANCEL + MB_ICONQUESTION) = mrYes then
+
+     begin
+
+     Application.Terminate;
+
+     end
+
+     else
+
+     begin
+
+     end;
+
+end;
+
+
+procedure TfrmPrincipal.abreTelaUsuario;
+begin
+
+    try
+
+    frmUsuario := TfrmUsuario.Create(self);
+    frmUsuario.ShowModal;
+
+    finally
+
+    frmUsuario.Free;
+    frmUsuario := nil;
+
+    end;
+end;
+
+procedure TfrmPrincipal.spbUsuarioClick(Sender: TObject);
+begin
+      abreTelaUsuario;
 end;
 
 procedure TfrmPrincipal.mmuSairClick(Sender: TObject);

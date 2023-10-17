@@ -12,6 +12,7 @@ object frmPadrao: TfrmPadrao
   Font.Name = 'Segoe UI'
   Font.Style = []
   KeyPreview = True
+  Position = poMainFormCenter
   OnKeyPress = FormKeyPress
   TextHeight = 15
   object pnlCabecalho: TPanel

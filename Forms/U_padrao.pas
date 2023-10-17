@@ -32,6 +32,7 @@ type
     procedure btnGravarClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure trataBotoes();
+
   private
     { Private declarations }
   public
@@ -59,10 +60,10 @@ begin
 
 end;
 
-
 procedure TfrmPadrao.btnNovoClick(Sender: TObject);
 begin
 //Cria um novo registro
+fdqQueryPadrao.Open();
     trataBotoes;
     fdqQueryPadrao.Append;
 end;
@@ -72,11 +73,15 @@ procedure TfrmPadrao.btnDeletarClick(Sender: TObject);
 begin
 //Deleta registro
     trataBotoes;
-     if MessageDlg('Deseja deletar o registro?',TMsgDlgType.mtConfirmation,[mbOK,mbNo],0) = mrOk then
+
+    if Application.MessageBox('Deseja excluir o registro?','Exclusão', MB_YESNO + MB_ICONQUESTION) = mrYes then
+
      begin
-       fdqQueryPadrao.Delete;
-       MessageDlg('Registro deletado com sucesso!',TMsgDlgType.mtInformation,[TMsgDlgBtn.mbOK],0);
+
+     fdqQueryPadrao.Delete;
+     Application.MessageBox('Registro excluído com sucesso!','Exclusão',MB_OK + MB_ICONINFORMATION);
      trataBotoes;
+
      end
 
      else
@@ -91,10 +96,11 @@ procedure TfrmPadrao.btnEditarClick(Sender: TObject);
 begin
 //Edita o registro
     trataBotoes;
-     if MessageDlg('Deseja editar o registro?',TMsgDlgType.mtConfirmation,[mbOK,mbNo],0) = mrOk then
+     if Application.MessageBox('Deseja editar o registro?','Editando o registro.',MB_YESNOCANCEL + MB_ICONQUESTION) = mrYes then
      begin
+
        fdqQueryPadrao.Edit;
-       MessageDlg('Registro alterado com sucesso!',TMsgDlgType.mtInformation,[TMsgDlgBtn.mbOK],0);
+
      end
 
      else
@@ -121,7 +127,7 @@ begin
 //Grava o registro
     trataBotoes;
       fdqQueryPadrao.Post;
-      MessageDlg('Registro gravado com sucesso!',TMsgDlgType.mtConfirmation,[mbOK],0);
+      Application.MessageBox('Registro gravado com sucesso!','Gravado', MB_OK + MB_ICONEXCLAMATION);
 end;
 
 
@@ -130,7 +136,7 @@ begin
 //Cancela a ação
     trataBotoes;
      fdqQueryPadrao.Cancel;
-     MessageDlg('Ação cancelada!',TMsgDlgType.mtWarning,[mbOK],0);
+     Application.MessageBox('Ação cancelada!','Atenção', + MB_OK + MB_ICONWARNING);
 end;
 
 procedure TfrmPadrao.btnAtualizarClick(Sender: TObject);
@@ -138,7 +144,7 @@ begin
 //Atualiza o registro
     trataBotoes;
        fdqQueryPadrao.Refresh;
-       MessageDlg('Registro atualizado com sucesso!',TMsgDlgType.mtConfirmation,[mbOK],0);
+      Application.MessageBox('Registro atualizado com sucesso!','Atualizado', + MB_OK + MB_ICONINFORMATION);
 end;
 
 
