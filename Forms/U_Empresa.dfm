@@ -117,17 +117,13 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
   end
   inherited pnlCabecalho: TPanel
     Width = 751
-    ExplicitLeft = 0
-    ExplicitTop = 0
-    ExplicitWidth = 747
   end
   inherited pnlFooter: TPanel
     Top = 409
     Width = 751
     Height = 33
     TabOrder = 21
-    ExplicitTop = 409
-    ExplicitWidth = 751
+    ExplicitTop = 408
     ExplicitHeight = 33
   end
   inherited btnNovo: TBitBtn
@@ -267,6 +263,7 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
     Height = 134
     DataField = 'LOGO'
     DataSource = dtsPadrao
+    Stretch = True
     TabOrder = 22
     TabStop = False
   end
@@ -374,6 +371,7 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
       000000000000}
     Layout = blGlyphRight
     TabOrder = 24
+    OnClick = btnFotoClick
   end
   object btnClear: TBitBtn [39]
     Left = 642
@@ -458,6 +456,7 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
     TabOrder = 25
+    OnClick = btnClearClick
   end
   inherited fdqQueryPadrao: TFDQuery
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
@@ -562,10 +561,15 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
       FieldName = 'ID_EMPRESA'
       Origin = 'ID_EMPRESA'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
   end
   inherited dtsPadrao: TDataSource
     Left = 568
     Top = 392
+  end
+  object opdLogo: TOpenDialog
+    Left = 544
+    Top = 344
   end
 end

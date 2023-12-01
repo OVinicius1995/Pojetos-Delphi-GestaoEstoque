@@ -1,5 +1,7 @@
 inherited frmUsuario: TfrmUsuario
   Caption = 'Cadastro de usu'#225'rios'
+  ExplicitWidth = 759
+  ExplicitHeight = 479
   TextHeight = 15
   object Label1: TLabel [0]
     Left = 8
@@ -42,14 +44,12 @@ inherited frmUsuario: TfrmUsuario
   end
   inherited pnlCabecalho: TPanel
     TabOrder = 11
-    ExplicitLeft = 0
-    ExplicitTop = 0
-    ExplicitWidth = 747
+    ExplicitWidth = 743
   end
   inherited pnlFooter: TPanel
     TabOrder = 13
-    ExplicitTop = 383
-    ExplicitWidth = 747
+    ExplicitTop = 382
+    ExplicitWidth = 743
   end
   inherited btnNovo: TBitBtn
     TabOrder = 5

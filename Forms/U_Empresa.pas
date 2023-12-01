@@ -56,7 +56,10 @@ type
     DBEdit1: TDBEdit;
     btnFoto: TBitBtn;
     btnClear: TBitBtn;
+    opdLogo: TOpenDialog;
     procedure btnNovoClick(Sender: TObject);
+    procedure btnFotoClick(Sender: TObject);
+    procedure btnClearClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -69,6 +72,29 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCadastraEmpresa.btnClearClick(Sender: TObject);
+begin
+      fdqQueryPadrao.Edit;
+      fdqQueryPadraoLOGO.AsVariant :=null;
+      fdqQueryPadrao.Refresh;
+
+      MessageDlg('Imagem Deletada com sucesso!', mtInformation,[mbOk],0);
+
+end;
+
+procedure TfrmCadastraEmpresa.btnFotoClick(Sender: TObject);
+begin
+
+  //Insere foto
+  fdqQueryPadrao.Edit;
+  opdLogo.Execute;
+  dbiLogo.Picture.LoadFromFile(opdLogo.FileName);
+
+  fdqQueryPadrao.Refresh;
+  MessageDlg('Imagem gravada com sucesso!', mtInformation, [mbOk],0);
+
+end;
 
 procedure TfrmCadastraEmpresa.btnNovoClick(Sender: TObject);
 begin
