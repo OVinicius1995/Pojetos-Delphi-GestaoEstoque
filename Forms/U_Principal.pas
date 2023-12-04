@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Vcl.ComCtrls,
-  Vcl.Menus;
+  Vcl.Menus, Vcl.StdCtrls;
 
 type
   TfrmPrincipal = class(TForm)
@@ -58,8 +58,15 @@ type
     procedure tmrDataHoraTimer(Sender: TObject);
     procedure spbFecharClick(Sender: TObject);
     procedure mmuSairClick(Sender: TObject);
-    procedure spbUsuarioClick(Sender: TObject);
     procedure abreTelaUsuario();
+    procedure spbUsuarioClick(Sender: TObject);
+    procedure spbEmpresaClick(Sender: TObject);
+    procedure spbClientesClick(Sender: TObject);
+    procedure Abre_Tela_Cliente;
+    procedure mmuClientesClick(Sender: TObject);
+    procedure mmuEmpresaClick(Sender: TObject);
+    procedure mmuUsuarioClick(Sender: TObject);
+
 
   private
     { Private declarations }
@@ -74,7 +81,7 @@ implementation
 
 {$R *.dfm}
 
-uses StrUtils, U_Usuario;
+uses StrUtils, U_Usuario, U_Empresa, U_Cliente;
 
 
 procedure TfrmPrincipal.tmrDataHoraTimer(Sender: TObject);
@@ -99,6 +106,17 @@ begin
 
 end;
 
+
+procedure TfrmPrincipal.spbClientesClick(Sender: TObject);
+begin
+    Abre_Tela_Cliente;
+end;
+
+procedure TfrmPrincipal.spbEmpresaClick(Sender: TObject);
+begin
+      frmCadastraEmpresa := TfrmCadastraEmpresa.Create(self);
+      frmCadastraEmpresa.ShowModal();
+end;
 
 procedure TfrmPrincipal.spbFecharClick(Sender: TObject);
 begin
@@ -138,12 +156,41 @@ end;
 
 procedure TfrmPrincipal.spbUsuarioClick(Sender: TObject);
 begin
-      abreTelaUsuario;
+     abreTelaUsuario();
+end;
+
+
+procedure TfrmPrincipal.Abre_Tela_Cliente;
+begin
+    try
+      frmClientes := TfrmClientes.Create(self);
+      frmClientes.ShowModal;
+    finally
+
+    frmClientes.Free;
+    frmClientes := nil;
+
+    end;
+end;
+
+procedure TfrmPrincipal.mmuClientesClick(Sender: TObject);
+begin
+Abre_Tela_Cliente;
+end;
+
+procedure TfrmPrincipal.mmuEmpresaClick(Sender: TObject);
+begin
+Abre_Tela_Cliente;
 end;
 
 procedure TfrmPrincipal.mmuSairClick(Sender: TObject);
 begin
     close;
+end;
+
+procedure TfrmPrincipal.mmuUsuarioClick(Sender: TObject);
+begin
+        abreTelaUsuario;
 end;
 
 end.

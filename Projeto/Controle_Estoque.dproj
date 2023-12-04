@@ -104,7 +104,6 @@
         </DelphiCompile>
         <DCCReference Include="..\Forms\U_Principal.pas">
             <Form>frmPrincipal</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Forms\U_DM.pas">
             <Form>dmConexao</Form>
@@ -117,6 +116,13 @@
         </DCCReference>
         <DCCReference Include="..\Forms\U_Usuario.pas">
             <Form>frmUsuario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_Empresa.pas">
+            <Form>frmCadastraEmpresa</Form>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_Cliente.pas">
+            <Form>frmClientes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

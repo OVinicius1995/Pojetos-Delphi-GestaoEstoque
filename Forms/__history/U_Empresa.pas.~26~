@@ -1,0 +1,95 @@
+unit U_Empresa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_padrao, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.ExtCtrls, Vcl.Mask;
+
+type
+  TfrmCadastraEmpresa = class(TfrmPadrao)
+    fdqQueryPadraoRAZAO_SOCIAL: TStringField;
+    fdqQueryPadraoN_FANTASIA: TStringField;
+    fdqQueryPadraoENDERECO: TStringField;
+    fdqQueryPadraoNUMERO: TIntegerField;
+    fdqQueryPadraoBAIRRO: TStringField;
+    fdqQueryPadraoCIDADE: TStringField;
+    fdqQueryPadraoUF: TStringField;
+    fdqQueryPadraoCEP: TStringField;
+    fdqQueryPadraoTELEFONE: TStringField;
+    fdqQueryPadraoCPF_CNPJ: TStringField;
+    fdqQueryPadraoEMAIL: TStringField;
+    fdqQueryPadraoLOGO: TBlobField;
+    fdqQueryPadraoCADASTRO: TDateField;
+    Label1: TLabel;
+    dbeRazaoSocial: TDBEdit;
+    Label2: TLabel;
+    dbeNomeFantasia: TDBEdit;
+    Label3: TLabel;
+    debEndereco: TDBEdit;
+    Label4: TLabel;
+    dbeNumero: TDBEdit;
+    Label5: TLabel;
+    dbeBairro: TDBEdit;
+    Label6: TLabel;
+    dbeCidade: TDBEdit;
+    Label7: TLabel;
+    dbeUf: TDBEdit;
+    Label8: TLabel;
+    dbeCep: TDBEdit;
+    Label9: TLabel;
+    dbeTelefone: TDBEdit;
+    Label10: TLabel;
+    dbeCnpj: TDBEdit;
+    Label11: TLabel;
+    dbeEmail: TDBEdit;
+    Label12: TLabel;
+    dbiLogo: TDBImage;
+    Label13: TLabel;
+    dbeCadastro: TDBEdit;
+    fdqQueryPadraoID_EMPRESA: TFDAutoIncField;
+    Label14: TLabel;
+    DBEdit1: TDBEdit;
+    btnFoto: TBitBtn;
+    btnClear: TBitBtn;
+    opdLogo: TOpenDialog;
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnFotoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadastraEmpresa: TfrmCadastraEmpresa;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmCadastraEmpresa.btnFotoClick(Sender: TObject);
+begin
+
+  //Insere foto
+  fdqQueryPadrao.Edit;
+  opdLogo.Execute;
+  dbiLogo.Picture.LoadFromFile(opdLogo.FileName);
+
+  fdqQueryPadrao.Refresh;
+  MessageDlg('Imagem gravada com sucesso!', mtInformation, [mbOk],0);
+
+end;
+
+procedure TfrmCadastraEmpresa.btnNovoClick(Sender: TObject);
+begin
+  inherited;
+  dbeCadastro.text := DateToStr(now);
+  dbeRazaoSocial.SetFocus;
+end;
+
+end.
