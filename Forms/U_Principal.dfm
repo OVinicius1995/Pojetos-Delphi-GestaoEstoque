@@ -2134,6 +2134,7 @@ object frmPrincipal: TfrmPrincipal
         FFFFFFFFFFFF}
       Layout = blGlyphTop
       StyleName = 'Windows'
+      OnClick = spbClientesClick
     end
     object spbFornecedores: TSpeedButton
       Left = 388
@@ -5858,6 +5859,7 @@ object frmPrincipal: TfrmPrincipal
       Caption = 'Cadastro'
       object mmuUsuario: TMenuItem
         Caption = 'Usu'#225'rio'
+        OnClick = mmuUsuarioClick
       end
       object mmuSp: TMenuItem
         Caption = '-'
@@ -5865,6 +5867,7 @@ object frmPrincipal: TfrmPrincipal
       end
       object mmuEmpresa: TMenuItem
         Caption = 'Empresa'
+        OnClick = mmuEmpresaClick
       end
       object N1: TMenuItem
         Caption = '-'
@@ -5872,6 +5875,7 @@ object frmPrincipal: TfrmPrincipal
       end
       object mmuClientes: TMenuItem
         Caption = 'Clientes'
+        OnClick = mmuClientesClick
       end
       object N2: TMenuItem
         Caption = '-'

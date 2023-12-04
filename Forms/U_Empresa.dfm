@@ -569,6 +569,7 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
     Top = 392
   end
   object opdLogo: TOpenDialog
+    Filter = 'BMP(AFS)|*.bmp'
     Left = 544
     Top = 344
   end

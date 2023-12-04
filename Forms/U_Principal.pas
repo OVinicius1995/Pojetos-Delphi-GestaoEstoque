@@ -61,6 +61,11 @@ type
     procedure abreTelaUsuario();
     procedure spbUsuarioClick(Sender: TObject);
     procedure spbEmpresaClick(Sender: TObject);
+    procedure spbClientesClick(Sender: TObject);
+    procedure Abre_Tela_Cliente;
+    procedure mmuClientesClick(Sender: TObject);
+    procedure mmuEmpresaClick(Sender: TObject);
+    procedure mmuUsuarioClick(Sender: TObject);
 
 
   private
@@ -76,7 +81,7 @@ implementation
 
 {$R *.dfm}
 
-uses StrUtils, U_Usuario, U_Empresa;
+uses StrUtils, U_Usuario, U_Empresa, U_Cliente;
 
 
 procedure TfrmPrincipal.tmrDataHoraTimer(Sender: TObject);
@@ -101,6 +106,11 @@ begin
 
 end;
 
+
+procedure TfrmPrincipal.spbClientesClick(Sender: TObject);
+begin
+    Abre_Tela_Cliente;
+end;
 
 procedure TfrmPrincipal.spbEmpresaClick(Sender: TObject);
 begin
@@ -150,9 +160,37 @@ begin
 end;
 
 
+procedure TfrmPrincipal.Abre_Tela_Cliente;
+begin
+    try
+      frmClientes := TfrmClientes.Create(self);
+      frmClientes.ShowModal;
+    finally
+
+    frmClientes.Free;
+    frmClientes := nil;
+
+    end;
+end;
+
+procedure TfrmPrincipal.mmuClientesClick(Sender: TObject);
+begin
+Abre_Tela_Cliente;
+end;
+
+procedure TfrmPrincipal.mmuEmpresaClick(Sender: TObject);
+begin
+Abre_Tela_Cliente;
+end;
+
 procedure TfrmPrincipal.mmuSairClick(Sender: TObject);
 begin
     close;
+end;
+
+procedure TfrmPrincipal.mmuUsuarioClick(Sender: TObject);
+begin
+        abreTelaUsuario;
 end;
 
 end.
