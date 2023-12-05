@@ -1,0 +1,16 @@
+inherited frmFornecedores: TfrmFornecedores
+  Caption = 'Cadastro de fornecedores'
+  ClientHeight = 442
+  ClientWidth = 751
+  TextHeight = 15
+  inherited pnlCabecalho: TPanel
+    Width = 751
+  end
+  inherited pnlFooter: TPanel
+    Top = 384
+    Width = 751
+  end
+  inherited dbnNavegacaoDadosBD: TDBNavigator
+    Hints.Strings = ()
+  end
+end

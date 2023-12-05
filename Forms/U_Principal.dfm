@@ -554,7 +554,6 @@ object frmPrincipal: TfrmPrincipal
     Color = clActiveCaption
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 1277
     object spbUsuario: TSpeedButton
       Left = 0
       Top = 0
@@ -2661,6 +2660,7 @@ object frmPrincipal: TfrmPrincipal
         000000000000}
       Layout = blGlyphTop
       StyleName = 'Windows'
+      OnClick = spbFornecedoresClick
     end
     object spbProdutos: TSpeedButton
       Left = 518
@@ -3187,6 +3187,7 @@ object frmPrincipal: TfrmPrincipal
         000000000000}
       Layout = blGlyphTop
       StyleName = 'Windows'
+      OnClick = spbProdutosClick
     end
     object spbFormaPgto: TSpeedButton
       Left = 647
@@ -3713,6 +3714,7 @@ object frmPrincipal: TfrmPrincipal
         000000000000}
       Layout = blGlyphTop
       StyleName = 'Windows'
+      OnClick = spbFormaPgtoClick
     end
     object spbCompras: TSpeedButton
       Left = 777
@@ -5883,6 +5885,7 @@ object frmPrincipal: TfrmPrincipal
       end
       object mmuFornecedores: TMenuItem
         Caption = 'Fornecedores'
+        OnClick = mmuFornecedoresClick
       end
       object N3: TMenuItem
         Caption = '-'
@@ -5890,6 +5893,7 @@ object frmPrincipal: TfrmPrincipal
       end
       object mmuProdutos: TMenuItem
         Caption = 'Produtos'
+        OnClick = mmuProdutosClick
       end
       object N4: TMenuItem
         Caption = '-'
@@ -5897,6 +5901,7 @@ object frmPrincipal: TfrmPrincipal
       end
       object mmuFormasPgto: TMenuItem
         Caption = 'Formas de Pagamento'
+        OnClick = mmuFormasPgtoClick
       end
       object N5: TMenuItem
         Caption = '-'

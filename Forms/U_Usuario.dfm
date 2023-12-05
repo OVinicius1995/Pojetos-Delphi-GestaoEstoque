@@ -71,6 +71,7 @@ inherited frmUsuario: TfrmUsuario
   end
   inherited btnPesquisar: TBitBtn
     TabOrder = 12
+    OnClick = btnPesquisarClick
   end
   inherited dbnNavegacaoDadosBD: TDBNavigator
     Hints.Strings = ()

@@ -7,7 +7,12 @@ uses
   U_padrao in '..\Forms\U_padrao.pas' {frmPadrao},
   U_Usuario in '..\Forms\U_Usuario.pas' {frmUsuario},
   U_Empresa in '..\Forms\U_Empresa.pas' {frmCadastraEmpresa},
-  U_Cliente in '..\Forms\U_Cliente.pas' {frmClientes};
+  U_Cliente in '..\Forms\U_Cliente.pas' {frmClientes},
+  U_Fornecedores in '..\Forms\U_Fornecedores.pas' {frmFornecedores},
+  U_Produtos in '..\Forms\U_Produtos.pas' {frmProdutos},
+  U_FormaPgto in '..\Forms\U_FormaPgto.pas' {frmFormapgto},
+  U_PesquisaPadrao in '..\Forms\U_PesquisaPadrao.pas' {frmPesquisa},
+  U_PesqUsuario in '..\Forms\U_PesqUsuario.pas' {frmPesqUsuario};
 
 {$R *.res}
 
@@ -16,9 +21,7 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TdmConexao, dmConexao);
-  Application.CreateForm(TfrmPadrao, frmPadrao);
-  Application.CreateForm(TfrmUsuario, frmUsuario);
-  Application.CreateForm(TfrmCadastraEmpresa, frmCadastraEmpresa);
-  Application.CreateForm(TfrmClientes, frmClientes);
+  Application.CreateForm(TfrmPesquisa, frmPesquisa);
+  Application.CreateForm(TfrmPesqUsuario, frmPesqUsuario);
   Application.Run;
 end.

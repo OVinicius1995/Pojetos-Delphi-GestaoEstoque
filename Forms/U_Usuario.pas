@@ -30,6 +30,9 @@ type
     procedure btnNovoClick(Sender: TObject);
     procedure limparCampos();
     procedure btnGravarClick(Sender: TObject);
+    procedure Abre_FormPesquisa;
+    procedure btnPesquisarClick(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -43,6 +46,8 @@ implementation
 
 {$R *.dfm}
 
+uses U_PesqUsuario;
+
 procedure TfrmUsuario.limparCampos;
 begin
   fdqQueryPadrao.Open();
@@ -51,6 +56,19 @@ begin
     dbeSenha.Clear;
     dbeCadastro.Clear;
 //    cmbTipo.Items := '';
+end;
+
+procedure TfrmUsuario.Abre_FormPesquisa;
+begin
+    try
+    frmPesqUsuario := TfrmPesqUsuario.Create(Self);
+    frmPesqUsuario.ShowModal;
+    finally
+
+    frmPesqUsuario.Free;
+    frmPesqUsuario := nil;
+
+    end;
 end;
 
 procedure TfrmUsuario.btnGravarClick(Sender: TObject);
@@ -70,5 +88,11 @@ begin
 
 end;
 
+
+procedure TfrmUsuario.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  Abre_FormPesquisa;
+end;
 
 end.
