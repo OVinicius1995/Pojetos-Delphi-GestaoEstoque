@@ -25,7 +25,7 @@ inherited frmClientes: TfrmClientes
     Left = 402
     Top = 70
     Width = 59
-    Height = 19
+    Height = 15
     Caption = 'ENDERECO'
     FocusControl = DBEdit3
   end
@@ -33,7 +33,7 @@ inherited frmClientes: TfrmClientes
     Left = 402
     Top = 118
     Width = 41
-    Height = 19
+    Height = 15
     Caption = 'BAIRRO'
     FocusControl = DBEdit4
   end
@@ -41,7 +41,7 @@ inherited frmClientes: TfrmClientes
     Left = 402
     Top = 166
     Width = 41
-    Height = 19
+    Height = 15
     Caption = 'CIDADE'
     FocusControl = DBEdit5
   end
@@ -95,15 +95,14 @@ inherited frmClientes: TfrmClientes
   end
   inherited pnlCabecalho: TPanel
     Width = 840
-    ExplicitWidth = 743
+    ExplicitWidth = 836
   end
   inherited pnlFooter: TPanel
     Top = 352
     Width = 840
     TabOrder = 12
-    ExplicitLeft = -248
-    ExplicitTop = 521
-    ExplicitWidth = 1110
+    ExplicitTop = 351
+    ExplicitWidth = 836
   end
   inherited btnNovo: TBitBtn
     TabOrder = 13
@@ -125,6 +124,7 @@ inherited frmClientes: TfrmClientes
   end
   inherited btnPesquisar: TBitBtn
     TabOrder = 19
+    OnClick = btnPesquisarClick
   end
   inherited dbnNavegacaoDadosBD: TDBNavigator
     Left = 204
@@ -138,7 +138,7 @@ inherited frmClientes: TfrmClientes
     Left = 40
     Top = 88
     Width = 154
-    Height = 27
+    Height = 23
     TabStop = False
     DataField = 'ID_CLIENTE'
     DataSource = dtsPadrao
@@ -148,7 +148,7 @@ inherited frmClientes: TfrmClientes
     Left = 40
     Top = 136
     Width = 201
-    Height = 27
+    Height = 23
     DataField = 'NOME'
     DataSource = dtsPadrao
     TabOrder = 3
@@ -157,7 +157,7 @@ inherited frmClientes: TfrmClientes
     Left = 402
     Top = 86
     Width = 223
-    Height = 27
+    Height = 23
     DataField = 'ENDERECO'
     DataSource = dtsPadrao
     TabOrder = 6
@@ -166,7 +166,7 @@ inherited frmClientes: TfrmClientes
     Left = 402
     Top = 134
     Width = 400
-    Height = 27
+    Height = 23
     DataField = 'BAIRRO'
     DataSource = dtsPadrao
     TabOrder = 9
@@ -175,7 +175,7 @@ inherited frmClientes: TfrmClientes
     Left = 402
     Top = 182
     Width = 400
-    Height = 27
+    Height = 23
     DataField = 'CIDADE'
     DataSource = dtsPadrao
     TabOrder = 10
@@ -184,7 +184,7 @@ inherited frmClientes: TfrmClientes
     Left = 695
     Top = 86
     Width = 58
-    Height = 27
+    Height = 23
     DataField = 'UF'
     DataSource = dtsPadrao
     TabOrder = 8
@@ -193,7 +193,7 @@ inherited frmClientes: TfrmClientes
     Left = 402
     Top = 232
     Width = 400
-    Height = 27
+    Height = 23
     DataField = 'CEP'
     DataSource = dtsPadrao
     TabOrder = 11
@@ -202,7 +202,7 @@ inherited frmClientes: TfrmClientes
     Left = 247
     Top = 136
     Width = 135
-    Height = 27
+    Height = 23
     DataField = 'TELTEFONE'
     DataSource = dtsPadrao
     TabOrder = 4
@@ -211,7 +211,7 @@ inherited frmClientes: TfrmClientes
     Left = 40
     Top = 182
     Width = 304
-    Height = 27
+    Height = 23
     DataField = 'CPF'
     DataSource = dtsPadrao
     TabOrder = 5
@@ -220,17 +220,16 @@ inherited frmClientes: TfrmClientes
     Left = 228
     Top = 88
     Width = 154
-    Height = 27
+    Height = 23
     DataField = 'CADASTRO'
     DataSource = dtsPadrao
-    Enabled = False
     TabOrder = 2
   end
   object DBEdit11: TDBEdit [31]
     Left = 631
     Top = 86
     Width = 58
-    Height = 27
+    Height = 23
     DataField = 'NUMERO'
     DataSource = dtsPadrao
     TabOrder = 7
@@ -261,6 +260,7 @@ inherited frmClientes: TfrmClientes
       FieldName = 'ID_CLIENTE'
       Origin = 'ID_CLIENTE'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object fdqQueryPadraoNOME: TStringField
       FieldName = 'NOME'
@@ -320,10 +320,5 @@ inherited frmClientes: TfrmClientes
   inherited dtsPadrao: TDataSource
     Left = 264
     Top = 296
-  end
-  object tmrdata: TTimer
-    OnTimer = tmrdataTimer
-    Left = 200
-    Top = 232
   end
 end

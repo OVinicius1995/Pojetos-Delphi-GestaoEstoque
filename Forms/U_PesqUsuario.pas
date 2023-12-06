@@ -11,13 +11,12 @@ uses
   Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ExtCtrls;
 
 type
-  TfrmPesqUsuario = class(TfrmPesquisa)
+  TfrmPesqUsuario = class(TfrmPesquisaPadrao)
     fdqPesquisaPadraoID_USUARIO: TIntegerField;
     fdqPesquisaPadraoNOME: TStringField;
     fdqPesquisaPadraoTIPO: TStringField;
     fdqPesquisaPadraoCADASTRO: TDateField;
     procedure bbtnPesquisaClick(Sender: TObject);
-    procedure cmbChavePesquisaChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
 
 
@@ -62,7 +61,7 @@ fdqPesquisaPadrao.Open();
 end;
 
 1:begin
-MessageDlg('OPAAAAAAAAAAAAAAAAAAAAA PASSEI AQUI!',TMsgDlgType.mtConfirmation,[mbOk],0);
+
 fdqPesquisaPadrao.Close;
 fdqPesquisaPadrao.SQL.Add('');
 fdqPesquisaPadrao.Params.Clear;
@@ -71,6 +70,42 @@ fdqPesquisaPadrao.SQL.Add('SELECT ID_USUARIO,NOME,TIPO,CADASTRO from USUARIO');
 fdqPesquisaPadrao.SQL.Add('WHERE NOME LIKE :NOME');
 fdqPesquisaPadrao.ParamByName('NOME').AsString := edtNome.Text + '%';
 fdqPesquisaPadrao.Open();
+
+end;
+
+2:begin
+
+fdqPesquisaPadrao.Close;
+fdqPesquisaPadrao.SQL.Add('');
+fdqPesquisaPadrao.Params.Clear;
+fdqPesquisaPadrao.SQL.Clear;
+fdqPesquisaPadrao.SQL.Add('SELECT ID_USUARIO,NOME,TIPO,CADASTRO from USUARIO');
+fdqPesquisaPadrao.SQL.Add('WHERE CADASTRO  =:CADCLI');
+fdqPesquisaPadrao.ParamByName('CADCLI').AsDate := strTodate(mkeDataInicio.Text);
+fdqPesquisaPadrao.Open();
+
+end;
+
+3:begin
+
+if strTodate(mkeDataInicio.Text) > strTodate(mkeDataFim.Text) then
+begin
+  MessageDlg('A data inicial não pode ser anterior a final!',TMsgDlgType.mtInformation,[mbOk],0);
+  abort;
+end
+
+else
+
+fdqPesquisaPadrao.Close;
+fdqPesquisaPadrao.SQL.Add('');
+fdqPesquisaPadrao.Params.Clear;
+fdqPesquisaPadrao.SQL.Clear;
+fdqPesquisaPadrao.SQL.Add('SELECT ID_USUARIO,NOME,TIPO,CADASTRO from USUARIO');
+fdqPesquisaPadrao.SQL.Add('WHERE CADASTRO  BETWEEN :CADCLIINICIO AND :CADCLIFIM');
+fdqPesquisaPadrao.ParamByName('CADCLIINICIO').AsDate := strTodate(mkeDataInicio.Text);
+fdqPesquisaPadrao.ParamByName('CADCLIFIM').AsDate := strTodate(mkeDataFim.Text);
+fdqPesquisaPadrao.Open();
+
 
 end;
 
@@ -90,48 +125,6 @@ else
 abort;
 
 end;
-
-
-procedure TfrmPesqUsuario.cmbChavePesquisaChange(Sender: TObject);
-begin
-
-case cmbChavePesquisa.ItemIndex of
-    0:begin
-      lblNome.Caption := 'Pesquisar pelo Código do usuário';
-      edtNome.Enabled := true;
-      edtNome.SetFocus;
-      mkeDataInicio.Enabled := false;
-      mkeDataFim.Enabled := false;
-    end;
-
-    1:begin
-      lblNome.Caption := 'Pesquisar pelo Nome do usuário';
-      edtNome.Enabled := true;
-      edtNome.SetFocus;
-      mkeDataInicio.Enabled := false;
-      mkeDataFim.Enabled := false;
-    end;
-
-    2:begin
-      lblNome.Caption := 'Pesquisar pelo período de cadastro';
-      edtNome.Enabled := false;
-      mkeDataInicio.SetFocus;
-      mkeDataInicio.Enabled := true;
-      mkeDataFim.Enabled := true;
-    end;
-
-    3:begin
-      lblNome.Caption := 'Pesquisar por data de cadastro';
-      edtNome.Enabled := false;
-      mkeDataInicio.SetFocus;
-      mkeDataInicio.Enabled := true;
-      mkeDataFim.Enabled := false;
-    end;
-
-end;
-
-end;
-
 
 procedure TfrmPesqUsuario.FormCreate(Sender: TObject);
 begin

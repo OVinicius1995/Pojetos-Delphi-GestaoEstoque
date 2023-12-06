@@ -11,8 +11,9 @@ uses
   U_Fornecedores in '..\Forms\U_Fornecedores.pas' {frmFornecedores},
   U_Produtos in '..\Forms\U_Produtos.pas' {frmProdutos},
   U_FormaPgto in '..\Forms\U_FormaPgto.pas' {frmFormapgto},
-  U_PesquisaPadrao in '..\Forms\U_PesquisaPadrao.pas' {frmPesquisa},
-  U_PesqUsuario in '..\Forms\U_PesqUsuario.pas' {frmPesqUsuario};
+  U_PesquisaPadrao in '..\Forms\U_PesquisaPadrao.pas' {frmPesquisaPadrao},
+  U_PesqUsuario in '..\Forms\U_PesqUsuario.pas' {frmPesqUsuario},
+  U_PesqClientes in '..\Forms\U_PesqClientes.pas' {frmPesquisaClientes};
 
 {$R *.res}
 
@@ -21,7 +22,8 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TdmConexao, dmConexao);
-  Application.CreateForm(TfrmPesquisa, frmPesquisa);
+  Application.CreateForm(TfrmPesquisaPadrao, frmPesquisaPadrao);
   Application.CreateForm(TfrmPesqUsuario, frmPesqUsuario);
+  Application.CreateForm(TfrmPesquisaClientes, frmPesquisaClientes);
   Application.Run;
 end.

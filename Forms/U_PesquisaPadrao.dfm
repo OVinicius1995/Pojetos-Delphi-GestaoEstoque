@@ -1,4 +1,4 @@
-object frmPesquisa: TfrmPesquisa
+object frmPesquisaPadrao: TfrmPesquisaPadrao
   Left = 0
   Top = 0
   Caption = 'Pesquisa'
@@ -21,9 +21,7 @@ object frmPesquisa: TfrmPesquisa
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -24
-    ExplicitTop = -36
-    ExplicitWidth = 1157
+    ExplicitWidth = 877
     object lblOpcoesPesquisa: TLabel
       Left = 24
       Top = 21
@@ -88,10 +86,12 @@ object frmPesquisa: TfrmPesquisa
       Font.Style = []
       ParentFont = False
       TabOrder = 0
+      OnChange = cmbChavePesquisaChange
       Items.Strings = (
         'C'#243'digo'
         'Nome'
-        'Per'#237'odp')
+        'Cadastro'
+        'Per'#237'odo')
     end
     object edtNome: TEdit
       Left = 175
@@ -110,42 +110,44 @@ object frmPesquisa: TfrmPesquisa
   object mkeDataInicio: TMaskEdit
     Left = 560
     Top = 42
-    Width = 120
+    Width = 118
     Height = 30
-    EditMask = '!99/99/00;0;_'
+    EditMask = '!99/99/0000;1;_'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
     Font.Name = 'Sylfaen'
     Font.Style = []
-    MaxLength = 8
+    MaxLength = 10
     ParentFont = False
     TabOrder = 1
-    Text = ''
+    Text = '  /  /    '
   end
   object mkeDataFim: TMaskEdit
     Left = 560
     Top = 97
-    Width = 120
+    Width = 118
     Height = 30
-    EditMask = '!99/99/00;0;_'
+    EditMask = '!99/99/0000;1;_'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
     Font.Name = 'Sylfaen'
     Font.Style = []
-    MaxLength = 8
+    MaxLength = 10
     ParentFont = False
-    TabOrder = 2
-    Text = ''
+    TabOrder = 3
+    Text = '  /  /    '
   end
   object dbgPesquisa: TDBGrid
     Left = 0
     Top = 147
     Width = 881
     Height = 469
+    TabStop = False
     Align = alClient
-    TabOrder = 3
+    DataSource = dsPesquisaPadrao
+    TabOrder = 7
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -12
@@ -160,12 +162,13 @@ object frmPesquisa: TfrmPesquisa
     Align = alBottom
     Color = clSkyBlue
     ParentBackground = False
-    TabOrder = 4
-    ExplicitWidth = 1157
+    TabOrder = 2
+    ExplicitTop = 615
+    ExplicitWidth = 877
   end
   object bbtnPesquisa: TBitBtn
     Left = 734
-    Top = 21
+    Top = 20
     Width = 105
     Height = 33
     Caption = 'Pesquisar'
@@ -229,7 +232,7 @@ object frmPesquisa: TfrmPesquisa
       22B92222225F2A2A2A0600000000000000000000000000000000000000000000
       000000000000}
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 4
   end
   object bbtnTransferir: TBitBtn
     Left = 734
@@ -297,7 +300,7 @@ object frmPesquisa: TfrmPesquisa
       22F3232323D7232323A424242455333333050000000000000000000000000000
       000000000000}
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 5
   end
   object bbtnImprimir: TBitBtn
     Left = 734
@@ -365,7 +368,7 @@ object frmPesquisa: TfrmPesquisa
       23FF232323FF232323FF222222F4232323A62424240E00000000000000000000
       000000000000}
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 6
   end
   object fdqPesquisaPadrao: TFDQuery
     Connection = dmConexao.fdcConexao

@@ -1,7 +1,7 @@
 inherited frmUsuario: TfrmUsuario
   Caption = 'Cadastro de usu'#225'rios'
-  ExplicitWidth = 759
-  ExplicitHeight = 479
+  ClientHeight = 442
+  ClientWidth = 751
   TextHeight = 15
   object Label1: TLabel [0]
     Left = 8
@@ -43,13 +43,13 @@ inherited frmUsuario: TfrmUsuario
     FocusControl = dbeCadastro
   end
   inherited pnlCabecalho: TPanel
+    Width = 751
     TabOrder = 11
-    ExplicitWidth = 743
   end
   inherited pnlFooter: TPanel
+    Top = 384
+    Width = 751
     TabOrder = 13
-    ExplicitTop = 382
-    ExplicitWidth = 743
   end
   inherited btnNovo: TBitBtn
     TabOrder = 5
@@ -117,7 +117,6 @@ inherited frmUsuario: TfrmUsuario
     TabStop = False
     DataField = 'CADASTRO'
     DataSource = dtsPadrao
-    Enabled = False
     TabOrder = 3
   end
   object cmbTipo: TDBComboBox [19]

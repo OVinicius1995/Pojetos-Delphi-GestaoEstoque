@@ -11,7 +11,7 @@ uses
   Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ExtCtrls;
 
 type
-  TfrmPesquisa = class(TForm)
+  TfrmPesquisaPadrao = class(TForm)
     Panel1: TPanel;
     cmbChavePesquisa: TComboBox;
     lblOpcoesPesquisa: TLabel;
@@ -28,6 +28,7 @@ type
     bbtnImprimir: TBitBtn;
     fdqPesquisaPadrao: TFDQuery;
     dsPesquisaPadrao: TDataSource;
+    procedure cmbChavePesquisaChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,12 +36,50 @@ type
   end;
 
 var
-  frmPesquisa: TfrmPesquisa;
+  frmPesquisaPadrao: TfrmPesquisaPadrao;
 
 implementation
 
 {$R *.dfm}
 
 uses U_DM;
+
+procedure TfrmPesquisaPadrao.cmbChavePesquisaChange(Sender: TObject);
+begin
+case cmbChavePesquisa.ItemIndex of
+    0:begin
+      lblNome.Caption := 'Pesquisar pelo Código do usuário';
+      edtNome.Enabled := true;
+      edtNome.SetFocus;
+      mkeDataInicio.Enabled := false;
+      mkeDataFim.Enabled := false;
+    end;
+
+    1:begin
+      lblNome.Caption := 'Pesquisar pelo Nome do usuário';
+      edtNome.Enabled := true;
+      edtNome.SetFocus;
+      mkeDataInicio.Enabled := false;
+      mkeDataFim.Enabled := false;
+    end;
+
+    2:begin
+      lblNome.Caption := 'Pesquisar pelo data de cadastro';
+      edtNome.Enabled := false;
+      mkeDataInicio.SetFocus;
+      mkeDataInicio.Enabled := true;
+      mkeDataFim.Enabled := false;
+    end;
+
+    3:begin
+      lblNome.Caption := 'Pesquisar por período de cadastro';
+      edtNome.Enabled := false;
+      mkeDataInicio.SetFocus;
+      mkeDataInicio.Enabled := true;
+      mkeDataFim.Enabled := true;
+    end;
+end;
+
+end;
 
 end.
