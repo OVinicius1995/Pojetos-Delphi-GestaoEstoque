@@ -69,8 +69,7 @@ try
    frmPesquisaFornecedores := TfrmPesquisaFornecedores.Create(Self);
    frmPesquisaFornecedores.ShowModal();
 finally
-      frmPesquisaFornecedores.Free;
-      frmPesquisaFornecedores := nil;
+
 end;
 end;
 
