@@ -148,6 +148,7 @@ inherited frmCadastraEmpresa: TfrmCadastraEmpresa
   end
   inherited btnPesquisar: TBitBtn
     TabOrder = 19
+    OnClick = btnPesquisarClick
   end
   inherited dbnNavegacaoDadosBD: TDBNavigator
     Left = 149

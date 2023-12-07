@@ -13,7 +13,9 @@ uses
   U_FormaPgto in '..\Forms\U_FormaPgto.pas' {frmFormapgto},
   U_PesquisaPadrao in '..\Forms\U_PesquisaPadrao.pas' {frmPesquisaPadrao},
   U_PesqUsuario in '..\Forms\U_PesqUsuario.pas' {frmPesqUsuario},
-  U_PesqClientes in '..\Forms\U_PesqClientes.pas' {frmPesquisaClientes};
+  U_PesqClientes in '..\Forms\U_PesqClientes.pas' {frmPesquisaClientes},
+  U_PesqEmpresa in '..\Forms\U_PesqEmpresa.pas' {frmPesquisaEmpresa},
+  U_PesqFornecedores in '..\Forms\U_PesqFornecedores.pas' {frmPesquisaFornecedores};
 
 {$R *.res}
 
@@ -25,5 +27,7 @@ begin
   Application.CreateForm(TfrmPesquisaPadrao, frmPesquisaPadrao);
   Application.CreateForm(TfrmPesqUsuario, frmPesqUsuario);
   Application.CreateForm(TfrmPesquisaClientes, frmPesquisaClientes);
+  Application.CreateForm(TfrmPesquisaEmpresa, frmPesquisaEmpresa);
+  Application.CreateForm(TfrmPesquisaFornecedores, frmPesquisaFornecedores);
   Application.Run;
 end.

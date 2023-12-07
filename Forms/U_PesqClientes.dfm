@@ -2,9 +2,11 @@ inherited frmPesquisaClientes: TfrmPesquisaClientes
   Caption = 'Pesquisa Clientes'
   ClientWidth = 1158
   ExplicitWidth = 1170
+  ExplicitHeight = 720
   TextHeight = 15
   inherited Panel1: TPanel
     Width = 1158
+    ExplicitWidth = 1154
   end
   inherited dbgPesquisa: TDBGrid
     Width = 1158
@@ -72,6 +74,8 @@ inherited frmPesquisaClientes: TfrmPesquisaClientes
   end
   inherited Panel2: TPanel
     Width = 1158
+    ExplicitTop = 614
+    ExplicitWidth = 1154
   end
   inherited bbtnPesquisa: TBitBtn
     OnClick = bbtnPesquisaClick

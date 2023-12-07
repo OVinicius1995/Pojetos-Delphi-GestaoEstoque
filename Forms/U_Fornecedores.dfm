@@ -40,14 +40,14 @@ inherited frmFornecedores: TfrmFornecedores
     Left = 61
     Top = 244
     Width = 41
-    Height = 17
+    Height = 15
     Caption = 'BAIRRO'
     FocusControl = dbeBairro
   end
   object Label6: TLabel [5]
     Left = 272
     Top = 195
-    Width = 59
+    Width = 41
     Height = 15
     Caption = 'CIDADE'
     FocusControl = dbeCidade
@@ -99,6 +99,7 @@ inherited frmFornecedores: TfrmFornecedores
     Top = 339
     Width = 751
     TabOrder = 12
+    ExplicitTop = 338
   end
   inherited btnNovo: TBitBtn
     TabOrder = 13
@@ -120,6 +121,7 @@ inherited frmFornecedores: TfrmFornecedores
   end
   inherited btnPesquisar: TBitBtn
     TabOrder = 19
+    OnClick = btnPesquisarClick
   end
   inherited dbnNavegacaoDadosBD: TDBNavigator
     Left = 164
@@ -254,6 +256,7 @@ inherited frmFornecedores: TfrmFornecedores
       FieldName = 'ID_FORNECEDOR'
       Origin = 'ID_FORNECEDOR'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object fdqQueryPadraoNOME: TStringField
       FieldName = 'NOME'

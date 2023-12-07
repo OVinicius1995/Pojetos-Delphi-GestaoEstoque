@@ -60,6 +60,8 @@ type
     procedure btnNovoClick(Sender: TObject);
     procedure btnFotoClick(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
+    procedure Abre_Tela_Pesquisa();
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -72,6 +74,14 @@ var
 implementation
 
 {$R *.dfm}
+
+uses U_PesqEmpresa;
+
+procedure TfrmCadastraEmpresa.Abre_Tela_Pesquisa;
+begin
+    frmPesquisaEmpresa := TfrmPesquisaEmpresa.Create(Self);
+    frmPesquisaEmpresa.showModal;
+end;
 
 procedure TfrmCadastraEmpresa.btnClearClick(Sender: TObject);
 begin
@@ -101,6 +111,12 @@ begin
   inherited;
   dbeCadastro.text := DateToStr(now);
   dbeRazaoSocial.SetFocus;
+end;
+
+procedure TfrmCadastraEmpresa.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+         Abre_Tela_Pesquisa;
 end;
 
 end.
