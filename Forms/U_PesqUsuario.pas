@@ -18,6 +18,7 @@ type
     fdqPesquisaPadraoCADASTRO: TDateField;
     procedure bbtnPesquisaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure bbtnTransferirClick(Sender: TObject);
 
 
   private
@@ -35,16 +36,7 @@ implementation
 
 procedure TfrmPesqUsuario.bbtnPesquisaClick(Sender: TObject);
 begin
-{
-fdqPesquisaPadrao.Close;
-fdqPesquisaPadrao.SQL.Add('');
-fdqPesquisaPadrao.Params.Clear;
-fdqPesquisaPadrao.SQL.Clear;
-fdqPesquisaPadrao.SQL.Add('SELECT ID_USUARIO,NOME,TIPO,CADASTRO from USUARIO');
-fdqPesquisaPadrao.SQL.Add('WHERE ID_USUARIO =:IdUsuario');
-fdqPesquisaPadrao.ParamByName('IdUsuario').AsString:=edtNome.Text;
-fdqPesquisaPadrao.Open();
-}
+
 case cmbChavePesquisa.ItemIndex of
 
 0:begin
@@ -124,6 +116,20 @@ else
 
 abort;
 
+end;
+
+procedure TfrmPesqUsuario.bbtnTransferirClick(Sender: TObject);
+begin
+  inherited;
+  if fdqPesquisaPadrao.RecordCount > 0 then
+    begin
+      codigo := fdqPesquisaPadraoID_USUARIO.AsInteger;
+    end
+
+    else
+    begin
+      abort;
+    end;
 end;
 
 procedure TfrmPesqUsuario.FormCreate(Sender: TObject);

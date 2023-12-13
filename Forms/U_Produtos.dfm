@@ -6,11 +6,11 @@ inherited frmProdutos: TfrmProdutos
   ExplicitHeight = 449
   TextHeight = 15
   object Label2: TLabel [0]
-    Left = 104
-    Top = 275
-    Width = 63
+    Left = 106
+    Top = 128
+    Width = 139
     Height = 15
-    Caption = 'DESCRICAO'
+    Caption = 'DESCRICAO DO PRODUTO'
     FocusControl = dbeDescricao
   end
   object Label3: TLabel [1]
@@ -53,11 +53,11 @@ inherited frmProdutos: TfrmProdutos
     FocusControl = dbeCadastro
   end
   object Label9: TLabel [6]
-    Left = 104
-    Top = 131
-    Width = 35
+    Left = 107
+    Top = 275
+    Width = 133
     Height = 15
-    Caption = 'NOME'
+    Caption = 'NOME DO FORNECEDOR'
     FocusControl = dbeNome
   end
   object Label10: TLabel [7]
@@ -78,14 +78,14 @@ inherited frmProdutos: TfrmProdutos
   end
   inherited pnlCabecalho: TPanel
     Width = 749
-    ExplicitWidth = 743
+    ExplicitWidth = 745
   end
   inherited pnlFooter: TPanel
     Top = 353
     Width = 749
     TabOrder = 10
-    ExplicitTop = 382
-    ExplicitWidth = 743
+    ExplicitTop = 352
+    ExplicitWidth = 745
   end
   inherited btnNovo: TBitBtn
     TabOrder = 11
@@ -107,6 +107,7 @@ inherited frmProdutos: TfrmProdutos
   end
   inherited btnPesquisar: TBitBtn
     TabOrder = 17
+    OnClick = btnPesquisarClick
   end
   inherited dbnNavegacaoDadosBD: TDBNavigator
     Left = 156
@@ -117,8 +118,8 @@ inherited frmProdutos: TfrmProdutos
     ExplicitTop = 369
   end
   object dbeDescricao: TDBEdit [19]
-    Left = 104
-    Top = 291
+    Left = 106
+    Top = 144
     Width = 489
     Height = 23
     DataField = 'DESCRICAO'
@@ -163,8 +164,8 @@ inherited frmProdutos: TfrmProdutos
     TabOrder = 2
   end
   object dbeNome: TDBEdit [24]
-    Left = 106
-    Top = 148
+    Left = 104
+    Top = 292
     Width = 486
     Height = 23
     DataField = 'NOME'

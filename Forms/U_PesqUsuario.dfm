@@ -1,11 +1,11 @@
 inherited frmPesqUsuario: TfrmPesqUsuario
   Caption = 'Pesquisa Usu'#225'rio'
-  ClientWidth = 877
   OnCreate = FormCreate
   ExplicitWidth = 889
+  ExplicitHeight = 720
   TextHeight = 15
   inherited Panel1: TPanel
-    Width = 877
+    ExplicitWidth = 873
   end
   inherited mkeDataInicio: TMaskEdit
     Width = 116
@@ -15,7 +15,6 @@ inherited frmPesqUsuario: TfrmPesqUsuario
     TabOrder = 5
   end
   inherited dbgPesquisa: TDBGrid
-    Width = 877
     Columns = <
       item
         Alignment = taCenter
@@ -71,8 +70,8 @@ inherited frmPesqUsuario: TfrmPesqUsuario
       end>
   end
   inherited Panel2: TPanel
-    Width = 877
     TabOrder = 6
+    ExplicitWidth = 873
   end
   inherited bbtnPesquisa: TBitBtn
     TabOrder = 2
@@ -80,6 +79,7 @@ inherited frmPesqUsuario: TfrmPesqUsuario
   end
   inherited bbtnTransferir: TBitBtn
     TabOrder = 3
+    OnClick = bbtnTransferirClick
   end
   inherited bbtnImprimir: TBitBtn
     TabOrder = 4

@@ -24,6 +24,7 @@ type
     fdqPesquisaPadraoCPF: TStringField;
     fdqPesquisaPadraoCADASTRO: TDateField;
     procedure bbtnPesquisaClick(Sender: TObject);
+    procedure bbtnTransferirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -121,5 +122,26 @@ abort;
 
 end;
 
+
+procedure TfrmPesquisaClientes.bbtnTransferirClick(Sender: TObject);
+begin
+  inherited;
+  try
+    if fdqPesquisaPadrao.RecordCount > 0 then
+    begin
+
+        codigo := fdqPesquisaPadraoID_CLIENTE.AsInteger;
+
+    end
+
+    else
+    begin
+      abort;
+    end;
+
+  finally
+
+  end;
+end;
 
 end.

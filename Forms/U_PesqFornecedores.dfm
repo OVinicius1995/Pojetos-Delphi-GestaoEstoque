@@ -72,6 +72,9 @@ inherited frmPesquisaFornecedores: TfrmPesquisaFornecedores
   inherited bbtnPesquisa: TBitBtn
     OnClick = bbtnPesquisaClick
   end
+  inherited bbtnTransferir: TBitBtn
+    OnClick = bbtnTransferirClick
+  end
   inherited fdqPesquisaPadrao: TFDQuery
     SQL.Strings = (
       'SELECT '

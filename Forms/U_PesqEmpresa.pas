@@ -28,6 +28,7 @@ type
     fdqPesquisaPadraoLOGO: TBlobField;
     procedure bbtnPesquisaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure bbtnTransferirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -125,6 +126,16 @@ else
 abort;
 
 end;
+
+end;
+
+procedure TfrmPesquisaEmpresa.bbtnTransferirClick(Sender: TObject);
+begin
+  inherited;
+  if fdqPesquisaPadrao.RecordCount > 0 then
+  begin
+    codigo := fdqPesquisaPadraoID_EMPRESA.AsInteger;
+  end;
 
 end;
 

@@ -1,6 +1,5 @@
 inherited frmUsuario: TfrmUsuario
   Caption = 'Cadastro de usu'#225'rios'
-  ClientHeight = 442
   ClientWidth = 751
   TextHeight = 15
   object Label1: TLabel [0]
@@ -47,7 +46,6 @@ inherited frmUsuario: TfrmUsuario
     TabOrder = 11
   end
   inherited pnlFooter: TPanel
-    Top = 384
     Width = 751
     TabOrder = 13
   end

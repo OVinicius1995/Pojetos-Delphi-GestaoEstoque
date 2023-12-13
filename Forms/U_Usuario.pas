@@ -66,7 +66,7 @@ begin
     finally
 
     frmPesqUsuario.Free;
-    frmPesqUsuario := nil;
+
 
     end;
 end;
@@ -92,7 +92,22 @@ end;
 procedure TfrmUsuario.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
-  Abre_FormPesquisa;
+  try
+      Abre_FormPesquisa;
+      if frmPesqUsuario.codigo > 0 then
+      begin
+        fdqQueryPadrao.Open();
+        fdqQueryPadrao.Locate('ID_USUARIO',frmPesqUsuario.codigo);
+      end
+
+      else
+      begin
+        abort;
+      end;
+  finally
+
+  end;
+
 end;
 
 end.

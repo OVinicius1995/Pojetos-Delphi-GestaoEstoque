@@ -34,6 +34,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    codigo :Integer;
   end;
 
 var

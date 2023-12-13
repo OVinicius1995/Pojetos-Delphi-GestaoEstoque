@@ -1,11 +1,15 @@
 inherited frmPesquisaEmpresa: TfrmPesquisaEmpresa
   Caption = 'Pesquisa de empresa'
+  ClientHeight = 683
+  ClientWidth = 881
   OnCreate = FormCreate
   TextHeight = 15
   inherited Panel1: TPanel
-    ExplicitWidth = 881
+    Width = 881
   end
   inherited dbgPesquisa: TDBGrid
+    Width = 881
+    Height = 469
     Columns = <
       item
         Expanded = False
@@ -79,10 +83,14 @@ inherited frmPesquisaEmpresa: TfrmPesquisaEmpresa
       end>
   end
   inherited Panel2: TPanel
-    ExplicitWidth = 881
+    Top = 616
+    Width = 881
   end
   inherited bbtnPesquisa: TBitBtn
     OnClick = bbtnPesquisaClick
+  end
+  inherited bbtnTransferir: TBitBtn
+    OnClick = bbtnTransferirClick
   end
   inherited fdqPesquisaPadrao: TFDQuery
     SQL.Strings = (
