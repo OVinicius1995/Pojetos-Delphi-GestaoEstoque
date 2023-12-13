@@ -1,9 +1,9 @@
-object frmPesquisa: TfrmPesquisa
+object frmPesquisaPadrao: TfrmPesquisaPadrao
   Left = 0
   Top = 0
   Caption = 'Pesquisa'
-  ClientHeight = 683
-  ClientWidth = 1157
+  ClientHeight = 682
+  ClientWidth = 877
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,63 +15,61 @@ object frmPesquisa: TfrmPesquisa
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1157
+    Width = 877
     Height = 147
     Align = alTop
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -24
-    ExplicitTop = -36
     object lblOpcoesPesquisa: TLabel
       Left = 24
-      Top = 24
-      Width = 108
-      Height = 15
+      Top = 21
+      Width = 144
+      Height = 22
       Caption = 'Op'#231#245'es de pesquisa'
-      Font.Charset = DEFAULT_CHARSET
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
+      Font.Height = -16
+      Font.Name = 'Sylfaen'
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label1: TLabel
+    object lblNome: TLabel
       Left = 175
-      Top = 25
-      Width = 34
-      Height = 15
+      Top = 22
+      Width = 44
+      Height = 22
       Caption = 'Nome'
-      Font.Charset = DEFAULT_CHARSET
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
+      Font.Height = -16
+      Font.Name = 'Sylfaen'
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label2: TLabel
+    object lblDtinico: TLabel
       Left = 560
-      Top = 25
-      Width = 59
-      Height = 15
+      Top = 22
+      Width = 84
+      Height = 22
       Caption = 'Data In'#237'cio'
-      Font.Charset = DEFAULT_CHARSET
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
+      Font.Height = -16
+      Font.Name = 'Sylfaen'
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label3: TLabel
+    object lblDtfim: TLabel
       Left = 560
-      Top = 79
-      Width = 49
-      Height = 15
+      Top = 76
+      Width = 70
+      Height = 22
       Caption = 'Data Fim'
-      Font.Charset = DEFAULT_CHARSET
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
+      Font.Height = -16
+      Font.Name = 'Sylfaen'
       Font.Style = [fsBold]
       ParentFont = False
     end
@@ -79,48 +77,76 @@ object frmPesquisa: TfrmPesquisa
       Left = 24
       Top = 42
       Width = 145
-      Height = 23
+      Height = 30
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Sylfaen'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 0
+      OnChange = cmbChavePesquisaChange
       Items.Strings = (
         'C'#243'digo'
         'Nome'
-        'Per'#237'od')
+        'Cadastro'
+        'Per'#237'odo')
     end
     object edtNome: TEdit
       Left = 175
       Top = 42
       Width = 362
-      Height = 23
+      Height = 30
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Sylfaen'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 1
     end
   end
   object mkeDataInicio: TMaskEdit
     Left = 560
     Top = 42
-    Width = 120
-    Height = 23
-    EditMask = '!99/99/00;0;_'
-    MaxLength = 8
+    Width = 118
+    Height = 30
+    EditMask = '!99/99/0000;1;_'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Sylfaen'
+    Font.Style = []
+    MaxLength = 10
+    ParentFont = False
     TabOrder = 1
-    Text = ''
+    Text = '  /  /    '
   end
   object mkeDataFim: TMaskEdit
     Left = 560
     Top = 97
-    Width = 120
-    Height = 23
-    EditMask = '!99/99/00;0;_'
-    MaxLength = 8
-    TabOrder = 2
-    Text = ''
+    Width = 118
+    Height = 30
+    EditMask = '!99/99/0000;1;_'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Sylfaen'
+    Font.Style = []
+    MaxLength = 10
+    ParentFont = False
+    TabOrder = 3
+    Text = '  /  /    '
   end
-  object DBGrid1: TDBGrid
+  object dbgPesquisa: TDBGrid
     Left = 0
     Top = 147
-    Width = 1157
-    Height = 469
+    Width = 877
+    Height = 468
+    TabStop = False
     Align = alClient
-    TabOrder = 3
+    DataSource = dsPesquisaPadrao
+    TabOrder = 7
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -12
@@ -129,17 +155,17 @@ object frmPesquisa: TfrmPesquisa
   end
   object Panel2: TPanel
     Left = 0
-    Top = 616
-    Width = 1157
+    Top = 615
+    Width = 877
     Height = 67
     Align = alBottom
     Color = clSkyBlue
     ParentBackground = False
-    TabOrder = 4
+    TabOrder = 2
   end
   object bbtnPesquisa: TBitBtn
-    Left = 832
-    Top = 21
+    Left = 734
+    Top = 20
     Width = 105
     Height = 33
     Caption = 'Pesquisar'
@@ -203,10 +229,10 @@ object frmPesquisa: TfrmPesquisa
       22B92222225F2A2A2A0600000000000000000000000000000000000000000000
       000000000000}
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 4
   end
   object bbtnTransferir: TBitBtn
-    Left = 832
+    Left = 734
     Top = 59
     Width = 105
     Height = 33
@@ -271,10 +297,10 @@ object frmPesquisa: TfrmPesquisa
       22F3232323D7232323A424242455333333050000000000000000000000000000
       000000000000}
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 5
   end
   object bbtnImprimir: TBitBtn
-    Left = 832
+    Left = 734
     Top = 97
     Width = 105
     Height = 33
@@ -339,15 +365,16 @@ object frmPesquisa: TfrmPesquisa
       23FF232323FF232323FF222222F4232323A62424240E00000000000000000000
       000000000000}
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 6
   end
   object fdqPesquisaPadrao: TFDQuery
-    Left = 1072
-    Top = 192
+    Connection = dmConexao.fdcConexao
+    Left = 751
+    Top = 200
   end
   object dsPesquisaPadrao: TDataSource
     DataSet = fdqPesquisaPadrao
-    Left = 1072
-    Top = 264
+    Left = 751
+    Top = 272
   end
 end

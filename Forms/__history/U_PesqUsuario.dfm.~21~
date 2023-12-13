@@ -1,12 +1,9 @@
 inherited frmPesqUsuario: TfrmPesqUsuario
   Caption = 'Pesquisa Usu'#225'rio'
+  OnCreate = FormCreate
   TextHeight = 15
   inherited Panel1: TPanel
-    ExplicitLeft = 0
-    ExplicitTop = -6
-    ExplicitWidth = 881
     inherited cmbChavePesquisa: TComboBox
-      OnChange = cmbChavePesquisaChange
       Items.Strings = (
         'C'#243'digo'
         'Nome'
@@ -14,9 +11,24 @@ inherited frmPesqUsuario: TfrmPesqUsuario
         'Per'#237'odo')
     end
   end
+  inherited mkeDataInicio: TMaskEdit
+    Width = 116
+    EditMask = '!99/99/0000;1;_'
+    MaxLength = 10
+    Text = '  /  /    '
+    ExplicitWidth = 116
+  end
+  inherited mkeDataFim: TMaskEdit
+    Width = 118
+    EditMask = '!99/99/0000;1;_'
+    MaxLength = 10
+    Text = '  /  /    '
+    ExplicitWidth = 118
+  end
   inherited dbgPesquisa: TDBGrid
+    TabStop = False
     DataSource = dsPesquisaPadrao
-    OnStartDock = dbgPesquisaStartDock
+    TabOrder = 7
     Columns = <
       item
         Alignment = taCenter
@@ -72,11 +84,17 @@ inherited frmPesqUsuario: TfrmPesqUsuario
       end>
   end
   inherited Panel2: TPanel
-    ExplicitTop = 615
-    ExplicitWidth = 877
+    TabOrder = 6
   end
   inherited bbtnPesquisa: TBitBtn
+    TabOrder = 3
     OnClick = bbtnPesquisaClick
+  end
+  inherited bbtnTransferir: TBitBtn
+    TabOrder = 4
+  end
+  inherited bbtnImprimir: TBitBtn
+    TabOrder = 5
   end
   inherited fdqPesquisaPadrao: TFDQuery
     SQL.Strings = (
