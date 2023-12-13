@@ -382,4 +382,34 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Left = 751
     Top = 272
   end
+  object Rel_Pes: TfrxReport
+    Version = '2023.3.1'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 45273.433206643520000000
+    ReportOptions.LastChange = 45273.433206643520000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 728
+    Top = 456
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+  object DS_Pesq_Relatorio: TfrxDBDataset
+    UserName = 'frxDBDataset1'
+    CloseDataSource = False
+    DataSet = fdqPesquisaPadrao
+    BCDToCurrency = False
+    DataSetOptions = []
+    Left = 736
+    Top = 376
+  end
 end

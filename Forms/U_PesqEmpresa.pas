@@ -8,7 +8,8 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ExtCtrls;
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ExtCtrls,
+  frxClass, frxDBSet, frCoreClasses;
 
 type
   TfrmPesquisaEmpresa = class(TfrmPesquisaPadrao)
@@ -29,6 +30,7 @@ type
     procedure bbtnPesquisaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure bbtnTransferirClick(Sender: TObject);
+    procedure bbtnImprimirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,6 +43,32 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmPesquisaEmpresa.bbtnImprimirClick(Sender: TObject);
+var caminho :string;
+begin
+
+ try
+
+  caminho := ExtractFilePath(Application.ExeName);
+
+  if frmPesquisaEmpresa.Rel_Pes.LoadFromFile(caminho + 'RelPesPadrao.fr3') then
+  begin
+  Rel_Pes.Clear;
+  Rel_Pes.LoadFromFile(ExtractFilePath(Application.ExeName) + 'RelPesqPadraoEmpresas.fr3');
+  Rel_Pes.PrepareReport(true);
+  Rel_Pes.ShowPreparedReport;
+  end
+
+  else
+
+  MessageDlg('Relatório não encontrado', TMsgDlgType.mtError,[mbOk],0);
+
+  finally
+
+
+  end;
+end;
 
 procedure TfrmPesquisaEmpresa.bbtnPesquisaClick(Sender: TObject);
 begin
