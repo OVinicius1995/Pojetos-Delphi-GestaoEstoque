@@ -48,35 +48,35 @@ procedure TfrmPesquisaPadrao.cmbChavePesquisaChange(Sender: TObject);
 begin
 case cmbChavePesquisa.ItemIndex of
     0:begin
-      mkeDataInicio.Enabled := false;
-      mkeDataFim.Enabled := false;
       lblNome.Caption := 'Pesquisar pelo Código do usuário';
       edtNome.Enabled := true;
       edtNome.SetFocus;
+      mkeDataInicio.Enabled := false;
+      mkeDataFim.Enabled := false;
     end;
 
     1:begin
-      mkeDataInicio.Enabled := false;
-      mkeDataFim.Enabled := false;
       lblNome.Caption := 'Pesquisar pelo Nome do usuário';
       edtNome.Enabled := true;
       edtNome.SetFocus;
+      mkeDataInicio.Enabled := false;
+      mkeDataFim.Enabled := false;
     end;
 
     2:begin
-      mkeDataInicio.Enabled := true;
-      mkeDataFim.Enabled := false;
       lblNome.Caption := 'Pesquisar pelo data de cadastro';
       edtNome.Enabled := false;
       mkeDataInicio.SetFocus;
+      mkeDataInicio.Enabled := true;
+      mkeDataFim.Enabled := false;
     end;
 
     3:begin
-      mkeDataInicio.Enabled := true;
-      mkeDataFim.Enabled := true;
       lblNome.Caption := 'Pesquisar por período de cadastro';
       edtNome.Enabled := false;
       mkeDataInicio.SetFocus;
+      mkeDataInicio.Enabled := true;
+      mkeDataFim.Enabled := true;
     end;
 end;
 
