@@ -554,6 +554,7 @@ object frmPrincipal: TfrmPrincipal
     Color = clActiveCaption
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 1277
     object spbUsuario: TSpeedButton
       Left = 0
       Top = 0

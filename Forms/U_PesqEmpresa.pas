@@ -27,6 +27,7 @@ type
     fdqPesquisaPadraoCEP: TStringField;
     fdqPesquisaPadraoLOGO: TBlobField;
     procedure bbtnPesquisaClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -125,6 +126,17 @@ abort;
 
 end;
 
+end;
+
+procedure TfrmPesquisaEmpresa.FormCreate(Sender: TObject);
+begin
+
+fdqPesquisaPadrao.Close;
+fdqPesquisaPadrao.SQL.Add('');
+fdqPesquisaPadrao.Params.Clear;
+fdqPesquisaPadrao.SQL.Clear;
+fdqPesquisaPadrao.SQL.Add('SELECT * from EMPRESA');
+fdqPesquisaPadrao.Open();
 end;
 
 end.
