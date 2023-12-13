@@ -1,0 +1,141 @@
+inherited frmPesquisaClientes: TfrmPesquisaClientes
+  Caption = 'Pesquisa Clientes'
+  TextHeight = 15
+  inherited dbgPesquisa: TDBGrid
+    DataSource = dsPesquisaPadrao
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'ID_CLIENTE'
+        Title.Caption = 'ID DO CLIENTE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NOME'
+        Width = 363
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ENDERECO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NUMERO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'BAIRRO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CIDADE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'UF'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CEP'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TELTEFONE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CPF'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CADASTRO'
+        Visible = True
+      end>
+  end
+  inherited fdqPesquisaPadrao: TFDQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT '
+      'ID_CLIENTE,'
+      'NOME,'
+      'ENDERECO,'
+      'NUMERO,'
+      'BAIRRO,'
+      'CIDADE,'
+      'UF,'
+      'CEP,'
+      'TELTEFONE,'
+      'CPF,'
+      'CADASTRO'
+      'FROM CLIENTE'
+      'ORDER BY ID_CLIENTE'
+      '')
+    object fdqPesquisaPadraoID_CLIENTE: TIntegerField
+      FieldName = 'ID_CLIENTE'
+      Origin = 'ID_CLIENTE'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object fdqPesquisaPadraoNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 100
+    end
+    object fdqPesquisaPadraoENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Origin = 'ENDERECO'
+      Required = True
+      Size = 100
+    end
+    object fdqPesquisaPadraoNUMERO: TIntegerField
+      FieldName = 'NUMERO'
+      Origin = 'NUMERO'
+    end
+    object fdqPesquisaPadraoBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
+      Required = True
+      Size = 100
+    end
+    object fdqPesquisaPadraoCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Required = True
+      Size = 100
+    end
+    object fdqPesquisaPadraoUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      FixedChar = True
+      Size = 2
+    end
+    object fdqPesquisaPadraoCEP: TStringField
+      FieldName = 'CEP'
+      Origin = 'CEP'
+    end
+    object fdqPesquisaPadraoTELTEFONE: TStringField
+      FieldName = 'TELTEFONE'
+      Origin = 'TELTEFONE'
+    end
+    object fdqPesquisaPadraoCPF: TStringField
+      FieldName = 'CPF'
+      Origin = 'CPF'
+    end
+    object fdqPesquisaPadraoCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+  end
+end

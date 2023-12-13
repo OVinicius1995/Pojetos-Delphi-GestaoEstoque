@@ -63,9 +63,18 @@ type
     procedure spbEmpresaClick(Sender: TObject);
     procedure spbClientesClick(Sender: TObject);
     procedure Abre_Tela_Cliente;
+    procedure Abre_Tela_Fornecedores;
+    procedure Abre_Tela_Produtos;
+    procedure Abre_Tela_FormaPGTO;
     procedure mmuClientesClick(Sender: TObject);
     procedure mmuEmpresaClick(Sender: TObject);
     procedure mmuUsuarioClick(Sender: TObject);
+    procedure mmuFornecedoresClick(Sender: TObject);
+    procedure spbFornecedoresClick(Sender: TObject);
+    procedure mmuProdutosClick(Sender: TObject);
+    procedure spbProdutosClick(Sender: TObject);
+    procedure spbFormaPgtoClick(Sender: TObject);
+    procedure mmuFormasPgtoClick(Sender: TObject);
 
 
   private
@@ -81,7 +90,8 @@ implementation
 
 {$R *.dfm}
 
-uses StrUtils, U_Usuario, U_Empresa, U_Cliente;
+uses StrUtils, U_Usuario, U_Empresa, U_Cliente, U_Fornecedores, U_Produtos,
+  U_FormaPgto;
 
 
 procedure TfrmPrincipal.tmrDataHoraTimer(Sender: TObject);
@@ -138,6 +148,21 @@ begin
 end;
 
 
+procedure TfrmPrincipal.spbFormaPgtoClick(Sender: TObject);
+begin
+    Abre_Tela_FormaPGTO;
+end;
+
+procedure TfrmPrincipal.spbFornecedoresClick(Sender: TObject);
+begin
+  Abre_Tela_Fornecedores;
+end;
+
+procedure TfrmPrincipal.spbProdutosClick(Sender: TObject);
+begin
+  Abre_Tela_Produtos
+end;
+
 procedure TfrmPrincipal.abreTelaUsuario;
 begin
 
@@ -173,6 +198,46 @@ begin
     end;
 end;
 
+
+procedure TfrmPrincipal.Abre_Tela_FormaPGTO;
+begin
+     try
+       frmFormaPgto := TfrmFormaPgto.Create(self);
+       frmFormaPgto.ShowModal;
+     finally
+
+     frmFormaPgto.Free;
+     frmFormaPgto := nil;
+
+     end;
+end;
+
+procedure TfrmPrincipal.Abre_Tela_Fornecedores;
+begin
+     try
+       frmFornecedores := TfrmFornecedores.Create(self);
+       frmFornecedores.ShowModal;
+     finally
+
+     frmFornecedores.Free;
+     frmFornecedores := nil;
+
+     end;
+end;
+
+procedure TfrmPrincipal.Abre_Tela_Produtos;
+begin
+     try
+       frmProdutos := TfrmProdutos.Create(self);
+       frmProdutos.ShowModal;
+     finally
+
+     frmProdutos.Free;
+     frmProdutos := nil;
+
+     end;
+end;
+
 procedure TfrmPrincipal.mmuClientesClick(Sender: TObject);
 begin
 Abre_Tela_Cliente;
@@ -181,6 +246,21 @@ end;
 procedure TfrmPrincipal.mmuEmpresaClick(Sender: TObject);
 begin
 Abre_Tela_Cliente;
+end;
+
+procedure TfrmPrincipal.mmuFormasPgtoClick(Sender: TObject);
+begin
+Abre_Tela_FormaPGTO;
+end;
+
+procedure TfrmPrincipal.mmuFornecedoresClick(Sender: TObject);
+begin
+       Abre_Tela_Fornecedores;
+end;
+
+procedure TfrmPrincipal.mmuProdutosClick(Sender: TObject);
+begin
+Abre_Tela_Produtos;
 end;
 
 procedure TfrmPrincipal.mmuSairClick(Sender: TObject);

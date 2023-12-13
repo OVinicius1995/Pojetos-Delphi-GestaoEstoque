@@ -125,6 +125,38 @@
             <Form>frmClientes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Forms\U_Fornecedores.pas">
+            <Form>frmFornecedores</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_Produtos.pas">
+            <Form>frmProdutos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_FormaPgto.pas">
+            <Form>frmFormapgto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_PesquisaPadrao.pas">
+            <Form>frmPesquisaPadrao</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_PesqUsuario.pas">
+            <Form>frmPesqUsuario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_PesqClientes.pas">
+            <Form>frmPesquisaClientes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_PesqEmpresa.pas">
+            <Form>frmPesquisaEmpresa</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_PesqFornecedores.pas">
+            <Form>frmPesquisaFornecedores</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

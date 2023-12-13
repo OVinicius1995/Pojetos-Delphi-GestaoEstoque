@@ -45,8 +45,10 @@ type
     dbCadastro: TDBEdit;
     Label11: TLabel;
     DBEdit11: TDBEdit;
-    tmrdata: TTimer;
-    procedure tmrdataTimer(Sender: TObject);
+
+    procedure AbreTelaPesqClientes;
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -61,14 +63,33 @@ implementation
 
 {$R *.dfm}
 
+uses U_PesqClientes;
 
 
-procedure TfrmClientes.tmrdataTimer(Sender: TObject);
+
+procedure TfrmClientes.AbreTelaPesqClientes;
 begin
-  inherited;
-      FormatDateTime('hh:nn', now);
 
-      dbCadastro.Text := FormatDateTime('dd/mm/yyyy',now);
+  try
+    frmPesquisaClientes := TfrmPesquisaClientes.Create(Self);
+    frmPesquisaClientes.ShowModal;
+  finally
+  frmPesquisaClientes.Free;
+  frmPesquisaClientes := nil;
+  end;
+
+end;
+
+procedure TfrmClientes.btnNovoClick(Sender: TObject);
+begin
+inherited;
+  dbCadastro.Text := DateToStr(now);
+end;
+
+procedure TfrmClientes.btnPesquisarClick(Sender: TObject);
+begin
+AbreTelaPesqClientes;
+
 end;
 
 end.

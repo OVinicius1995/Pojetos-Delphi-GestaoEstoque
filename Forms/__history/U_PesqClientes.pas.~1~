@@ -1,0 +1,39 @@
+unit U_PesqClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_PesquisaPadrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TfrmPesquisaClientes = class(TfrmPesquisaPadrao)
+    fdqPesquisaPadraoID_CLIENTE: TIntegerField;
+    fdqPesquisaPadraoNOME: TStringField;
+    fdqPesquisaPadraoENDERECO: TStringField;
+    fdqPesquisaPadraoNUMERO: TIntegerField;
+    fdqPesquisaPadraoBAIRRO: TStringField;
+    fdqPesquisaPadraoCIDADE: TStringField;
+    fdqPesquisaPadraoUF: TStringField;
+    fdqPesquisaPadraoCEP: TStringField;
+    fdqPesquisaPadraoTELTEFONE: TStringField;
+    fdqPesquisaPadraoCPF: TStringField;
+    fdqPesquisaPadraoCADASTRO: TDateField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesquisaClientes: TfrmPesquisaClientes;
+
+implementation
+
+{$R *.dfm}
+
+end.
