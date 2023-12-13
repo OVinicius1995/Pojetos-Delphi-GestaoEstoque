@@ -25,6 +25,7 @@ type
     fdqPesquisaPadraoCADASTRO: TDateField;
     procedure bbtnPesquisaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure bbtnTransferirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -124,6 +125,21 @@ abort;
 
 end;
 
+end;
+
+procedure TfrmPesquisaFornecedores.bbtnTransferirClick(Sender: TObject);
+begin
+  inherited;
+  try
+    if fdqPesquisaPadrao.RecordCount > 0 then
+
+    begin
+      codigo := fdqPesquisaPadraoID_FORNECEDOR.AsInteger;
+    end;
+
+  finally
+
+  end;
 end;
 
 procedure TfrmPesquisaFornecedores.FormCreate(Sender: TObject);

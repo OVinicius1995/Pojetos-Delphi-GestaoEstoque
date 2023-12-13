@@ -15,7 +15,8 @@ uses
   U_PesqUsuario in '..\Forms\U_PesqUsuario.pas' {frmPesqUsuario},
   U_PesqClientes in '..\Forms\U_PesqClientes.pas' {frmPesquisaClientes},
   U_PesqEmpresa in '..\Forms\U_PesqEmpresa.pas' {frmPesquisaEmpresa},
-  U_PesqFornecedores in '..\Forms\U_PesqFornecedores.pas' {frmPesquisaFornecedores};
+  U_PesqFornecedores in '..\Forms\U_PesqFornecedores.pas' {frmPesquisaFornecedores},
+  U_PesqProdutos in '..\Forms\U_PesqProdutos.pas' {frmPesquisaProdutos};
 
 {$R *.res}
 
@@ -29,5 +30,6 @@ begin
   Application.CreateForm(TfrmPesquisaClientes, frmPesquisaClientes);
   Application.CreateForm(TfrmPesquisaEmpresa, frmPesquisaEmpresa);
   Application.CreateForm(TfrmPesquisaFornecedores, frmPesquisaFornecedores);
+  Application.CreateForm(TfrmPesquisaProdutos, frmPesquisaProdutos);
   Application.Run;
 end.

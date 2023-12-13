@@ -29,10 +29,12 @@ type
     fdqPesquisaPadrao: TFDQuery;
     dsPesquisaPadrao: TDataSource;
     procedure cmbChavePesquisaChange(Sender: TObject);
+    procedure dbgPesquisaDblClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    codigo :Integer;
   end;
 
 var
@@ -80,6 +82,11 @@ case cmbChavePesquisa.ItemIndex of
     end;
 end;
 
+end;
+
+procedure TfrmPesquisaPadrao.dbgPesquisaDblClick(Sender: TObject);
+begin
+      bbtnTransferir.Click;
 end;
 
 end.

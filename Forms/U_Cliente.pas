@@ -75,7 +75,7 @@ begin
     frmPesquisaClientes.ShowModal;
   finally
   frmPesquisaClientes.Free;
-  frmPesquisaClientes := nil;
+
   end;
 
 end;
@@ -88,7 +88,17 @@ end;
 
 procedure TfrmClientes.btnPesquisarClick(Sender: TObject);
 begin
-AbreTelaPesqClientes;
+
+  try
+    AbreTelaPesqClientes;
+    if frmPesquisaClientes.codigo > 0 then
+    begin
+      fdqQueryPadrao.Open;
+      fdqQueryPadrao.Locate('ID_Cliente',frmPesquisaClientes.codigo);
+    end;
+  finally
+
+  end;
 
 end;
 

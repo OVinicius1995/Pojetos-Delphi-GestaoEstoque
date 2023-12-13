@@ -40,6 +40,8 @@ type
     Label1: TLabel;
     DBEdit2: TDBEdit;
     procedure btnNovoClick(Sender: TObject);
+    procedure Abre_Tela_PesquisaProdutos();
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,11 +55,38 @@ implementation
 
 {$R *.dfm}
 
+uses U_PesqProdutos;
+
+procedure TfrmProdutos.Abre_Tela_PesquisaProdutos;
+begin
+    try
+      frmPesquisaProdutos := TfrmPesquisaProdutos.Create(Self);
+      frmPesquisaProdutos.ShowModal;
+    finally
+      frmPesquisaProdutos.Free;
+    end;
+end;
+
 procedure TfrmProdutos.btnNovoClick(Sender: TObject);
 begin
   inherited;
   dbeCadastro.Text := DateToStr(Now);
   //dbeIdProduto.SetFocus;
+end;
+
+procedure TfrmProdutos.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  try
+      Abre_Tela_PesquisaProdutos;
+      if frmPesquisaProdutos.codigo > 0 then
+      begin
+        fdqQueryPadrao.Open;
+        fdqQueryPadrao.Locate('ID_PRODUTO',frmPesquisaProdutos.codigo)
+      end;
+  finally
+
+  end;
 end;
 
 end.

@@ -1,0 +1,137 @@
+unit U_PesqProdutos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_PesquisaPadrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TfrmPesquisaProdutos = class(TfrmPesquisaPadrao)
+    fdqPesquisaPadraoID_PRODUTO: TIntegerField;
+    fdqPesquisaPadraoDESCRICAO: TStringField;
+    fdqPesquisaPadraoVL_CUSTO: TFMTBCDField;
+    fdqPesquisaPadraoVL_VENDA: TFMTBCDField;
+    fdqPesquisaPadraoESTOQUE: TFMTBCDField;
+    fdqPesquisaPadraoUNIDADE: TStringField;
+    fdqPesquisaPadraoCADASTRO: TDateField;
+    fdqPesquisaPadraoNOME: TStringField;
+    procedure bbtnPesquisaClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPesquisaProdutos: TfrmPesquisaProdutos;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmPesquisaProdutos.bbtnPesquisaClick(Sender: TObject);
+begin
+  inherited;
+case cmbChavePesquisa.ItemIndex of
+
+0:begin
+
+fdqPesquisaPadrao.Close;
+fdqPesquisaPadrao.SQL.Add('');
+fdqPesquisaPadrao.Params.Clear;
+fdqPesquisaPadrao.SQL.Clear;
+fdqPesquisaPadrao.SQL.Add('SELECT p.ID_PRODUTO,p.DESCRICAO,p.VL_CUSTO,p.VL_VENDA,p.ESTOQUE,p.Unidade,p.Cadastro, from produto p');
+fdqPesquisaPadrao.SQL.Add('Join fornecedor f on p.ID_FORNECEDOR=f.ID_FORNECEDOR');
+fdqPesquisaPadrao.SQL.Add('WHERE p.ID_PRODUTO =:IdID_PRODUTO');
+fdqPesquisaPadrao.ParamByName('IdID_PRODUTO').AsString:=edtNome.Text;
+fdqPesquisaPadrao.Open();
+
+
+end;
+
+1:begin
+
+fdqPesquisaPadrao.Close;
+fdqPesquisaPadrao.SQL.Add('');
+fdqPesquisaPadrao.Params.Clear;
+fdqPesquisaPadrao.SQL.Clear;
+fdqPesquisaPadrao.SQL.Add('SELECT ID_USUARIO,NOME,TIPO,CADASTRO from USUARIO');
+fdqPesquisaPadrao.SQL.Add('WHERE NOME LIKE :NOME');
+fdqPesquisaPadrao.ParamByName('NOME').AsString := edtNome.Text + '%';
+fdqPesquisaPadrao.Open();
+
+end;
+
+2:begin
+
+fdqPesquisaPadrao.Close;
+fdqPesquisaPadrao.SQL.Add('');
+fdqPesquisaPadrao.Params.Clear;
+fdqPesquisaPadrao.SQL.Clear;
+fdqPesquisaPadrao.SQL.Add('SELECT ID_USUARIO,NOME,TIPO,CADASTRO from USUARIO');
+fdqPesquisaPadrao.SQL.Add('WHERE CADASTRO  =:CADCLI');
+fdqPesquisaPadrao.ParamByName('CADCLI').AsDate := strTodate(mkeDataInicio.Text);
+fdqPesquisaPadrao.Open();
+
+end;
+
+3:begin
+
+if strTodate(mkeDataInicio.Text) > strTodate(mkeDataFim.Text) then
+begin
+  MessageDlg('A data inicial não pode ser anterior a final!',TMsgDlgType.mtInformation,[mbOk],0);
+  abort;
+end
+
+else
+
+fdqPesquisaPadrao.Close;
+fdqPesquisaPadrao.SQL.Add('');
+fdqPesquisaPadrao.Params.Clear;
+fdqPesquisaPadrao.SQL.Clear;
+fdqPesquisaPadrao.SQL.Add('SELECT ID_USUARIO,NOME,TIPO,CADASTRO from USUARIO');
+fdqPesquisaPadrao.SQL.Add('WHERE CADASTRO  BETWEEN :CADCLIINICIO AND :CADCLIFIM');
+fdqPesquisaPadrao.ParamByName('CADCLIINICIO').AsDate := strTodate(mkeDataInicio.Text);
+fdqPesquisaPadrao.ParamByName('CADCLIFIM').AsDate := strTodate(mkeDataFim.Text);
+fdqPesquisaPadrao.Open();
+
+
+end;
+
+
+end;
+
+if fdqPesquisaPadrao.IsEmpty then
+
+begin
+
+  MessageDlg('Registro não encontrado!',TMsgDlgType.mtInformation,[mbOk],0);
+
+end
+
+else
+
+abort;
+end;
+
+procedure TfrmPesquisaProdutos.FormCreate(Sender: TObject);
+begin
+ // inherited;
+
+ fdqPesquisaPadrao.Close;
+fdqPesquisaPadrao.SQL.Add('');
+fdqPesquisaPadrao.Params.Clear;
+fdqPesquisaPadrao.SQL.Clear;
+fdqPesquisaPadrao.SQL.Add('SELECT p.ID_PRODUTO,p.DESCRICAO,p.VL_CUSTO,p.VL_VENDA,p.ESTOQUE,p.Unidade,p.Cadastro from produto p');
+fdqPesquisaPadrao.SQL.Add('Join fornecedor f on p.ID_FORNECEDOR=f.ID_FORNECEDOR');
+fdqPesquisaPadrao.Open();
+
+end;
+
+end.

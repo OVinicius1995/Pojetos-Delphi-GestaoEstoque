@@ -70,7 +70,7 @@ try
    frmPesquisaFornecedores.ShowModal();
 finally
       frmPesquisaFornecedores.Free;
-      frmPesquisaFornecedores := nil;
+
 end;
 end;
 
@@ -84,7 +84,19 @@ end;
 procedure TfrmFornecedores.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
-  Abre_Tela_PesquisaFornecedores;
+  try
+    Abre_Tela_PesquisaFornecedores;
+    if frmPesquisaFornecedores.codigo > 0 then
+    begin
+
+      fdqQueryPadrao.Open;
+      fdqQueryPadrao.Locate('ID_FORNECEDOR',frmPesquisaFornecedores.codigo)
+
+    end;
+
+  finally
+
+  end;
 end;
 
 end.

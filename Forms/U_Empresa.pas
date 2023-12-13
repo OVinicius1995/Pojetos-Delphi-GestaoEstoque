@@ -79,8 +79,13 @@ uses U_PesqEmpresa;
 
 procedure TfrmCadastraEmpresa.Abre_Tela_Pesquisa;
 begin
+try
     frmPesquisaEmpresa := TfrmPesquisaEmpresa.Create(Self);
     frmPesquisaEmpresa.showModal;
+finally
+    frmPesquisaEmpresa.Free;
+end;
+
 end;
 
 procedure TfrmCadastraEmpresa.btnClearClick(Sender: TObject);
@@ -116,7 +121,16 @@ end;
 procedure TfrmCadastraEmpresa.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
-         Abre_Tela_Pesquisa;
+        try
+           Abre_Tela_Pesquisa;
+           if frmPesquisaEmpresa.codigo > 0 then
+           begin
+             fdqQueryPadrao.Open();
+             fdqQueryPadrao.Locate('ID_EMPRESA',frmPesquisaEmpresa.codigo);
+           end;
+        finally
+
+        end;
 end;
 
 end.

@@ -2,8 +2,8 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
   Left = 0
   Top = 0
   Caption = 'Pesquisa'
-  ClientHeight = 682
-  ClientWidth = 877
+  ClientHeight = 683
+  ClientWidth = 881
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,12 +15,13 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 877
+    Width = 881
     Height = 147
     Align = alTop
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 877
     object lblOpcoesPesquisa: TLabel
       Left = 24
       Top = 21
@@ -141,8 +142,8 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
   object dbgPesquisa: TDBGrid
     Left = 0
     Top = 147
-    Width = 877
-    Height = 468
+    Width = 881
+    Height = 469
     TabStop = False
     Align = alClient
     DataSource = dsPesquisaPadrao
@@ -152,16 +153,19 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
+    OnDblClick = dbgPesquisaDblClick
   end
   object Panel2: TPanel
     Left = 0
-    Top = 615
-    Width = 877
+    Top = 616
+    Width = 881
     Height = 67
     Align = alBottom
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 2
+    ExplicitTop = 615
+    ExplicitWidth = 877
   end
   object bbtnPesquisa: TBitBtn
     Left = 734
@@ -296,6 +300,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
       000000000000000000002A2A2A0623232357232323A6232323D8222222F42222
       22F3232323D7232323A424242455333333050000000000000000000000000000
       000000000000}
+    ModalResult = 1
     ParentFont = False
     TabOrder = 5
   end
