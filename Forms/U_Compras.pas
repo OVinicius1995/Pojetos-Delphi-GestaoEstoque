@@ -40,13 +40,53 @@ type
     fdq_FormaPgtoDESCRICAO: TStringField;
     Label8: TLabel;
     Label1: TLabel;
+    dsItensCompra: TDataSource;
+    fdq_Produto: TFDQuery;
+    fdq_ProdutoID_PRODUTO: TIntegerField;
+    fdq_ProdutoDESCRICAO: TStringField;
+    fdq_ProdutoESTOQUE: TFMTBCDField;
+    fdq_ProdutoVL_CUSTO: TFMTBCDField;
+    fdq_ItensCompra: TFDQuery;
+    DBEdit1: TDBEdit;
+    Label3: TLabel;
+    DBEdit2: TDBEdit;
+    Label4: TLabel;
+    DBEdit3: TDBEdit;
+    Label5: TLabel;
+    DBEdit4: TDBEdit;
+    Label6: TLabel;
+    DBEdit5: TDBEdit;
+    Label13: TLabel;
+    DBEdit6: TDBEdit;
+    Label14: TLabel;
+    DBEdit7: TDBEdit;
+    fdq_ItensCompraID_SEQUENCIA: TIntegerField;
+    fdq_ItensCompraID_COMPRA: TIntegerField;
+    fdq_ItensCompraID_PRODUTO: TIntegerField;
+    fdq_ItensCompraQTDE: TFMTBCDField;
+    fdq_ItensCompraVL_CUSTO: TFMTBCDField;
+    fdq_ItensCompraDESCONTO: TFMTBCDField;
+    fdq_ItensCompraTOTAL_ITEM: TFMTBCDField;
+    Label2: TLabel;
+    dbIdProduto: TDBEdit;
+    Label15: TLabel;
+    dbQtde: TDBEdit;
+    Label16: TLabel;
+    dbVlCusto: TDBEdit;
+    Label17: TLabel;
+    dbDesconto: TDBEdit;
+    Label18: TLabel;
+    dbTotalItem: TDBEdit;
+    fdq_ItensCompraSUBTOTAL: TAggregateField;
     procedure btnNovoClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure cmdIdFornecChange(Sender: TObject);
     procedure cmbIdFormaPgtoChange(Sender: TObject);
+    procedure bibItemClick(Sender: TObject);
+    procedure dbIdProdutoExit(Sender: TObject);
+    procedure bibOkClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -63,10 +103,32 @@ implementation
 
 uses U_DM;
 
-procedure TfrmCadastroDeCompras.BitBtn1Click(Sender: TObject);
+procedure TfrmCadastroDeCompras.bibItemClick(Sender: TObject);
+
+var ID_SEQUENCIA_I : Integer;
 begin
-  inherited;
-  MessageDlg('Teste do cmb' + cmdIdFornec.Text,TMsgDlgType.mtWarning,[mbOk],0);
+  //inherited;
+
+    fdq_ItensCompra.Open;
+    fdq_ItensCompra.Last;
+    ID_SEQUENCIA_I := fdq_ItensCompraID_SEQUENCIA.AsInteger +1;
+    fdq_ItensCompra.Append;
+   // dbIdProduto.Text := ID_SEQUENCIA_I.ToString;
+    fdq_ItensCompraID_SEQUENCIA.AsInteger := ID_SEQUENCIA_I;
+   // dbIdProduto.SetFocus;
+
+
+
+
+end;
+
+procedure TfrmCadastroDeCompras.bibOkClick(Sender: TObject);
+begin
+
+  fdqQueryPadrao.Edit;
+  fdqQueryPadraoVALOR.AsFloat := fdq_ItensCompra.AggFields.FieldByName('SUBTOTAL').Value;
+  fdqQueryPadrao.Post;
+
 end;
 
 procedure TfrmCadastroDeCompras.btnAtualizarClick(Sender: TObject);
@@ -131,6 +193,29 @@ begin
 end;
 
 
+procedure TfrmCadastroDeCompras.dbIdProdutoExit(Sender: TObject);
+begin
+  //inherited;
+    if   fdq_ItensCompraID_PRODUTO.AsInteger > 0   then
+
+    if   fdq_Produto.Locate('ID_PRODUTO',fdq_ItensCompra.FieldByName('ID_PRODUTO').AsInteger,[]) then
+    begin
+      fdq_ItensCompraQTDE.AsFloat     := 1;
+      fdq_ItensCompraDESCONTO.AsFloat := 0;
+      fdq_ItensCompraVL_CUSTO.AsFloat := fdq_Produto.FieldByName('vl_custo').AsFloat;
+      fdq_ItensCompraTOTAL_ITEM.AsFloat := (fdq_ItensCompraQTDE.AsFloat * fdq_ItensCompraVL_CUSTO.AsFloat) - (fdq_ItensCompraDESCONTO.AsFloat);
+      fdq_ItensCompra.Post;
+      bibItem.SetFocus;
+    end
+
+    else
+    begin
+      MessageDlg('Produto não encontrado', TMsgDlgType.mtInformation,[mbOk],0);
+      fdq_ItensCompra.Cancel;
+    end;
+
+end;
+
 procedure TfrmCadastroDeCompras.FormActivate(Sender: TObject);
 begin
   inherited;
@@ -155,8 +240,6 @@ begin
 
   finally
 
-  //q_PadraoItem.close();
-  //fdq_FormaPgto.close();
 
   end;
 

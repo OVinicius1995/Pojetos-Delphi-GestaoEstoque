@@ -72,9 +72,6 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     inherited bibItem: TBitBtn
       OnClick = bibItemClick
     end
-    inherited bibOk: TBitBtn
-      OnClick = bibOkClick
-    end
   end
   inherited btnAtualizar: TBitBtn
     TabOrder = 4
@@ -210,6 +207,15 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Enabled = False
       TabOrder = 5
       TextHint = 'Descri'#231#227'o da forma de pagamento'
+    end
+    object DBEdit8: TDBEdit
+      Left = 288
+      Top = 146
+      Width = 154
+      Height = 23
+      DataField = 'SUBTOTAL'
+      DataSource = dsItensCompra
+      TabOrder = 6
     end
   end
   inherited Panel2: TPanel

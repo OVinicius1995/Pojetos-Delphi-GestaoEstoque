@@ -13,54 +13,6 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     Height = 15
     Caption = 'ID'
   end
-  object Label3: TLabel [1]
-    Left = 144
-    Top = 912
-    Width = 66
-    Height = 15
-    Caption = 'ID_COMPRA'
-    FocusControl = DBEdit2
-  end
-  object Label4: TLabel [2]
-    Left = 144
-    Top = 1408
-    Width = 69
-    Height = 15
-    Caption = 'ID_PRODUTO'
-    FocusControl = DBEdit3
-  end
-  object Label5: TLabel [3]
-    Left = 144
-    Top = 1904
-    Width = 28
-    Height = 15
-    Caption = 'QTDE'
-    FocusControl = DBEdit4
-  end
-  object Label6: TLabel [4]
-    Left = 144
-    Top = 2400
-    Width = 54
-    Height = 15
-    Caption = 'VL_CUSTO'
-    FocusControl = DBEdit5
-  end
-  object Label13: TLabel [5]
-    Left = 144
-    Top = 2896
-    Width = 60
-    Height = 15
-    Caption = 'DESCONTO'
-    FocusControl = DBEdit6
-  end
-  object Label14: TLabel [6]
-    Left = 144
-    Top = 3392
-    Width = 63
-    Height = 15
-    Caption = 'TOTAL_ITEM'
-    FocusControl = DBEdit7
-  end
   inherited pnlCabecalho: TPanel
     Width = 918
   end
@@ -71,9 +23,6 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     ExplicitWidth = 747
     inherited bibItem: TBitBtn
       OnClick = bibItemClick
-    end
-    inherited bibOk: TBitBtn
-      OnClick = bibOkClick
     end
   end
   inherited btnAtualizar: TBitBtn
@@ -213,49 +162,45 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     end
   end
   inherited Panel2: TPanel
-    Top = 512
+    Top = 501
     Width = 918
-    Height = 59
     TabOrder = 13
-    ExplicitLeft = -8
-    ExplicitTop = 488
-    ExplicitWidth = 918
-    ExplicitHeight = 59
+    ExplicitTop = 614
     object Label2: TLabel
       Left = 13
-      Top = 14
+      Top = 16
       Width = 69
       Height = 15
       Caption = 'ID_PRODUTO'
       FocusControl = dbIdProduto
     end
-    object Label15: TLabel
-      Left = 173
-      Top = 14
+    object Label3: TLabel
+      Left = 102
+      Top = 16
       Width = 28
       Height = 15
       Caption = 'QTDE'
       FocusControl = dbQtde
     end
-    object Label16: TLabel
-      Left = 325
-      Top = 14
+    object Label4: TLabel
+      Left = 252
+      Top = 16
       Width = 54
       Height = 15
       Caption = 'VL_CUSTO'
       FocusControl = dbVlCusto
     end
-    object Label17: TLabel
-      Left = 448
-      Top = 14
+    object Label5: TLabel
+      Left = 386
+      Top = 16
       Width = 60
       Height = 15
       Caption = 'DESCONTO'
       FocusControl = dbDesconto
     end
-    object Label18: TLabel
-      Left = 607
-      Top = 14
+    object Label6: TLabel
+      Left = 575
+      Top = 16
       Width = 63
       Height = 15
       Caption = 'TOTAL_ITEM'
@@ -263,8 +208,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     end
     object dbIdProduto: TDBEdit
       Left = 13
-      Top = 30
-      Width = 154
+      Top = 32
+      Width = 69
       Height = 23
       DataField = 'ID_PRODUTO'
       DataSource = dsItensCompra
@@ -272,36 +217,36 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       OnExit = dbIdProdutoExit
     end
     object dbQtde: TDBEdit
-      Left = 173
-      Top = 30
-      Width = 145
+      Left = 102
+      Top = 32
+      Width = 132
       Height = 23
       DataField = 'QTDE'
       DataSource = dsItensCompra
       TabOrder = 1
     end
     object dbVlCusto: TDBEdit
-      Left = 325
-      Top = 30
-      Width = 117
+      Left = 252
+      Top = 32
+      Width = 113
       Height = 23
       DataField = 'VL_CUSTO'
       DataSource = dsItensCompra
       TabOrder = 2
     end
     object dbDesconto: TDBEdit
-      Left = 448
-      Top = 30
-      Width = 153
+      Left = 386
+      Top = 32
+      Width = 161
       Height = 23
       DataField = 'DESCONTO'
       DataSource = dsItensCompra
       TabOrder = 3
     end
     object dbTotalItem: TDBEdit
-      Left = 607
-      Top = 30
-      Width = 130
+      Left = 572
+      Top = 32
+      Width = 153
       Height = 23
       DataField = 'TOTAL_ITEM'
       DataSource = dsItensCompra
@@ -311,12 +256,52 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   inherited DBGrid1: TDBGrid
     Top = 225
     Width = 918
-    Height = 224
-    Align = alNone
+    Height = 276
     DataSource = dsItensCompra
     TabOrder = 14
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'QTDE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VL_CUSTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TOTAL_ITEM'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_SEQUENCIA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_COMPRA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_PRODUTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DESCONTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DESCRICAO'
+        Visible = True
+      end>
   end
-  object cmbIdFormaPgto: TComboBox [20]
+  object cmbIdFormaPgto: TComboBox [14]
     Left = 13
     Top = 170
     Width = 76
@@ -330,7 +315,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     StyleName = 'Windows'
     OnChange = cmbIdFormaPgtoChange
   end
-  object cmdIdFornec: TComboBox [21]
+  object cmdIdFornec: TComboBox [15]
     AlignWithMargins = True
     Left = 13
     Top = 125
@@ -344,71 +329,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     StyleName = 'Windows'
     OnChange = cmdIdFornecChange
   end
-  object DBEdit1: TDBEdit [22]
-    Left = 144
-    Top = 656
-    Width = 154
-    Height = 23
-    DataField = 'ID_SEQUENCIA'
-    DataSource = dsItensCompra
-    TabOrder = 15
-  end
-  object DBEdit2: TDBEdit [23]
-    Left = 144
-    Top = 1152
-    Width = 154
-    Height = 23
-    DataField = 'ID_COMPRA'
-    DataSource = dsItensCompra
-    TabOrder = 16
-  end
-  object DBEdit3: TDBEdit [24]
-    Left = 144
-    Top = 1648
-    Width = 154
-    Height = 23
-    DataField = 'ID_PRODUTO'
-    DataSource = dsItensCompra
-    TabOrder = 17
-  end
-  object DBEdit4: TDBEdit [25]
-    Left = 144
-    Top = 2144
-    Width = 289
-    Height = 23
-    DataField = 'QTDE'
-    DataSource = dsItensCompra
-    TabOrder = 18
-  end
-  object DBEdit5: TDBEdit [26]
-    Left = 144
-    Top = 2640
-    Width = 289
-    Height = 23
-    DataField = 'VL_CUSTO'
-    DataSource = dsItensCompra
-    TabOrder = 19
-  end
-  object DBEdit6: TDBEdit [27]
-    Left = 144
-    Top = 3136
-    Width = 289
-    Height = 23
-    DataField = 'DESCONTO'
-    DataSource = dsItensCompra
-    TabOrder = 20
-  end
-  object DBEdit7: TDBEdit [28]
-    Left = 144
-    Top = 3632
-    Width = 289
-    Height = 23
-    DataField = 'TOTAL_ITEM'
-    DataSource = dsItensCompra
-    TabOrder = 21
-  end
   inherited fdqQueryPadrao: TFDQuery
-    Active = True
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_ID_COMPRA'
@@ -426,10 +347,10 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     Left = 688
     Top = 136
     object fdqQueryPadraoID_COMPRA: TIntegerField
-      AutoGenerateValue = arAutoInc
       FieldName = 'ID_COMPRA'
       Origin = 'ID_COMPRA'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
     object fdqQueryPadraoID_FORNECEDOR: TIntegerField
       FieldName = 'ID_FORNECEDOR'
@@ -520,69 +441,19 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     Left = 840
     Top = 152
   end
-  object dsItensCompra: TDataSource
-    DataSet = fdq_ItensCompra
-    Left = 456
-    Top = 368
-  end
-  object fdq_Produto: TFDQuery
+  object fdq_ItensCompra: TFDQuery
     ActiveStoredUsage = [auRunTime]
-    Active = True
     AutoCalcFields = False
     FieldOptions.PositionMode = poFieldNo
     FieldOptions.UpdatePersistent = True
-    DetailFields = 'ID_FORMA_PGTO'
-    Connection = dmConexao.fdcConexao
-    FetchOptions.AssignedValues = [evAutoFetchAll]
-    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
-    UpdateOptions.FetchGeneratorsPoint = gpNone
-    SQL.Strings = (
-      'SELECT     '
-      'ID_PRODUTO,'
-      'DESCRICAO,'
-      'ESTOQUE,'
-      'VL_CUSTO '
-      'FROM PRODUTO'
-      'ORDER BY ID_PRODUTO')
-    Left = 576
-    Top = 304
-    object fdq_ProdutoID_PRODUTO: TIntegerField
-      FieldName = 'ID_PRODUTO'
-      Origin = 'ID_PRODUTO'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object fdq_ProdutoDESCRICAO: TStringField
-      FieldName = 'DESCRICAO'
-      Origin = 'DESCRICAO'
-      Required = True
-      Size = 100
-    end
-    object fdq_ProdutoESTOQUE: TFMTBCDField
-      FieldName = 'ESTOQUE'
-      Origin = 'ESTOQUE'
-      Required = True
-      Precision = 18
-      Size = 2
-    end
-    object fdq_ProdutoVL_CUSTO: TFMTBCDField
-      FieldName = 'VL_CUSTO'
-      Origin = 'VL_CUSTO'
-      Required = True
-      Precision = 18
-      Size = 2
-    end
-  end
-  object fdq_ItensCompra: TFDQuery
-    Active = True
     IndexFieldNames = 'ID_COMPRA'
-    AggregatesActive = True
     MasterSource = dtsPadrao
     MasterFields = 'ID_COMPRA'
     DetailFields = 'ID_COMPRA'
     Connection = dmConexao.fdcConexao
-    FetchOptions.AssignedValues = [evCache]
-    FetchOptions.Cache = [fiBlobs, fiMeta]
+    FetchOptions.AssignedValues = [evAutoFetchAll]
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpNone
     SQL.Strings = (
       'SELECT     '
       'ID_SEQUENCIA,'
@@ -601,14 +472,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
         Name = 'ID_COMPRA'
         DataType = ftInteger
         ParamType = ptInput
-        Value = 4
+        Value = 1
       end>
-    object fdq_ItensCompraID_SEQUENCIA: TIntegerField
-      FieldName = 'ID_SEQUENCIA'
-      Origin = 'ID_SEQUENCIA'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
     object fdq_ItensCompraID_COMPRA: TIntegerField
       FieldName = 'ID_COMPRA'
       Origin = 'ID_COMPRA'
@@ -618,6 +483,19 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     object fdq_ItensCompraID_PRODUTO: TIntegerField
       FieldName = 'ID_PRODUTO'
       Origin = 'ID_PRODUTO'
+    end
+    object fdq_ItensCompraDESCONTO: TFMTBCDField
+      FieldName = 'DESCONTO'
+      Origin = 'DESCONTO'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object fdq_ItensCompraID_SEQUENCIA: TIntegerField
+      FieldName = 'ID_SEQUENCIA'
+      Origin = 'ID_SEQUENCIA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
     object fdq_ItensCompraQTDE: TFMTBCDField
       FieldName = 'QTDE'
@@ -634,13 +512,6 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Precision = 18
       Size = 2
     end
-    object fdq_ItensCompraDESCONTO: TFMTBCDField
-      FieldName = 'DESCONTO'
-      Origin = 'DESCONTO'
-      currency = True
-      Precision = 18
-      Size = 2
-    end
     object fdq_ItensCompraTOTAL_ITEM: TFMTBCDField
       FieldName = 'TOTAL_ITEM'
       Origin = 'TOTAL_ITEM'
@@ -649,12 +520,70 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Precision = 18
       Size = 2
     end
-    object fdq_ItensCompraSUBTOTAL: TAggregateField
-      FieldName = 'SUBTOTAL'
-      Active = True
-      currency = True
-      DisplayName = ''
-      Expression = 'SUM(TOTAL_ITEM)'
+    object fdq_ItensCompraDESCRICAO: TStringField
+      FieldKind = fkLookup
+      FieldName = 'DESCRICAO'
+      LookupDataSet = fdq_Produto
+      LookupKeyFields = 'ID_PRODUTO'
+      LookupResultField = 'DESCRICAO'
+      KeyFields = 'ID_PRODUTO'
+      Size = 100
+      Lookup = True
+    end
+  end
+  object dsItensCompra: TDataSource
+    DataSet = fdq_ItensCompra
+    Left = 456
+    Top = 368
+  end
+  object fdq_Produto: TFDQuery
+    ActiveStoredUsage = [auRunTime]
+    AutoCalcFields = False
+    FieldOptions.PositionMode = poFieldNo
+    FieldOptions.UpdatePersistent = True
+    IndexFieldNames = 'ID_COMPRA'
+    MasterSource = dtsPadrao
+    MasterFields = 'ID_COMPRA'
+    DetailFields = 'ID_FORMA_PGTO'
+    Connection = dmConexao.fdcConexao
+    FetchOptions.AssignedValues = [evAutoFetchAll]
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpNone
+    SQL.Strings = (
+      'SELECT     '
+      'ID_PRODUTO,'
+      'DESCRICAO,'
+      'ESTOQUE,'
+      'VL_CUSTO '
+      'FROM PRODUTO'
+      'ORDER BY ID_PRODUTO')
+    Left = 576
+    Top = 304
+    object fdq_ProdutoVL_CUSTO: TFMTBCDField
+      FieldName = 'VL_CUSTO'
+      Origin = 'VL_CUSTO'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object fdq_ProdutoESTOQUE: TFMTBCDField
+      FieldName = 'ESTOQUE'
+      Origin = 'ESTOQUE'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object fdq_ProdutoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Required = True
+      Size = 100
+    end
+    object fdq_ProdutoID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+      Origin = 'ID_PRODUTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
   end
 end

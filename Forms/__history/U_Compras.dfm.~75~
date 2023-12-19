@@ -72,9 +72,6 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     inherited bibItem: TBitBtn
       OnClick = bibItemClick
     end
-    inherited bibOk: TBitBtn
-      OnClick = bibOkClick
-    end
   end
   inherited btnAtualizar: TBitBtn
     TabOrder = 4
@@ -227,7 +224,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Width = 69
       Height = 15
       Caption = 'ID_PRODUTO'
-      FocusControl = dbIdProduto
+      FocusControl = DBEdit8
     end
     object Label15: TLabel
       Left = 173
@@ -235,7 +232,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Width = 28
       Height = 15
       Caption = 'QTDE'
-      FocusControl = dbQtde
+      FocusControl = DBEdit9
     end
     object Label16: TLabel
       Left = 325
@@ -243,7 +240,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Width = 54
       Height = 15
       Caption = 'VL_CUSTO'
-      FocusControl = dbVlCusto
+      FocusControl = DBEdit10
     end
     object Label17: TLabel
       Left = 448
@@ -251,7 +248,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Width = 60
       Height = 15
       Caption = 'DESCONTO'
-      FocusControl = dbDesconto
+      FocusControl = DBEdit11
     end
     object Label18: TLabel
       Left = 607
@@ -259,9 +256,9 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Width = 63
       Height = 15
       Caption = 'TOTAL_ITEM'
-      FocusControl = dbTotalItem
+      FocusControl = DBEdit12
     end
-    object dbIdProduto: TDBEdit
+    object DBEdit8: TDBEdit
       Left = 13
       Top = 30
       Width = 154
@@ -269,9 +266,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       DataField = 'ID_PRODUTO'
       DataSource = dsItensCompra
       TabOrder = 0
-      OnExit = dbIdProdutoExit
     end
-    object dbQtde: TDBEdit
+    object DBEdit9: TDBEdit
       Left = 173
       Top = 30
       Width = 145
@@ -280,7 +276,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       DataSource = dsItensCompra
       TabOrder = 1
     end
-    object dbVlCusto: TDBEdit
+    object DBEdit10: TDBEdit
       Left = 325
       Top = 30
       Width = 117
@@ -289,7 +285,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       DataSource = dsItensCompra
       TabOrder = 2
     end
-    object dbDesconto: TDBEdit
+    object DBEdit11: TDBEdit
       Left = 448
       Top = 30
       Width = 153
@@ -298,7 +294,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       DataSource = dsItensCompra
       TabOrder = 3
     end
-    object dbTotalItem: TDBEdit
+    object DBEdit12: TDBEdit
       Left = 607
       Top = 30
       Width = 130
@@ -527,10 +523,12 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   end
   object fdq_Produto: TFDQuery
     ActiveStoredUsage = [auRunTime]
-    Active = True
     AutoCalcFields = False
     FieldOptions.PositionMode = poFieldNo
     FieldOptions.UpdatePersistent = True
+    IndexFieldNames = 'ID_COMPRA'
+    MasterSource = dtsPadrao
+    MasterFields = 'ID_COMPRA'
     DetailFields = 'ID_FORMA_PGTO'
     Connection = dmConexao.fdcConexao
     FetchOptions.AssignedValues = [evAutoFetchAll]
@@ -576,7 +574,6 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   object fdq_ItensCompra: TFDQuery
     Active = True
     IndexFieldNames = 'ID_COMPRA'
-    AggregatesActive = True
     MasterSource = dtsPadrao
     MasterFields = 'ID_COMPRA'
     DetailFields = 'ID_COMPRA'
@@ -630,14 +627,12 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       FieldName = 'VL_CUSTO'
       Origin = 'VL_CUSTO'
       Required = True
-      currency = True
       Precision = 18
       Size = 2
     end
     object fdq_ItensCompraDESCONTO: TFMTBCDField
       FieldName = 'DESCONTO'
       Origin = 'DESCONTO'
-      currency = True
       Precision = 18
       Size = 2
     end
@@ -645,16 +640,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       FieldName = 'TOTAL_ITEM'
       Origin = 'TOTAL_ITEM'
       Required = True
-      currency = True
       Precision = 18
       Size = 2
-    end
-    object fdq_ItensCompraSUBTOTAL: TAggregateField
-      FieldName = 'SUBTOTAL'
-      Active = True
-      currency = True
-      DisplayName = ''
-      Expression = 'SUM(TOTAL_ITEM)'
     end
   end
 end

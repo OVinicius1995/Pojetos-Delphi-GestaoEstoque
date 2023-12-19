@@ -72,9 +72,6 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     inherited bibItem: TBitBtn
       OnClick = bibItemClick
     end
-    inherited bibOk: TBitBtn
-      OnClick = bibOkClick
-    end
   end
   inherited btnAtualizar: TBitBtn
     TabOrder = 4
@@ -527,10 +524,12 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   end
   object fdq_Produto: TFDQuery
     ActiveStoredUsage = [auRunTime]
-    Active = True
     AutoCalcFields = False
     FieldOptions.PositionMode = poFieldNo
     FieldOptions.UpdatePersistent = True
+    IndexFieldNames = 'ID_COMPRA'
+    MasterSource = dtsPadrao
+    MasterFields = 'ID_COMPRA'
     DetailFields = 'ID_FORMA_PGTO'
     Connection = dmConexao.fdcConexao
     FetchOptions.AssignedValues = [evAutoFetchAll]
@@ -576,7 +575,6 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   object fdq_ItensCompra: TFDQuery
     Active = True
     IndexFieldNames = 'ID_COMPRA'
-    AggregatesActive = True
     MasterSource = dtsPadrao
     MasterFields = 'ID_COMPRA'
     DetailFields = 'ID_COMPRA'
@@ -648,13 +646,6 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       currency = True
       Precision = 18
       Size = 2
-    end
-    object fdq_ItensCompraSUBTOTAL: TAggregateField
-      FieldName = 'SUBTOTAL'
-      Active = True
-      currency = True
-      DisplayName = ''
-      Expression = 'SUM(TOTAL_ITEM)'
     end
   end
 end
