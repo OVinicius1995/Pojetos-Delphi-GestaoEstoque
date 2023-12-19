@@ -75,6 +75,9 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     inherited bibOk: TBitBtn
       OnClick = bibOkClick
     end
+    inherited bibExcluir: TBitBtn
+      OnClick = bibExcluirClick
+    end
   end
   inherited btnAtualizar: TBitBtn
     TabOrder = 4

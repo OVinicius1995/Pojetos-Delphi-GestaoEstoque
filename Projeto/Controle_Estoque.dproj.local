@@ -56,10 +56,10 @@
     <File Path="..\Forms\U_FormaPgto.dfm"/>
     <File Path="..\Forms\U_PesquisaPadrao.pas"/>
     <File Path="..\Forms\U_PesquisaPadrao.dfm"/>
-    <File Path="..\Forms\U_PesqUsuario.pas"/>
-    <File Path="..\Forms\U_PesqUsuario.dfm"/>
     <File Path="..\Forms\U_PesqClientes.pas"/>
     <File Path="..\Forms\U_PesqClientes.dfm"/>
+    <File Path="..\Forms\U_PesqUsuario.pas"/>
+    <File Path="..\Forms\U_PesqUsuario.dfm"/>
     <File Path="..\Forms\U_PesqEmpresa.pas"/>
     <File Path="..\Forms\U_PesqEmpresa.dfm"/>
     <File Path="..\Forms\U_PesqFornecedores.pas"/>

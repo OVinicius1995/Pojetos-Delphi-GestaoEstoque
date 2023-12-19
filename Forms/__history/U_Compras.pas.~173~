@@ -77,6 +77,7 @@ type
     dbDesconto: TDBEdit;
     Label18: TLabel;
     dbTotalItem: TDBEdit;
+    fdq_ItensCompraSUBTOTAL: TAggregateField;
     procedure btnNovoClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
@@ -85,6 +86,9 @@ type
     procedure cmbIdFormaPgtoChange(Sender: TObject);
     procedure bibItemClick(Sender: TObject);
     procedure dbIdProdutoExit(Sender: TObject);
+    procedure bibOkClick(Sender: TObject);
+    procedure bibExcluirClick(Sender: TObject);
+
 
   private
     { Private declarations }
@@ -100,6 +104,42 @@ implementation
 {$R *.dfm}
 
 uses U_DM;
+
+procedure TfrmCadastroDeCompras.bibExcluirClick(Sender: TObject);
+var nomeProd : string;
+begin
+
+  if Application.MessageBox('Deseja remover este item da lista?','Removendo da lista',MB_YESNOCANCEL + MB_ICONQUESTION) = mrYes then
+    begin
+
+        if  fdq_Produto.Locate('ID_PRODUTO',fdq_ItensCompraID_PRODUTO.AsInteger,[]) then
+              nomeProd := '';
+          begin
+             fdq_Produto.Edit;
+             fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat - fdq_ItensCompraQTDE.AsFloat;
+             fdq_Produto.Refresh;
+             fdq_ItensCompra.Delete;
+
+
+
+                fdq_Produto.SQL.Text := 'SELECT * from PRODUTO WHERE ID_PRODUTO=:IDs_PRODUTO';
+                fdq_Produto.ParamByName('IDs_PRODUTO').Value:= fdq_ItensCompraID_PRODUTO.AsInteger;
+                fdq_Produto.Open();
+                nomeProd := fdq_Produto.FieldByName('DESCRICAO').text;
+
+             MessageDlg('O item:' + '  ' + nomeProd + ' ' +'foi removido da lista com sucesso!',mtConfirmation,[mbOk],0);
+          end
+
+          else
+            begin
+              abort;
+            end;
+
+    end;
+
+
+end;
+
 
 procedure TfrmCadastroDeCompras.bibItemClick(Sender: TObject);
 
@@ -118,6 +158,32 @@ begin
 
 
 
+end;
+
+procedure TfrmCadastroDeCompras.bibOkClick(Sender: TObject);
+begin
+
+  fdqQueryPadrao.Edit;
+  fdqQueryPadraoVALOR.AsFloat := fdq_ItensCompra.AggFields.FieldByName('SUBTOTAL').Value;
+  fdqQueryPadrao.Post;
+
+
+
+  fdq_ItensCompra.First;
+  while not fdq_ItensCompra.Eof do
+    begin
+
+      if fdq_Produto.Locate('ID_PRODUTO',fdq_ItensCompraID_PRODUTO.AsInteger,[]) then
+        begin
+         fdq_Produto.Edit;
+         fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat + fdq_ItensCompraQTDE.AsFloat;
+         fdq_ItensCompra.Next;
+        end;
+
+         fdq_Produto.Refresh;
+
+    end;
+          MessageDlg('Estoque atualizado com sucesso!',TMsgDlgType.mtConfirmation,[mbOk],0);
 end;
 
 procedure TfrmCadastroDeCompras.btnAtualizarClick(Sender: TObject);
@@ -238,6 +304,7 @@ begin
   end;
 
   end;
+
 
 end.
 
