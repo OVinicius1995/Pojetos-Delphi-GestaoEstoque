@@ -129,6 +129,24 @@ begin
   fdqQueryPadraoVALOR.AsFloat := fdq_ItensCompra.AggFields.FieldByName('SUBTOTAL').Value;
   fdqQueryPadrao.Post;
 
+
+
+  fdq_ItensCompra.First;
+  while not fdq_ItensCompra.Eof do
+    begin
+
+      if fdq_Produto.Locate('ID_PRODUTO',fdq_ItensCompraID_PRODUTO.AsInteger,[]) then
+        begin
+         fdq_Produto.Edit;
+         fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat + fdq_ItensCompraQTDE.AsFloat;
+         fdq_ItensCompra.Next;
+        end;
+
+         fdq_Produto.Refresh;
+         MessageDlg('Estoque atualizado com sucesso!',TMsgDlgType.mtConfirmation,[mbOk],0);
+    end;
+
+
 end;
 
 procedure TfrmCadastroDeCompras.btnAtualizarClick(Sender: TObject);

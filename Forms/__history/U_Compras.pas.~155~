@@ -77,6 +77,7 @@ type
     dbDesconto: TDBEdit;
     Label18: TLabel;
     dbTotalItem: TDBEdit;
+    fdq_ItensCompraSUBTOTAL: TAggregateField;
     procedure btnNovoClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
@@ -85,6 +86,7 @@ type
     procedure cmbIdFormaPgtoChange(Sender: TObject);
     procedure bibItemClick(Sender: TObject);
     procedure dbIdProdutoExit(Sender: TObject);
+    procedure bibOkClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -116,6 +118,30 @@ begin
    // dbIdProduto.SetFocus;
 
 
+
+
+end;
+
+procedure TfrmCadastroDeCompras.bibOkClick(Sender: TObject);
+begin
+
+  fdqQueryPadrao.Edit;
+  fdqQueryPadraoVALOR.AsFloat := fdq_ItensCompra.AggFields.FieldByName('SUBTOTAL').Value;
+  fdqQueryPadrao.Post;
+
+
+
+  fdq_ItensCompra.First;
+  while not fdq_ItensCompra.Eof do
+    begin
+
+      if fdq_Produto.Locate('ID_PRODUTO',fdq_ItensCompraID_PRODUTO.AsInteger,[]) then
+        begin
+         fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat + fdq_ItensCompraQTDE.AsFloat;
+        end;
+
+         fdq_Produto.Refresh;
+    end;
 
 
 end;
@@ -191,11 +217,10 @@ begin
     begin
       fdq_ItensCompraQTDE.AsFloat     := 1;
       fdq_ItensCompraDESCONTO.AsFloat := 0;
-      fdq_ItensCompraVL_CUSTO.AsFloat := fdq_ItensCompra.FieldByName('vl_custo').AsFloat;
-
+      fdq_ItensCompraVL_CUSTO.AsFloat := fdq_Produto.FieldByName('vl_custo').AsFloat;
       fdq_ItensCompraTOTAL_ITEM.AsFloat := (fdq_ItensCompraQTDE.AsFloat * fdq_ItensCompraVL_CUSTO.AsFloat) - (fdq_ItensCompraDESCONTO.AsFloat);
-
       fdq_ItensCompra.Post;
+      bibItem.SetFocus;
     end
 
     else

@@ -68,24 +68,25 @@ type
     fdq_ItensCompraDESCONTO: TFMTBCDField;
     fdq_ItensCompraTOTAL_ITEM: TFMTBCDField;
     Label2: TLabel;
-    DBEdit8: TDBEdit;
+    dbIdProduto: TDBEdit;
     Label15: TLabel;
-    DBEdit9: TDBEdit;
+    dbQtde: TDBEdit;
     Label16: TLabel;
-    DBEdit10: TDBEdit;
+    dbVlCusto: TDBEdit;
     Label17: TLabel;
-    DBEdit11: TDBEdit;
+    dbDesconto: TDBEdit;
     Label18: TLabel;
-    DBEdit12: TDBEdit;
+    dbTotalItem: TDBEdit;
+    fdq_ItensCompraSUBTOTAL: TAggregateField;
     procedure btnNovoClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure cmdIdFornecChange(Sender: TObject);
     procedure cmbIdFormaPgtoChange(Sender: TObject);
     procedure bibItemClick(Sender: TObject);
     procedure dbIdProdutoExit(Sender: TObject);
+    procedure bibOkClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -121,10 +122,30 @@ begin
 
 end;
 
-procedure TfrmCadastroDeCompras.BitBtn1Click(Sender: TObject);
+procedure TfrmCadastroDeCompras.bibOkClick(Sender: TObject);
 begin
-  inherited;
-  MessageDlg('Teste do cmb' + cmdIdFornec.Text,TMsgDlgType.mtWarning,[mbOk],0);
+
+  fdqQueryPadrao.Edit;
+  fdqQueryPadraoVALOR.AsFloat := fdq_ItensCompra.AggFields.FieldByName('SUBTOTAL').Value;
+  fdqQueryPadrao.Post;
+
+
+
+  fdq_ItensCompra.First;
+  while not fdq_ItensCompra.Eof do
+    begin
+
+      if fdq_Produto.Locate('ID_PRODUTO',fdq_ItensCompraID_PRODUTO.AsInteger,[]) then
+        begin
+         fdqQueryPadrao.Edit;
+         fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat + fdq_ItensCompraQTDE.AsFloat;
+         fdq_ItensCompra.Next;
+        end;
+
+         fdq_Produto.Refresh;
+    end;
+
+
 end;
 
 procedure TfrmCadastroDeCompras.btnAtualizarClick(Sender: TObject);
@@ -198,11 +219,10 @@ begin
     begin
       fdq_ItensCompraQTDE.AsFloat     := 1;
       fdq_ItensCompraDESCONTO.AsFloat := 0;
-      fdq_ItensCompraVL_CUSTO.AsFloat := fdq_ItensCompra.FieldByName('vl_custo').AsFloat;
-
+      fdq_ItensCompraVL_CUSTO.AsFloat := fdq_Produto.FieldByName('vl_custo').AsFloat;
       fdq_ItensCompraTOTAL_ITEM.AsFloat := (fdq_ItensCompraQTDE.AsFloat * fdq_ItensCompraVL_CUSTO.AsFloat) - (fdq_ItensCompraDESCONTO.AsFloat);
-
       fdq_ItensCompra.Post;
+      bibItem.SetFocus;
     end
 
     else
