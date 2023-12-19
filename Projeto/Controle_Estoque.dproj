@@ -161,6 +161,14 @@
             <Form>frmPesquisaProdutos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Forms\U_MovimentoPadrao.pas">
+            <Form>frmPadraoMovimento</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_Compras.pas">
+            <Form>frmCadastroDeCompras</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

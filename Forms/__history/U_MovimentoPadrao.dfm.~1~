@@ -1,0 +1,17 @@
+inherited frmPadraoMovimento: TfrmPadraoMovimento
+  Caption = 'Formul'#225'rio Padrao Movimento'
+  ClientHeight = 512
+  ClientWidth = 751
+  ExplicitHeight = 550
+  TextHeight = 15
+  inherited pnlCabecalho: TPanel
+    Width = 751
+  end
+  inherited pnlFooter: TPanel
+    Top = 454
+    Width = 751
+  end
+  inherited dbnNavegacaoDadosBD: TDBNavigator
+    Hints.Strings = ()
+  end
+end

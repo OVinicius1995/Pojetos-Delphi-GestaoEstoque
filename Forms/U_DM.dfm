@@ -10,7 +10,9 @@ object dmConexao: TdmConexao
       'Server=localhost'
       'Port=3050'
       'CharacterSet=WIN1250'
-      'DriverID=FB')
+      'DriverID=FB'
+      'DropDatabase=No'
+      'Pooled=False')
     Connected = True
     LoginPrompt = False
     Left = 45

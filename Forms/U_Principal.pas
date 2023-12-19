@@ -75,6 +75,8 @@ type
     procedure spbProdutosClick(Sender: TObject);
     procedure spbFormaPgtoClick(Sender: TObject);
     procedure mmuFormasPgtoClick(Sender: TObject);
+    procedure Abre_Tela_Compras();
+    procedure spbComprasClick(Sender: TObject);
 
 
   private
@@ -91,7 +93,7 @@ implementation
 {$R *.dfm}
 
 uses StrUtils, U_Usuario, U_Empresa, U_Cliente, U_Fornecedores, U_Produtos,
-  U_FormaPgto;
+  U_FormaPgto, U_Compras;
 
 
 procedure TfrmPrincipal.tmrDataHoraTimer(Sender: TObject);
@@ -120,6 +122,11 @@ end;
 procedure TfrmPrincipal.spbClientesClick(Sender: TObject);
 begin
     Abre_Tela_Cliente;
+end;
+
+procedure TfrmPrincipal.spbComprasClick(Sender: TObject);
+begin
+  Abre_Tela_Compras;
 end;
 
 procedure TfrmPrincipal.spbEmpresaClick(Sender: TObject);
@@ -198,6 +205,19 @@ begin
     end;
 end;
 
+
+procedure TfrmPrincipal.Abre_Tela_Compras;
+begin
+    try
+      frmCadastroDeCompras := TfrmCadastroDeCompras.Create(Self);
+      frmCadastroDeCompras.ShowModal;
+    finally
+
+    frmCadastroDeCompras.Free;
+    frmCadastroDeCompras := nil;
+
+    end;
+end;
 
 procedure TfrmPrincipal.Abre_Tela_FormaPGTO;
 begin
