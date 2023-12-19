@@ -6,46 +6,52 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   ExplicitWidth = 930
   ExplicitHeight = 642
   TextHeight = 15
+  object Label8: TLabel [0]
+    Left = 15
+    Top = 56
+    Width = 34
+    Height = 15
+    Caption = 'ID'
+  end
   inherited pnlCabecalho: TPanel
     Width = 918
   end
   inherited pnlFooter: TPanel
     Top = 571
     Width = 918
-    TabOrder = 2
     ExplicitTop = 478
     ExplicitWidth = 747
-  end
-  inherited btnNovo: TBitBtn
-    TabOrder = 3
   end
   inherited btnAtualizar: TBitBtn
     TabOrder = 4
   end
   inherited btnDeletar: TBitBtn
-    TabOrder = 5
-  end
-  inherited btnEditar: TBitBtn
     TabOrder = 6
   end
-  inherited btnGravar: TBitBtn
+  inherited btnEditar: TBitBtn
     TabOrder = 7
   end
-  inherited btnCancelar: TBitBtn
+  inherited btnGravar: TBitBtn
     TabOrder = 8
   end
-  inherited btnPesquisar: TBitBtn
+  inherited btnCancelar: TBitBtn
     TabOrder = 9
   end
-  inherited dbnNavegacaoDadosBD: TDBNavigator
-    Hints.Strings = ()
+  inherited btnPesquisar: TBitBtn
     TabOrder = 10
+  end
+  inherited dbnNavegacaoDadosBD: TDBNavigator
+    Left = 431
+    Top = 575
+    Hints.Strings = ()
+    TabOrder = 11
+    ExplicitLeft = 431
+    ExplicitTop = 575
   end
   inherited Panel1: TPanel
     Width = 918
     Height = 172
-    TabOrder = 11
-    ExplicitLeft = -8
+    TabOrder = 12
     ExplicitTop = 55
     ExplicitWidth = 918
     ExplicitHeight = 172
@@ -57,15 +63,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Caption = 'ID_COMPRA'
       FocusControl = dbIcompra
     end
-    object Label8: TLabel
-      Left = 13
-      Top = 56
-      Width = 91
-      Height = 15
-      Caption = 'ID_FORNECEDOR'
-    end
     object Label9: TLabel
-      Left = 184
+      Left = 288
       Top = 56
       Width = 49
       Height = 15
@@ -75,13 +74,12 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     object Label10: TLabel
       Left = 13
       Top = 101
-      Width = 91
+      Width = 201
       Height = 15
-      Caption = 'ID_FORMA_PGTO'
-      FocusControl = bdIdFormaPgto
+      Caption = 'ID DA FORMA DE PGTO E DESCRI'#199#195'O:'
     end
     object Label11: TLabel
-      Left = 184
+      Left = 288
       Top = 101
       Width = 36
       Height = 15
@@ -89,95 +87,116 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       FocusControl = dbValor
     end
     object Label12: TLabel
-      Left = 184
+      Left = 288
       Top = 11
       Width = 60
       Height = 15
       Caption = 'CADASTRO'
       FocusControl = dbIdcadastro
     end
+    object Label1: TLabel
+      Left = 15
+      Top = 56
+      Width = 202
+      Height = 15
+      Caption = 'ID DO FORNECEDOR E  SEU NOME:'
+      FocusControl = dbIcompra
+    end
     object dbIcompra: TDBEdit
       Left = 13
       Top = 27
-      Width = 154
+      Width = 228
       Height = 23
       DataField = 'ID_COMPRA'
       DataSource = dtsPadrao
       TabOrder = 0
     end
     object dbUsuario: TDBEdit
-      Left = 184
+      Left = 288
       Top = 72
       Width = 154
       Height = 23
       DataField = 'USUARIO'
       DataSource = dtsPadrao
       Enabled = False
-      TabOrder = 3
-    end
-    object bdIdFormaPgto: TDBEdit
-      Left = 757
-      Top = 98
-      Width = 154
-      Height = 23
-      DataField = 'ID_FORMA_PGTO'
-      DataSource = dtsPadrao
-      TabOrder = 1
+      TabOrder = 2
     end
     object dbValor: TDBEdit
-      Left = 184
+      Left = 288
       Top = 117
       Width = 154
       Height = 23
       DataField = 'VALOR'
       DataSource = dtsPadrao
-      TabOrder = 4
+      TabOrder = 3
     end
     object dbIdcadastro: TDBEdit
-      Left = 184
+      Left = 288
       Top = 27
       Width = 154
       Height = 23
       DataField = 'CADASTRO'
       DataSource = dtsPadrao
-      TabOrder = 2
+      TabOrder = 1
+    end
+    object edtNomeFornecedor: TEdit
+      Left = 95
+      Top = 72
+      Width = 146
+      Height = 23
+      Enabled = False
+      TabOrder = 4
+      TextHint = 'Nome do fornecedor'
+    end
+    object edtFormaPGTO: TEdit
+      Left = 95
+      Top = 117
+      Width = 146
+      Height = 23
+      Enabled = False
+      TabOrder = 5
+      TextHint = 'Descri'#231#227'o da forma de pagamento'
     end
   end
   inherited Panel2: TPanel
     Top = 501
     Width = 918
-    TabOrder = 12
+    TabOrder = 13
     ExplicitTop = 614
   end
   inherited DBGrid1: TDBGrid
     Top = 225
     Width = 918
     Height = 276
-    TabOrder = 13
+    TabOrder = 14
   end
-  object cmbIdFormaPgto: TComboBox [13]
+  object cmbIdFormaPgto: TComboBox [14]
     Left = 13
     Top = 170
-    Width = 154
+    Width = 76
     Height = 23
     Hint = 'Selecione o c'#243'digo do fornec.'
     Style = csDropDownList
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 1
+    TabOrder = 5
     TextHint = 'Selecione a forma de pgto'
+    StyleName = 'Windows'
+    OnChange = cmbIdFormaPgtoChange
   end
-  object cmdIdFornec: TComboBox [14]
+  object cmdIdFornec: TComboBox [15]
+    AlignWithMargins = True
     Left = 13
     Top = 125
-    Width = 154
+    Width = 76
     Height = 23
-    Hint = 'Selecione o c'#243'digo do fornec.'
     Style = csDropDownList
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 14
-    TextHint = 'Selecione um fornecedor'
+    TabOrder = 3
+    TextHint = 'Selecione'
+    StyleName = 'Windows'
+    OnChange = cmdIdFornecChange
   end
   inherited fdqQueryPadrao: TFDQuery
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
@@ -246,7 +265,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.FetchGeneratorsPoint = gpNone
     SQL.Strings = (
-      'select ID_FORNECEDOR from FORNECEDOR'
+      'select ID_FORNECEDOR, NOME from FORNECEDOR'
       'order by ID_FORNECEDOR asc')
     Left = 536
     Top = 80
@@ -256,6 +275,12 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
+    object q_PadraoItemNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 100
+    end
   end
   inherited dsPadraoItem: TDataSource
     Left = 536
@@ -264,19 +289,25 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   object fdq_FormaPgto: TFDQuery
     Connection = dmConexao.fdcConexao
     SQL.Strings = (
-      'SELECT ID_FORMA_PGTO FROM FORMA_PGTO'
+      'SELECT ID_FORMA_PGTO,DESCRICAO FROM FORMA_PGTO'
       'ORDER by ID_FORMA_PGTO asc')
-    Left = 424
-    Top = 88
+    Left = 840
+    Top = 96
     object fdq_FormaPgtoID_FORMA_PGTO: TIntegerField
       FieldName = 'ID_FORMA_PGTO'
       Origin = 'ID_FORMA_PGTO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
+    object fdq_FormaPgtoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Required = True
+      Size = 100
+    end
   end
   object dtsFormapgto: TDataSource
-    Left = 424
-    Top = 144
+    Left = 840
+    Top = 152
   end
 end

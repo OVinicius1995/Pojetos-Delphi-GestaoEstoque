@@ -34,6 +34,7 @@ type
     frxPDFExport1: TfrxPDFExport;
     procedure cmbChavePesquisaChange(Sender: TObject);
     procedure dbgPesquisaDblClick(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -49,6 +50,7 @@ implementation
 {$R *.dfm}
 
 uses U_DM;
+
 
 procedure TfrmPesquisaPadrao.cmbChavePesquisaChange(Sender: TObject);
 begin

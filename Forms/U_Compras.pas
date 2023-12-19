@@ -21,11 +21,9 @@ type
     fdqQueryPadraoCADASTRO: TDateField;
     Label7: TLabel;
     dbIcompra: TDBEdit;
-    Label8: TLabel;
     Label9: TLabel;
     dbUsuario: TDBEdit;
     Label10: TLabel;
-    bdIdFormaPgto: TDBEdit;
     Label11: TLabel;
     dbValor: TDBEdit;
     Label12: TLabel;
@@ -36,10 +34,19 @@ type
     dtsFormapgto: TDataSource;
     q_PadraoItemID_FORNECEDOR: TIntegerField;
     fdq_FormaPgtoID_FORMA_PGTO: TIntegerField;
+    q_PadraoItemNOME: TStringField;
+    edtNomeFornecedor: TEdit;
+    edtFormaPGTO: TEdit;
+    fdq_FormaPgtoDESCRICAO: TStringField;
+    Label8: TLabel;
+    Label1: TLabel;
     procedure btnNovoClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
+    procedure cmdIdFornecChange(Sender: TObject);
+    procedure cmbIdFormaPgtoChange(Sender: TObject);
 
   private
     { Private declarations }
@@ -62,6 +69,19 @@ begin
   MessageDlg('Teste do cmb' + cmdIdFornec.Text,TMsgDlgType.mtWarning,[mbOk],0);
 end;
 
+procedure TfrmCadastroDeCompras.btnAtualizarClick(Sender: TObject);
+begin
+//  inherited;
+      fdqQueryPadraoID_FORNECEDOR.AsString := cmdIdFornec.Text;
+      fdqQueryPadraoID_FORMA_PGTO.AsString := cmbIdFormaPgto.Text;
+      fdqQueryPadrao.Refresh;
+      Application.MessageBox('Registro atualizado com sucesso!','Atualizado', + MB_OK + MB_ICONINFORMATION);
+      cmdIdFornec.Clear;
+      cmbIdFormaPgto.Clear;
+      edtNomeFornecedor.Clear;
+      edtFormaPGTO.Clear;
+end;
+
 procedure TfrmCadastroDeCompras.btnGravarClick(Sender: TObject);
 begin
  // inherited;
@@ -69,6 +89,9 @@ begin
    fdqQueryPadraoID_FORMA_PGTO.AsString := cmbIdFormaPgto.Text;
    fdqQueryPadrao.Post;
    Application.MessageBox('Registro gravado com sucesso!','Gravado', MB_OK + MB_ICONEXCLAMATION);
+
+   cmdIdFornec.Clear;
+   cmbIdFormaPgto.Clear;
 end;
 
 procedure TfrmCadastroDeCompras.btnNovoClick(Sender: TObject);
@@ -83,6 +106,30 @@ begin
   cmdIdFornec.SetFocus;
 
 end;
+
+procedure TfrmCadastroDeCompras.cmbIdFormaPgtoChange(Sender: TObject);
+begin
+  inherited;
+
+  fdq_FormaPgto.SQL.Text := 'SELECT ID_FORMA_PGTO,DESCRICAO from FORMA_PGTO WHERE ID_FORMA_PGTO=:IDs_FORMA_PGTO';
+  fdq_FormaPgto.ParamByName('IDs_FORMA_PGTO').Value:= cmbIdFormaPgto.Text;
+  fdq_FormaPgto.Open();
+  edtFormaPGTO.Text:=fdq_FormaPgto.FieldByName('DESCRICAO').text;
+
+end;
+
+procedure TfrmCadastroDeCompras.cmdIdFornecChange(Sender: TObject);
+var teste : string;
+begin
+  inherited;
+
+  q_PadraoItem.SQL.Text := 'SELECT ID_FORNECEDOR,NOME from FORNECEDOR WHERE ID_FORNECEDOR=:IDs_FORNECEDOR';
+  q_PadraoItem.ParamByName('IDs_FORNECEDOR').Value:= cmdIdFornec.Text;
+  q_PadraoItem.Open();
+  edtNomeFornecedor.Text:=q_PadraoItem.FieldByName('NOME').text;
+
+end;
+
 
 procedure TfrmCadastroDeCompras.FormActivate(Sender: TObject);
 begin
@@ -101,6 +148,7 @@ begin
   try
 
   cmdIdFornec.Items.Add(q_PadraoItemID_FORNECEDOR.Value.ToString);
+
   cmbIdFormaPgto.Items.Add(fdq_FormaPgtoID_FORMA_PGTO.Value.ToString);
   q_PadraoItem.Next;
   fdq_FormaPgto.Next;
