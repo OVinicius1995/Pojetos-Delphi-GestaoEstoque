@@ -122,8 +122,6 @@ begin
              fdq_Produto.Refresh;
              fdq_ItensCompra.Delete;
 
-
-
                 fdq_Produto.SQL.Text := 'SELECT * from PRODUTO WHERE ID_PRODUTO=:IDs_PRODUTO';
                 fdq_Produto.ParamByName('IDs_PRODUTO').Value:= IdProd;
                 fdq_Produto.Open();
