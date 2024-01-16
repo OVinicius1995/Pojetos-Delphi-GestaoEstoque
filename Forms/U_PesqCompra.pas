@@ -21,6 +21,7 @@ type
     fdqPesquisaPadraoVALOR: TFMTBCDField;
     procedure bbtnPesquisaClick(Sender: TObject);
     procedure bbtnTransferirClick(Sender: TObject);
+    procedure bbtnImprimirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,6 +34,33 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmPesqComrpa.bbtnImprimirClick(Sender: TObject);
+var caminho :string;
+begin
+
+ try
+
+  caminho := ExtractFilePath(Application.ExeName);
+
+  if frmPesqComrpa.Rel_Pes.LoadFromFile(caminho + 'RelCompras.fr3') then
+  begin
+  Rel_Pes.Clear;
+  Rel_Pes.LoadFromFile(ExtractFilePath(Application.ExeName) + 'RelCompras.fr3');
+  Rel_Pes.PrepareReport(true);
+  Rel_Pes.ShowPreparedReport;
+  end
+
+  else
+
+  MessageDlg('Relatório não encontrado', TMsgDlgType.mtError,[mbOk],0);
+
+  finally
+
+
+  end;
+
+end;
 
 procedure TfrmPesqComrpa.bbtnPesquisaClick(Sender: TObject);
 begin
