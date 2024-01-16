@@ -97,6 +97,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   end
   inherited btnPesquisar: TBitBtn
     TabOrder = 10
+    OnClick = btnPesquisarClick
   end
   inherited dbnNavegacaoDadosBD: TDBNavigator
     Left = 431
@@ -110,9 +111,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     Width = 918
     Height = 172
     TabOrder = 12
-    ExplicitLeft = -48
-    ExplicitTop = 287
-    ExplicitWidth = 918
+    ExplicitWidth = 914
     ExplicitHeight = 172
     object Label7: TLabel
       Left = 13

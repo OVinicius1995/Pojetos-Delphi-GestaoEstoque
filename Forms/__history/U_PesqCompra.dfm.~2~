@@ -1,0 +1,48 @@
+inherited frmPesqComrpa: TfrmPesqComrpa
+  Caption = 'Pesquisa de Comrpas'
+  ClientHeight = 683
+  ClientWidth = 881
+  TextHeight = 15
+  inherited Panel1: TPanel
+    Width = 881
+    inherited cmbChavePesquisa: TComboBox
+      Items.Strings = (
+        'C'#243'digo da compra'
+        'C'#243'digo do fornecedor'
+        'ID da forma PGTO'
+        'Usu'#225'rio'
+        'Cadastro'
+        'Per'#237'odo')
+    end
+  end
+  inherited dbgPesquisa: TDBGrid
+    Width = 881
+    Height = 469
+  end
+  inherited Panel2: TPanel
+    Top = 616
+    Width = 881
+  end
+  inherited bbtnPesquisa: TBitBtn
+    OnClick = bbtnPesquisaClick
+  end
+  inherited fdqPesquisaPadrao: TFDQuery
+    SQL.Strings = (
+      'SELECT'
+      'A.ID_COMPRA,'
+      'A.ID_FORNECEDOR,'
+      'A.ID_FORMA_PGTO,'
+      'A.USUARIO,'
+      'A.CADASTRO,'
+      'A.VALOR'
+      'FROM COMPRA A, FORNECEDOR B, FORMA_PGTO C  '
+      'WHERE A.ID_FORNECEDOR = B.ID_FORNECEDOR'
+      'AND C.ID_FORMA_PGTO = A.ID_FORMA_PGTO'
+      'ORDER BY A.ID_COMPRA')
+  end
+  inherited Rel_Pes: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+end
