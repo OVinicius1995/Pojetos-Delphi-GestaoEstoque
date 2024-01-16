@@ -18,7 +18,8 @@ uses
   U_PesqFornecedores in '..\Forms\U_PesqFornecedores.pas' {frmPesquisaFornecedores},
   U_PesqProdutos in '..\Forms\U_PesqProdutos.pas' {frmPesquisaProdutos},
   U_MovimentoPadrao in '..\Forms\U_MovimentoPadrao.pas' {frmPadraoMovimento},
-  U_Compras in '..\Forms\U_Compras.pas' {frmCadastroDeCompras};
+  U_Compras in '..\Forms\U_Compras.pas' {frmCadastroDeCompras},
+  U_PesqCompra in '..\Forms\U_PesqCompra.pas' {frmPesqComrpa};
 
 {$R *.res}
 
@@ -35,5 +36,6 @@ begin
   Application.CreateForm(TfrmPesquisaProdutos, frmPesquisaProdutos);
   Application.CreateForm(TfrmPadraoMovimento, frmPadraoMovimento);
   Application.CreateForm(TfrmCadastroDeCompras, frmCadastroDeCompras);
+  Application.CreateForm(TfrmPesqComrpa, frmPesqComrpa);
   Application.Run;
 end.

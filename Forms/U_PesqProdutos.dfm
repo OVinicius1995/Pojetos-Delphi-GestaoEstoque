@@ -1,11 +1,8 @@
 inherited frmPesquisaProdutos: TfrmPesquisaProdutos
   Caption = 'Pesquisa de Produtos'
   OnCreate = FormCreate
-  ExplicitWidth = 889
-  ExplicitHeight = 720
   TextHeight = 15
   inherited Panel1: TPanel
-    ExplicitWidth = 873
     inherited cmbChavePesquisa: TComboBox
       Items.Strings = (
         'C'#243'digo'
@@ -57,10 +54,6 @@ inherited frmPesquisaProdutos: TfrmPesquisaProdutos
         FieldName = 'NOME'
         Visible = True
       end>
-  end
-  inherited Panel2: TPanel
-    ExplicitTop = 614
-    ExplicitWidth = 873
   end
   inherited bbtnPesquisa: TBitBtn
     OnClick = bbtnPesquisaClick
@@ -133,5 +126,10 @@ inherited frmPesquisaProdutos: TfrmPesquisaProdutos
       ReadOnly = True
       Size = 100
     end
+  end
+  inherited Rel_Pes: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
   end
 end

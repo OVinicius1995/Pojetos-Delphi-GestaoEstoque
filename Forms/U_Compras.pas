@@ -89,6 +89,8 @@ type
     procedure bibOkClick(Sender: TObject);
     procedure bibExcluirClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
+    procedure AbreTelaPesquisa();
+    procedure btnPesquisarClick(Sender: TObject);
 
 
 
@@ -106,7 +108,18 @@ implementation
 
 {$R *.dfm}
 
-uses U_DM;
+uses U_DM, U_PesqCompra;
+
+procedure TfrmCadastroDeCompras.AbreTelaPesquisa;
+begin
+
+      try
+          frmPesqComrpa := TfrmPesqComrpa.Create(Self);
+          frmPesqComrpa.ShowModal;
+      finally
+        frmPesqComrpa.Free;
+      end;
+end;
 
 procedure TfrmCadastroDeCompras.bibExcluirClick(Sender: TObject);
 var nomeProd : string;
@@ -256,6 +269,23 @@ begin
   fdqQueryPadraoUSUARIO.AsString       := 'Teste';
   cmdIdFornec.SetFocus;
 
+end;
+
+procedure TfrmCadastroDeCompras.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+
+    try
+         AbreTelaPesquisa();
+
+    if frmPesqComrpa.codigo > 0 then
+    begin
+      fdqQueryPadrao.Open;
+      fdqQueryPadrao.Locate('ID_COMPRA',frmPesqComrpa.codigo);
+    end;
+  finally
+
+  end;
 end;
 
 procedure TfrmCadastroDeCompras.cmbIdFormaPgtoChange(Sender: TObject);
