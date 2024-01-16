@@ -1,7 +1,11 @@
 inherited frmPesqUsuario: TfrmPesqUsuario
   Caption = 'Pesquisa Usu'#225'rio'
+  ClientWidth = 881
   OnCreate = FormCreate
   TextHeight = 15
+  inherited Panel1: TPanel
+    Width = 881
+  end
   inherited mkeDataInicio: TMaskEdit
     Width = 116
     ExplicitWidth = 116
@@ -10,6 +14,7 @@ inherited frmPesqUsuario: TfrmPesqUsuario
     TabOrder = 5
   end
   inherited dbgPesquisa: TDBGrid
+    Width = 881
     Columns = <
       item
         Alignment = taCenter
@@ -65,6 +70,7 @@ inherited frmPesqUsuario: TfrmPesqUsuario
       end>
   end
   inherited Panel2: TPanel
+    Width = 881
     TabOrder = 6
   end
   inherited bbtnPesquisa: TBitBtn
