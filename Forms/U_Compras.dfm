@@ -160,6 +160,14 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Caption = 'ID DO FORNECEDOR E  SEU NOME:'
       FocusControl = dbIcompra
     end
+    object Label19: TLabel
+      Left = 466
+      Top = 11
+      Width = 68
+      Height = 15
+      Caption = 'COND_PGTO'
+      FocusControl = DBEdit8
+    end
     object dbIcompra: TDBEdit
       Left = 13
       Top = 27
@@ -214,6 +222,15 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Enabled = False
       TabOrder = 5
       TextHint = 'Descri'#231#227'o da forma de pagamento'
+    end
+    object DBEdit8: TDBEdit
+      Left = 466
+      Top = 27
+      Width = 79
+      Height = 23
+      DataField = 'COND_PGTO'
+      DataSource = dtsPadrao
+      TabOrder = 6
     end
   end
   inherited Panel2: TPanel
@@ -412,7 +429,6 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     TabOrder = 21
   end
   inherited fdqQueryPadrao: TFDQuery
-    Active = True
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_ID_COMPRA'
@@ -424,11 +440,12 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       'USUARIO,'
       'ID_FORMA_PGTO,'
       'VALOR,'
-      'CADASTRO'
+      'CADASTRO,'
+      'COND_PGTO'
       'FROM COMPRA'
       'ORDER BY ID_COMPRA')
-    Left = 688
-    Top = 136
+    Left = 752
+    Top = 144
     object fdqQueryPadraoID_COMPRA: TIntegerField
       AutoGenerateValue = arAutoInc
       FieldName = 'ID_COMPRA'
@@ -463,9 +480,13 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Origin = 'CADASTRO'
       Required = True
     end
+    object fdqQueryPadraoCOND_PGTO: TIntegerField
+      FieldName = 'COND_PGTO'
+      Origin = 'COND_PGTO'
+    end
   end
   inherited dtsPadrao: TDataSource
-    Left = 696
+    Left = 752
     Top = 80
   end
   inherited q_PadraoItem: TFDQuery
@@ -481,8 +502,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     SQL.Strings = (
       'select ID_FORNECEDOR, NOME from FORNECEDOR'
       'order by ID_FORNECEDOR asc')
-    Left = 536
-    Top = 80
+    Left = 672
+    Top = 88
     object q_PadraoItemID_FORNECEDOR: TIntegerField
       FieldName = 'ID_FORNECEDOR'
       Origin = 'ID_FORNECEDOR'
@@ -497,8 +518,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     end
   end
   inherited dsPadraoItem: TDataSource
-    Left = 536
-    Top = 144
+    Left = 664
+    Top = 152
   end
   object fdq_FormaPgto: TFDQuery
     Connection = dmConexao.fdcConexao

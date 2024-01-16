@@ -76,7 +76,7 @@ inherited frmPesqComrpa: TfrmPesqComrpa
   end
   inherited Rel_Pes: TfrxReport
     ReportOptions.CreateDate = 45273.433206643500000000
-    ReportOptions.LastChange = 45307.726287534720000000
+    ReportOptions.LastChange = 45307.725884537040000000
     Left = 712
     Datasets = <
       item
@@ -270,8 +270,7 @@ inherited frmPesqComrpa: TfrmPesqComrpa
         Width = 718.110700000000000000
         object Memo3: TfrxMemoView
           AllowVectorExport = True
-          Left = 3.779530000000000000
-          Top = 3.779530000000000000
+          Left = 181.417440000000000000
           Width = 90.708723590000000000
           Height = 18.897651670000000000
           ContentScaleOptions.Constraints.MaxIterationValue = 0
@@ -289,8 +288,8 @@ inherited frmPesqComrpa: TfrmPesqComrpa
         end
         object Memo4: TfrxMemoView
           AllowVectorExport = True
-          Left = 107.929190000000000000
-          Top = 4.000000000000000000
+          Left = 293.126160000000000000
+          Top = 0.220470000000000000
           Width = 94.488253590000000000
           Height = 18.897651670000000000
           ContentScaleOptions.Constraints.MaxIterationValue = 0

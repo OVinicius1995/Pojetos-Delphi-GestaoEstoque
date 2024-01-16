@@ -88,7 +88,10 @@ type
     procedure dbIdProdutoExit(Sender: TObject);
     procedure bibOkClick(Sender: TObject);
     procedure bibExcluirClick(Sender: TObject);
-    procedure dsItensCompraDataChange(Sender: TObject; Field: TField);
+    procedure btnDeletarClick(Sender: TObject);
+    procedure AbreTelaPesquisa();
+    procedure btnPesquisarClick(Sender: TObject);
+
 
 
 
@@ -105,7 +108,18 @@ implementation
 
 {$R *.dfm}
 
-uses U_DM;
+uses U_DM, U_PesqCompra;
+
+procedure TfrmCadastroDeCompras.AbreTelaPesquisa;
+begin
+
+      try
+          frmPesqComrpa := TfrmPesqComrpa.Create(Self);
+          frmPesqComrpa.ShowModal;
+      finally
+        frmPesqComrpa.Free;
+      end;
+end;
 
 procedure TfrmCadastroDeCompras.bibExcluirClick(Sender: TObject);
 var nomeProd : string;
@@ -168,16 +182,16 @@ begin
 
 
 
-  fdqQueryPadrao.First;
+  fdq_ItensCompra.First;
 
-  while not fdqQueryPadrao.Eof do
+  while not fdq_ItensCompra.Eof do
     begin
 
-      if fdq_Produto.Locate('ID_PRODUTO',fdq_ProdutoID_PRODUTO.AsInteger,[]) then
+      if fdq_Produto.Locate('ID_PRODUTO',fdq_ItensCompraID_PRODUTO.AsInteger,[]) then
         begin
          fdq_Produto.Edit;
          fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat + fdq_ItensCompraQTDE.AsFloat;
-         fdqQueryPadrao.Next;
+         fdq_ItensCompra.Next;
         end
 
         else
@@ -204,6 +218,37 @@ begin
       edtFormaPGTO.Clear;
 end;
 
+procedure TfrmCadastroDeCompras.btnDeletarClick(Sender: TObject);
+begin
+
+    if Application.MessageBox('Deseja remover os itens dessa lista?','Removendo da lista',MB_YESNOCANCEL + MB_ICONQUESTION) = mrYes then
+
+    begin
+
+     fdq_ItensCompra.First;
+
+    while fdq_ItensCompra.RecordCount > 0 do
+
+    begin
+         if fdq_Produto.Locate('ID_PRODUTO',fdq_ItensCompraID_PRODUTO.AsInteger,[]) then
+
+         begin
+             fdq_Produto.Edit;
+             fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat - fdq_ItensCompraQTDE.AsFloat;
+             fdq_Produto.Refresh;
+             fdq_ItensCompra.Delete;
+             fdq_ItensCompra.Next;
+
+         end;
+      end;
+       inherited;
+    end
+
+    else
+    abort;
+
+end;
+
 procedure TfrmCadastroDeCompras.btnGravarClick(Sender: TObject);
 begin
  // inherited;
@@ -220,13 +265,27 @@ procedure TfrmCadastroDeCompras.btnNovoClick(Sender: TObject);
 begin
   inherited;
 
- { q_PadraoItemCADASTRO.AsDateTime := Date;
-  q_PadraoItemUSUARIO.AsString    := 'Teste';
-  }
   fdqQueryPadraoCADASTRO.AsDateTime    := Date;
   fdqQueryPadraoUSUARIO.AsString       := 'Teste';
   cmdIdFornec.SetFocus;
 
+end;
+
+procedure TfrmCadastroDeCompras.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+
+    try
+         AbreTelaPesquisa();
+
+    if frmPesqComrpa.codigo > 0 then
+    begin
+      fdqQueryPadrao.Open;
+      fdqQueryPadrao.Locate('ID_COMPRA',frmPesqComrpa.codigo);
+    end;
+  finally
+
+  end;
 end;
 
 procedure TfrmCadastroDeCompras.cmbIdFormaPgtoChange(Sender: TObject);
