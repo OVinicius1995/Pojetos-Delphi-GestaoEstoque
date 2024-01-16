@@ -9,7 +9,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   object Label8: TLabel [0]
     Left = 15
     Top = 56
-    Width = 34
+    Width = 11
     Height = 15
     Caption = 'ID'
   end
@@ -63,14 +63,21 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   end
   inherited pnlCabecalho: TPanel
     Width = 918
+    ExplicitWidth = 914
   end
   inherited pnlFooter: TPanel
     Top = 571
     Width = 918
-    ExplicitTop = 478
-    ExplicitWidth = 747
+    ExplicitTop = 570
+    ExplicitWidth = 914
     inherited bibItem: TBitBtn
       OnClick = bibItemClick
+    end
+    inherited bibOk: TBitBtn
+      OnClick = bibOkClick
+    end
+    inherited bibExcluir: TBitBtn
+      OnClick = bibExcluirClick
     end
   end
   inherited btnAtualizar: TBitBtn
@@ -103,7 +110,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     Width = 918
     Height = 172
     TabOrder = 12
-    ExplicitTop = 55
+    ExplicitLeft = -48
+    ExplicitTop = 287
     ExplicitWidth = 918
     ExplicitHeight = 172
     object Label7: TLabel
@@ -148,7 +156,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     object Label1: TLabel
       Left = 15
       Top = 56
-      Width = 202
+      Width = 185
       Height = 15
       Caption = 'ID DO FORNECEDOR E  SEU NOME:'
       FocusControl = dbIcompra
@@ -214,9 +222,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     Width = 918
     Height = 59
     TabOrder = 13
-    ExplicitLeft = -8
-    ExplicitTop = 488
-    ExplicitWidth = 918
+    ExplicitTop = 511
+    ExplicitWidth = 914
     ExplicitHeight = 59
     object Label2: TLabel
       Left = 13
@@ -306,7 +313,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     end
   end
   inherited DBGrid1: TDBGrid
-    Top = 225
+    Top = 231
     Width = 918
     Height = 224
     Align = alNone
@@ -403,6 +410,23 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     DataField = 'TOTAL_ITEM'
     DataSource = dsItensCompra
     TabOrder = 21
+  end
+  object edtDescProd: TEdit [29]
+    Left = 111
+    Top = 483
+    Width = 207
+    Height = 23
+    TabOrder = 22
+    Text = 'edtDescProd'
+  end
+  object cmbIdProdutos: TComboBox [30]
+    Left = 8
+    Top = 483
+    Width = 97
+    Height = 23
+    TabOrder = 23
+    Text = 'ID do produto'
+    OnChange = cmbIdProdutosChange
   end
   inherited fdqQueryPadrao: TFDQuery
     Active = True
@@ -524,7 +548,6 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   end
   object fdq_Produto: TFDQuery
     ActiveStoredUsage = [auRunTime]
-    Active = True
     AutoCalcFields = False
     FieldOptions.PositionMode = poFieldNo
     FieldOptions.UpdatePersistent = True
@@ -573,6 +596,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   object fdq_ItensCompra: TFDQuery
     Active = True
     IndexFieldNames = 'ID_COMPRA'
+    AggregatesActive = True
     MasterSource = dtsPadrao
     MasterFields = 'ID_COMPRA'
     DetailFields = 'ID_COMPRA'
@@ -644,6 +668,13 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       currency = True
       Precision = 18
       Size = 2
+    end
+    object fdq_ItensCompraSUBTOTAL: TAggregateField
+      FieldName = 'SUBTOTAL'
+      Active = True
+      currency = True
+      DisplayName = ''
+      Expression = 'SUM(TOTAL_ITEM)'
     end
   end
 end

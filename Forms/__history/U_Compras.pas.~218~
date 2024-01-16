@@ -88,6 +88,9 @@ type
     procedure dbIdProdutoExit(Sender: TObject);
     procedure bibOkClick(Sender: TObject);
     procedure bibExcluirClick(Sender: TObject);
+    procedure btnDeletarClick(Sender: TObject);
+
+
 
 
   private
@@ -122,8 +125,6 @@ begin
              fdq_Produto.Refresh;
              fdq_ItensCompra.Delete;
 
-
-
                 fdq_Produto.SQL.Text := 'SELECT * from PRODUTO WHERE ID_PRODUTO=:IDs_PRODUTO';
                 fdq_Produto.ParamByName('IDs_PRODUTO').Value:= IdProd;
                 fdq_Produto.Open();
@@ -156,22 +157,20 @@ begin
    // dbIdProduto.Text := ID_SEQUENCIA_I.ToString;
     fdq_ItensCompraID_SEQUENCIA.AsInteger := ID_SEQUENCIA_I;
    // dbIdProduto.SetFocus;
-
-
-
-
 end;
 
 procedure TfrmCadastroDeCompras.bibOkClick(Sender: TObject);
 begin
 
   fdqQueryPadrao.Edit;
-  fdqQueryPadraoVALOR.AsFloat := fdq_ItensCompra.AggFields.FieldByName('SUBTOTAL').Value;
+ // fdq_Produto.Edit;
+  fdqQueryPadraoVALOR.AsFloat     := fdq_ItensCompra.AggFields.FieldByName('SUBTOTAL').Value;
   fdqQueryPadrao.Post;
 
 
 
   fdq_ItensCompra.First;
+
   while not fdq_ItensCompra.Eof do
     begin
 
@@ -180,6 +179,11 @@ begin
          fdq_Produto.Edit;
          fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat + fdq_ItensCompraQTDE.AsFloat;
          fdq_ItensCompra.Next;
+        end
+
+        else
+        begin
+          MessageDlg('erro',TMsgDlgType.mtWarning,[mbOk],0);
         end;
 
          fdq_Produto.Refresh;
@@ -201,6 +205,37 @@ begin
       edtFormaPGTO.Clear;
 end;
 
+procedure TfrmCadastroDeCompras.btnDeletarClick(Sender: TObject);
+begin
+
+    if Application.MessageBox('Deseja remover os itens dessa lista?','Removendo da lista',MB_YESNOCANCEL + MB_ICONQUESTION) = mrYes then
+
+    begin
+
+     fdq_ItensCompra.First;
+
+    while not fdq_ItensCompra.RecordCount > 0 do
+
+    begin
+         if fdq_Produto.Locate('ID_PRODUTO',fdq_ItensCompraID_PRODUTO.AsInteger,[]) then
+
+         begin
+             fdq_Produto.Edit;
+             fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat - fdq_ItensCompraQTDE.AsFloat;
+             fdq_Produto.Refresh;
+             fdq_ItensCompra.Delete;
+             fdq_ItensCompra.Next;
+
+         end;
+      end;
+       //  inherited;
+    end
+
+    else
+    abort;
+
+end;
+
 procedure TfrmCadastroDeCompras.btnGravarClick(Sender: TObject);
 begin
  // inherited;
@@ -217,9 +252,6 @@ procedure TfrmCadastroDeCompras.btnNovoClick(Sender: TObject);
 begin
   inherited;
 
- { q_PadraoItemCADASTRO.AsDateTime := Date;
-  q_PadraoItemUSUARIO.AsString    := 'Teste';
-  }
   fdqQueryPadraoCADASTRO.AsDateTime    := Date;
   fdqQueryPadraoUSUARIO.AsString       := 'Teste';
   cmdIdFornec.SetFocus;
@@ -236,6 +268,7 @@ begin
   edtFormaPGTO.Text:=fdq_FormaPgto.FieldByName('DESCRICAO').text;
 
 end;
+
 
 procedure TfrmCadastroDeCompras.cmdIdFornecChange(Sender: TObject);
 var teste : string;
@@ -255,11 +288,11 @@ begin
   //inherited;
     if   fdq_ItensCompraID_PRODUTO.AsInteger > 0   then
 
-    if   fdq_Produto.Locate('ID_PRODUTO',fdq_ItensCompra.FieldByName('ID_PRODUTO').AsInteger,[]) then
+    if fdq_Produto.Locate('ID_PRODUTO',fdq_ItensCompra.FieldByName('ID_PRODUTO').AsInteger,[]) then
     begin
-      fdq_ItensCompraQTDE.AsFloat     := 1;
-      fdq_ItensCompraDESCONTO.AsFloat := 0;
-      fdq_ItensCompraVL_CUSTO.AsFloat := fdq_Produto.FieldByName('vl_custo').AsFloat;
+      fdq_ItensCompraQTDE.AsFloat       := 1;
+      fdq_ItensCompraDESCONTO.AsFloat   := 0;
+      fdq_ItensCompraVL_CUSTO.AsFloat   := fdq_Produto.FieldByName('vl_custo').AsFloat;
       fdq_ItensCompraTOTAL_ITEM.AsFloat := (fdq_ItensCompraQTDE.AsFloat * fdq_ItensCompraVL_CUSTO.AsFloat) - (fdq_ItensCompraDESCONTO.AsFloat);
       fdq_ItensCompra.Post;
       bibItem.SetFocus;
@@ -273,6 +306,7 @@ begin
 
 end;
 
+
 procedure TfrmCadastroDeCompras.FormActivate(Sender: TObject);
 begin
   inherited;
@@ -280,8 +314,11 @@ begin
   //    q_PadraoItem.SQL.Add('SELECT ID_FORMA_PGTO from FORMA_PGTO');
      q_PadraoItem.Open();
      fdq_FormaPgto.Open();
+     fdq_Produto.Open();
+
      q_PadraoItem.First;
      fdq_FormaPgto.First;
+     fdq_Produto.First;
 
   while not q_PadraoItem.Eof do
 
@@ -290,18 +327,15 @@ begin
   try
 
   cmdIdFornec.Items.Add(q_PadraoItemID_FORNECEDOR.Value.ToString);
-
   cmbIdFormaPgto.Items.Add(fdq_FormaPgtoID_FORMA_PGTO.Value.ToString);
   q_PadraoItem.Next;
   fdq_FormaPgto.Next;
+  fdq_Produto.Next;
 
   finally
 
 
   end;
-
-
-
 
   end;
 
