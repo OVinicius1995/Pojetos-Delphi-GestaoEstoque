@@ -43,8 +43,12 @@ type
     cmbDesc: TStringField;
     Label8: TLabel;
     DBLookupComboBox2: TDBLookupComboBox;
+    fdqFormaPgtoID_FORMA_PGTO: TIntegerField;
+    fdqFormaPgtoDESCRICAO: TStringField;
     procedure btnNovoClick(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
+    procedure dbeIdClienteExit(Sender: TObject);
+    procedure dbeIdFormaPgtoExit(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -64,13 +68,39 @@ procedure TfrmVendas.btnNovoClick(Sender: TObject);
 begin
   inherited;
   dbeCadastro.Text := DateToStr(Date);
- // dbeUsuario.Text  := dmConexao.usuario;
+  dbeUsuario.Text  := dmConexao.usuario;
+  dbeIdCliente.SetFocus;
+  dbeValor.text := IntToStr(0);
 end;
 
-procedure TfrmVendas.FormActivate(Sender: TObject);
+procedure TfrmVendas.dbeIdClienteExit(Sender: TObject);
 begin
-  inherited;
-       dbeCadastro.Text := DateToStr(Date);
+
+    //Valida cliente
+
+    if not fdqClientes.Locate('ID_CLIENTE',q_PadraoItemID_CLIENTE.AsInteger) then
+    begin
+      MessageDlg('Cliente 404!',TMsgDlgType.mtError,[mbOk],0);
+      dbeIdCliente.SetFocus;
+      abort;
+    end;
+
+
+end;
+
+
+procedure TfrmVendas.dbeIdFormaPgtoExit(Sender: TObject);
+begin
+    //Valida cliente
+
+    if not fdqFormaPgto.Locate('ID_FORMA_PGTO',q_PadraoItemID_FORMA_PGTO.AsInteger) then
+    begin
+      MessageDlg('Forma de pagamento 404!',TMsgDlgType.mtError,[mbOk],0);
+      dbeIdCliente.SetFocus;
+      abort;
+    end;
+
+
 end;
 
 end.

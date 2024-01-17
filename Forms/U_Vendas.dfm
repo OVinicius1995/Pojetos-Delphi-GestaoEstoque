@@ -1,7 +1,6 @@
 inherited frmVendas: TfrmVendas
   Caption = 'Vendas'
   ClientWidth = 747
-  OnActivate = FormActivate
   ExplicitWidth = 759
   TextHeight = 15
   inherited pnlCabecalho: TPanel
@@ -105,6 +104,7 @@ inherited frmVendas: TfrmVendas
       DataField = 'ID_CLIENTE'
       DataSource = dsPadraoItem
       TabOrder = 1
+      OnExit = dbeIdClienteExit
     end
     object dbeIdFormaPgto: TDBEdit
       Left = 56
@@ -114,6 +114,7 @@ inherited frmVendas: TfrmVendas
       DataField = 'ID_FORMA_PGTO'
       DataSource = dsPadraoItem
       TabOrder = 2
+      OnExit = dbeIdFormaPgtoExit
     end
     object dbeUsuario: TDBEdit
       Left = 228
@@ -131,7 +132,7 @@ inherited frmVendas: TfrmVendas
       Height = 23
       DataField = 'VALOR'
       DataSource = dsPadraoItem
-      TabOrder = 4
+      TabOrder = 5
     end
     object dbeCadastro: TDBEdit
       Left = 228
@@ -140,7 +141,7 @@ inherited frmVendas: TfrmVendas
       Height = 23
       DataField = 'CADASTRO'
       DataSource = dsPadraoItem
-      TabOrder = 5
+      TabOrder = 4
     end
     object DBLookupComboBox1: TDBLookupComboBox
       Left = 489
@@ -173,6 +174,9 @@ inherited frmVendas: TfrmVendas
     Align = alNone
   end
   inherited fdqQueryPadrao: TFDQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT * FROM VENDA')
     Left = 688
     Top = 376
   end
@@ -293,6 +297,18 @@ inherited frmVendas: TfrmVendas
       'order by ID_FORMA_PGTO')
     Left = 224
     Top = 272
+    object fdqFormaPgtoID_FORMA_PGTO: TIntegerField
+      FieldName = 'ID_FORMA_PGTO'
+      Origin = 'ID_FORMA_PGTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object fdqFormaPgtoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Required = True
+      Size = 100
+    end
   end
   object dsCliente: TDataSource
     DataSet = fdqClientes

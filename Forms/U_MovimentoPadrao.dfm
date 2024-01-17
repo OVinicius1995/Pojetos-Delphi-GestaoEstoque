@@ -11,8 +11,7 @@ inherited frmPadraoMovimento: TfrmPadraoMovimento
     Top = 479
     Width = 751
     Height = 33
-    ExplicitTop = 479
-    ExplicitWidth = 751
+    ExplicitTop = 478
     ExplicitHeight = 33
     object bibItem: TBitBtn
       Left = 4
@@ -65,6 +64,7 @@ inherited frmPadraoMovimento: TfrmPadraoMovimento
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 10
+    ExplicitWidth = 747
   end
   object Panel2: TPanel [11]
     Left = 0
@@ -75,7 +75,8 @@ inherited frmPadraoMovimento: TfrmPadraoMovimento
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 11
-    ExplicitTop = 376
+    ExplicitTop = 408
+    ExplicitWidth = 747
   end
   object DBGrid1: TDBGrid [12]
     Left = 0
