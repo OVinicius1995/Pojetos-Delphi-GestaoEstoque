@@ -4770,6 +4770,7 @@ object frmPrincipal: TfrmPrincipal
         000000000000}
       Layout = blGlyphTop
       StyleName = 'Windows'
+      OnClick = spdVendasClick
     end
     object spbTrocaUsuarios: TSpeedButton
       Left = 1036

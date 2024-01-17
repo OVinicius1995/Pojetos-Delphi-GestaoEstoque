@@ -1,0 +1,25 @@
+inherited frmVendas: TfrmVendas
+  Caption = 'Vendas'
+  ExplicitWidth = 759
+  ExplicitHeight = 549
+  TextHeight = 15
+  inherited pnlCabecalho: TPanel
+    ExplicitWidth = 743
+  end
+  inherited pnlFooter: TPanel
+    ExplicitTop = 477
+    ExplicitWidth = 743
+  end
+  inherited dbnNavegacaoDadosBD: TDBNavigator
+    Top = 481
+    Hints.Strings = ()
+    ExplicitTop = 481
+  end
+  inherited Panel1: TPanel
+    ExplicitWidth = 743
+  end
+  inherited Panel2: TPanel
+    ExplicitTop = 407
+    ExplicitWidth = 743
+  end
+end

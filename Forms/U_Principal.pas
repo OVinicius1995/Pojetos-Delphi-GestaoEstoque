@@ -79,6 +79,8 @@ type
     procedure spbComprasClick(Sender: TObject);
     procedure spbTrocaUsuariosClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure abreTelaVendas();
+    procedure spdVendasClick(Sender: TObject);
 
 
   private
@@ -95,7 +97,7 @@ implementation
 {$R *.dfm}
 
 uses StrUtils, U_Usuario, U_Empresa, U_Cliente, U_Fornecedores, U_Produtos,
-  U_FormaPgto, U_Compras, U_DM, U_Login;
+  U_FormaPgto, U_Compras, U_DM, U_Login, U_Vendas;
 
 
 procedure TfrmPrincipal.tmrDataHoraTimer(Sender: TObject);
@@ -200,6 +202,22 @@ begin
      abreTelaUsuario();
 end;
 
+
+procedure TfrmPrincipal.spdVendasClick(Sender: TObject);
+begin
+    abreTelaVendas();
+end;
+
+procedure TfrmPrincipal.abreTelaVendas;
+begin
+      try
+        frmVendas := TfrmVendas.Create(Self);
+        frmVendas.ShowModal
+      finally
+        frmVendas.Free;
+        frmVendas := nil;
+      end;
+end;
 
 procedure TfrmPrincipal.Abre_Tela_Cliente;
 begin

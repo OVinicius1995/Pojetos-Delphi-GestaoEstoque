@@ -1,0 +1,199 @@
+inherited frmVendas: TfrmVendas
+  Caption = 'Vendas'
+  ClientHeight = 767
+  ClientWidth = 747
+  ExplicitWidth = 759
+  ExplicitHeight = 805
+  TextHeight = 15
+  inherited pnlCabecalho: TPanel
+    Width = 747
+    ExplicitWidth = 743
+  end
+  inherited pnlFooter: TPanel
+    Top = 734
+    Width = 747
+    ExplicitTop = 477
+    ExplicitWidth = 743
+  end
+  inherited dbnNavegacaoDadosBD: TDBNavigator
+    Top = 481
+    Hints.Strings = ()
+    ExplicitTop = 481
+  end
+  inherited Panel1: TPanel
+    Width = 747
+    Height = 316
+    ExplicitTop = 55
+    ExplicitHeight = 316
+    object Label1: TLabel
+      Left = 56
+      Top = 32
+      Width = 54
+      Height = 15
+      Caption = 'ID_VENDA'
+      FocusControl = DBEdit1
+    end
+    object Label2: TLabel
+      Left = 56
+      Top = 80
+      Width = 60
+      Height = 15
+      Caption = 'ID_CLIENTE'
+      FocusControl = DBEdit2
+    end
+    object Label3: TLabel
+      Left = 56
+      Top = 128
+      Width = 91
+      Height = 15
+      Caption = 'ID_FORMA_PGTO'
+      FocusControl = DBEdit3
+    end
+    object Label4: TLabel
+      Left = 228
+      Top = 32
+      Width = 49
+      Height = 15
+      Caption = 'USUARIO'
+      FocusControl = DBEdit4
+    end
+    object Label5: TLabel
+      Left = 228
+      Top = 125
+      Width = 36
+      Height = 15
+      Caption = 'VALOR'
+      FocusControl = DBEdit5
+    end
+    object Label6: TLabel
+      Left = 228
+      Top = 75
+      Width = 60
+      Height = 15
+      Caption = 'CADASTRO'
+      FocusControl = DBEdit6
+    end
+    object DBEdit1: TDBEdit
+      Left = 56
+      Top = 48
+      Width = 154
+      Height = 23
+      DataField = 'ID_VENDA'
+      DataSource = dsPadraoItem
+      TabOrder = 0
+    end
+    object DBEdit2: TDBEdit
+      Left = 56
+      Top = 96
+      Width = 154
+      Height = 23
+      DataField = 'ID_CLIENTE'
+      DataSource = dsPadraoItem
+      TabOrder = 1
+    end
+    object DBEdit3: TDBEdit
+      Left = 56
+      Top = 144
+      Width = 154
+      Height = 23
+      DataField = 'ID_FORMA_PGTO'
+      DataSource = dsPadraoItem
+      TabOrder = 2
+    end
+    object DBEdit4: TDBEdit
+      Left = 228
+      Top = 48
+      Width = 255
+      Height = 23
+      DataField = 'USUARIO'
+      DataSource = dsPadraoItem
+      TabOrder = 3
+    end
+    object DBEdit5: TDBEdit
+      Left = 228
+      Top = 144
+      Width = 255
+      Height = 23
+      DataField = 'VALOR'
+      DataSource = dsPadraoItem
+      TabOrder = 4
+    end
+    object DBEdit6: TDBEdit
+      Left = 228
+      Top = 96
+      Width = 255
+      Height = 23
+      DataField = 'CADASTRO'
+      DataSource = dsPadraoItem
+      TabOrder = 5
+    end
+  end
+  inherited Panel2: TPanel
+    Top = 664
+    Width = 747
+    ExplicitTop = 407
+    ExplicitWidth = 743
+  end
+  inherited DBGrid1: TDBGrid
+    Top = 369
+    Width = 747
+    Height = 295
+  end
+  inherited fdqQueryPadrao: TFDQuery
+    Left = 416
+    Top = 264
+  end
+  inherited q_PadraoItem: TFDQuery
+    Connection = dmConexao.fdcConexao
+    SQL.Strings = (
+      'SELECT '
+      '     ID_VENDA,'
+      '     ID_CLIENTE,'
+      '     ID_FORMA_PGTO,'
+      '     USUARIO,'
+      '     VALOR,'
+      '     CADASTRO'
+      'FROM VENDA'
+      'ORDER BY ID_VENDA')
+    Left = 688
+    Top = 96
+    object q_PadraoItemID_VENDA: TIntegerField
+      FieldName = 'ID_VENDA'
+      Origin = 'ID_VENDA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object q_PadraoItemID_CLIENTE: TIntegerField
+      FieldName = 'ID_CLIENTE'
+      Origin = 'ID_CLIENTE'
+      Required = True
+    end
+    object q_PadraoItemID_FORMA_PGTO: TIntegerField
+      FieldName = 'ID_FORMA_PGTO'
+      Origin = 'ID_FORMA_PGTO'
+      Required = True
+    end
+    object q_PadraoItemUSUARIO: TStringField
+      FieldName = 'USUARIO'
+      Origin = 'USUARIO'
+      Required = True
+      Size = 100
+    end
+    object q_PadraoItemVALOR: TFMTBCDField
+      FieldName = 'VALOR'
+      Origin = 'VALOR'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object q_PadraoItemCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+  end
+  inherited dsPadraoItem: TDataSource
+    Left = 680
+    Top = 160
+  end
+end
