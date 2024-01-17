@@ -5846,6 +5846,9 @@ object frmPrincipal: TfrmPrincipal
       item
         Alignment = taCenter
         Width = 50
+      end
+      item
+        Width = 50
       end>
     UseSystemFont = False
     ExplicitTop = 453

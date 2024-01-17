@@ -25,7 +25,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    var usuario,tipo_usuerio :String;
+    var usuario,tipo_usuario :String;
   end;
 
 var

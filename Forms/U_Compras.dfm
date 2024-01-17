@@ -605,7 +605,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
         Name = 'ID_COMPRA'
         DataType = ftInteger
         ParamType = ptInput
-        Value = 4
+        Value = 6
       end>
     object fdq_ItensCompraID_SEQUENCIA: TIntegerField
       FieldName = 'ID_SEQUENCIA'

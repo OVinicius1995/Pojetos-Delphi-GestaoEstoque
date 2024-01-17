@@ -66,7 +66,9 @@ begin
     dmConexao.fdqLogin.ParamByName('UNOME').AsString   := edtNome.Text;
     dmConexao.fdqLogin.ParamByName('USENHA').AsInteger := strtoint(edtSenha.Text);
    // dmConexao.fdqLogin.ParamByName('UTIPO').AsString  := cmbTipo.Text;
+
     dmConexao.fdqLogin.Open;
+
 
       if dmConexao.fdqLogin.RecordCount = 0 then
     begin
@@ -76,9 +78,12 @@ begin
 
     else
     begin
-         Application.MessageBox('Cola no baguio parça tu é bem vindo aqui!','Fechamento!', MB_OK + MB_ICONINFORMATION);
 
-         dmConexao.usuario := edtNome.Text;
+        dmConexao.usuario      := dmConexao.fdqLogin.FieldByName('NOME').AsString;
+        dmConexao.tipo_usuario := dmConexao.fdqLogin.FieldByName('TIPO').AsString;
+
+        MessageDlg('Cola no baguio' + ' ' + dmConexao.usuario + ' ' + 'tu é bem vindo aqui!', mtConfirmation, [mbOk],0);
+
 
          frmPrincipal := TfrmPrincipal.Create(Self);
          frmPrincipal.Show;

@@ -266,7 +266,7 @@ begin
   inherited;
 
   fdqQueryPadraoCADASTRO.AsDateTime    := Date;
-  fdqQueryPadraoUSUARIO.AsString       := 'Teste';
+  fdqQueryPadraoUSUARIO.AsString       := dmConexao.usuario;
   cmdIdFornec.SetFocus;
 
 end;
@@ -308,7 +308,7 @@ begin
   q_PadraoItem.SQL.Text := 'SELECT ID_FORNECEDOR,NOME from FORNECEDOR WHERE ID_FORNECEDOR=:IDs_FORNECEDOR';
   q_PadraoItem.ParamByName('IDs_FORNECEDOR').Value:= cmdIdFornec.Text;
   q_PadraoItem.Open();
-  edtNomeFornecedor.Text:=q_PadraoItem.FieldByName('NOME').text;
+  edtNomeFornecedor.Text := q_PadraoItem.FieldByName('NOME').text;
 
 end;
 
@@ -349,6 +349,8 @@ begin
      q_PadraoItem.First;
      fdq_FormaPgto.First;
      fdq_Produto.First;
+
+     dbUsuario.Text := dmConexao.usuario;
 
   while not q_PadraoItem.Eof do
 

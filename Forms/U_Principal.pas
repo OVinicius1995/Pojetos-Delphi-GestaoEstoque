@@ -93,15 +93,16 @@ implementation
 {$R *.dfm}
 
 uses StrUtils, U_Usuario, U_Empresa, U_Cliente, U_Fornecedores, U_Produtos,
-  U_FormaPgto, U_Compras;
+  U_FormaPgto, U_Compras, U_DM;
 
 
 procedure TfrmPrincipal.tmrDataHoraTimer(Sender: TObject);
 begin
 
-      stbDataHora.Panels[1].Text := 'Seja Bem Vindo ao Sistema';
+      stbDataHora.Panels[1].Text := 'Seja Bem Vindo ao Sistema' + '  ' + dmConexao.usuario;
       stbDataHora.Panels[2].Text := '' + FormatDateTime('hh:nn', now);
       stbDataHora.Panels[2].Text := TimeToStr(time);
+      stbDataHora.Panels[3].Text := 'Tipo de usuário' + '  ' + dmConexao.tipo_usuario;
 
 
         case AnsiIndexStr(FormatDateTime('dddd',now), ['segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado','domingo']) of
