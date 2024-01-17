@@ -36,6 +36,7 @@ implementation
 uses U_DM, U_Login, U_Principal;
 
 procedure TfrmSelecionaTipo.FormShow(Sender: TObject);
+
 begin
       fdqPegaTipoUser.Open();
       fdqPegaTipoUser.First;
@@ -48,7 +49,7 @@ begin
       while fdqPegaTipoUser.Eof do
       begin
 
-          cmbTipo.Items.Add(fdqPegaTipoUserTIPO.Value);
+          cmbTipo.Items.Add(fdqPegaTipoUserTIPO.ToString);
           fdqPegaTipoUser.Next;
       end;
 
