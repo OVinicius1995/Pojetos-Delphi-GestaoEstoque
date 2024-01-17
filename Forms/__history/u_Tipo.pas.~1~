@@ -1,0 +1,27 @@
+unit u_Tipo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons;
+
+type
+  TfrmSelecionaTipo = class(TForm)
+    cmbTipo: TComboBox;
+    Label3: TLabel;
+    btnOk: TBitBtn;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmSelecionaTipo: TfrmSelecionaTipo;
+
+implementation
+
+{$R *.dfm}
+
+end.

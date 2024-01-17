@@ -7,17 +7,25 @@ uses
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Phys.IBBase,
-  FireDAC.Comp.Client, Data.DB;
+  FireDAC.Comp.Client, Data.DB, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet;
 
 type
   TdmConexao = class(TDataModule)
     fdcConexao: TFDConnection;
     fdtTransacao: TFDTransaction;
     fdpLinkConexao: TFDPhysFBDriverLink;
+    fdqLogin: TFDQuery;
+    dsLogin: TDataSource;
+    fdqLoginID_USUARIO: TIntegerField;
+    fdqLoginNOME: TStringField;
+    fdqLoginSENHA: TStringField;
+    fdqLoginTIPO: TStringField;
   private
     { Private declarations }
   public
     { Public declarations }
+    var usuario,tipo_usuario :String;
   end;
 
 var

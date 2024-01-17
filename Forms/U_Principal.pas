@@ -77,6 +77,8 @@ type
     procedure mmuFormasPgtoClick(Sender: TObject);
     procedure Abre_Tela_Compras();
     procedure spbComprasClick(Sender: TObject);
+    procedure spbTrocaUsuariosClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
 
 
   private
@@ -93,15 +95,16 @@ implementation
 {$R *.dfm}
 
 uses StrUtils, U_Usuario, U_Empresa, U_Cliente, U_Fornecedores, U_Produtos,
-  U_FormaPgto, U_Compras;
+  U_FormaPgto, U_Compras, U_DM, U_Login;
 
 
 procedure TfrmPrincipal.tmrDataHoraTimer(Sender: TObject);
 begin
 
-      stbDataHora.Panels[1].Text := 'Seja Bem Vindo ao Sistema';
+      stbDataHora.Panels[1].Text := 'Seja Bem Vindo ao Sistema' + '  ' + dmConexao.usuario;
       stbDataHora.Panels[2].Text := '' + FormatDateTime('hh:nn', now);
       stbDataHora.Panels[2].Text := TimeToStr(time);
+      stbDataHora.Panels[3].Text := 'Tipo de usuário:' + '  ' + dmConexao.tipo_usuario;
 
 
         case AnsiIndexStr(FormatDateTime('dddd',now), ['segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado','domingo']) of
@@ -168,6 +171,12 @@ end;
 procedure TfrmPrincipal.spbProdutosClick(Sender: TObject);
 begin
   Abre_Tela_Produtos
+end;
+
+procedure TfrmPrincipal.spbTrocaUsuariosClick(Sender: TObject);
+begin
+         frmLogin.Show;
+         frmPrincipal.Destroy;
 end;
 
 procedure TfrmPrincipal.abreTelaUsuario;
@@ -256,6 +265,22 @@ begin
      frmProdutos := nil;
 
      end;
+end;
+
+procedure TfrmPrincipal.FormShow(Sender: TObject);
+begin
+      if dmConexao.tipo_usuario <> 'ADMINISTRADOR'  then
+        begin
+          MessageDlg('Ih a lá é um zé roela!',TMsgDlgType.mtConfirmation,[mbOk],0);
+          MessageDlg('Zoeira! Cola aí mano. Tu só não vai ter acesso numas paradas aí.',TMsgDlgType.mtConfirmation,[mbOk],0);
+
+          spbEmpresa.Enabled := false;
+          spbUsuario.Enabled := false;
+          mmuUsuario.Enabled := false;
+          mmuEmpresa.Enabled := false;
+
+        end;
+
 end;
 
 procedure TfrmPrincipal.mmuClientesClick(Sender: TObject);
