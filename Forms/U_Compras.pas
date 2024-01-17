@@ -78,6 +78,9 @@ type
     Label18: TLabel;
     dbTotalItem: TDBEdit;
     fdq_ItensCompraSUBTOTAL: TAggregateField;
+    fdqQueryPadraoCOND_PGTO: TIntegerField;
+    Label19: TLabel;
+    DBEdit8: TDBEdit;
     procedure btnNovoClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
