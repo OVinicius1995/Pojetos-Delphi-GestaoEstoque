@@ -1,0 +1,61 @@
+object frmSelecionaTipo: TfrmSelecionaTipo
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'frmSelecionaTipo'
+  ClientHeight = 191
+  ClientWidth = 350
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poOwnerFormCenter
+  OnShow = FormShow
+  TextHeight = 15
+  object Label3: TLabel
+    Left = 96
+    Top = 64
+    Width = 172
+    Height = 15
+    Caption = 'Selecione o seu perfil de usu'#225'rio:'
+  end
+  object cmbTipo: TComboBox
+    Left = 82
+    Top = 85
+    Width = 199
+    Height = 23
+    TabOrder = 0
+    Items.Strings = (
+      'ADMINISTRADOR'
+      'APOIO')
+  end
+  object btnOk: TBitBtn
+    Left = 144
+    Top = 128
+    Width = 75
+    Height = 25
+    Caption = 'OK'
+    TabOrder = 1
+    OnClick = btnOkClick
+  end
+  object fdqPegaTipoUser: TFDQuery
+    Active = True
+    Connection = dmConexao.fdcConexao
+    SQL.Strings = (
+      'SELECT TIPO FROM USUARIO')
+    Left = 104
+    Top = 16
+    object fdqPegaTipoUserTIPO: TStringField
+      FieldName = 'TIPO'
+      Origin = 'TIPO'
+      Size = 30
+    end
+  end
+  object dsPegaTipoUser: TDataSource
+    DataSet = fdqPegaTipoUser
+    Left = 208
+    Top = 16
+  end
+end

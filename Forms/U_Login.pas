@@ -4,25 +4,31 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
 
 type
   TfrmLogin = class(TForm)
     edtNome: TEdit;
     edtSenha: TEdit;
-    cmbTipo: TComboBox;
     btnLogar: TBitBtn;
     btnCancelar: TBitBtn;
     Label1: TLabel;
     Label2: TLabel;
-    Label3: TLabel;
+    fdqBuscaTipouser: TFDQuery;
+    dsBuscaTipoUser: TDataSource;
     procedure FormShow(Sender: TObject);
     procedure btnLogarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure abreTelaSelecionaPerfil();
   private
     { Private declarations }
   public
     { Public declarations }
+    var tipoUser :String;
   end;
 
 var
@@ -32,7 +38,20 @@ implementation
 
 {$R *.dfm}
 
-uses U_DM, U_Principal;
+uses U_DM, U_Principal, u_Tipo;
+
+procedure TfrmLogin.abreTelaSelecionaPerfil;
+begin
+
+     try
+       frmSelecionaTipo := TfrmSelecionaTipo.Create(Self);
+       frmSelecionaTipo.Show;
+     finally
+         frmSelecionaTipo.Free;
+         frmSelecionaTipo :=nil;
+     end;
+
+end;
 
 procedure TfrmLogin.btnCancelarClick(Sender: TObject);
 begin
@@ -40,6 +59,9 @@ begin
 end;
 
 procedure TfrmLogin.btnLogarClick(Sender: TObject);
+
+var atribuicoes :Integer;
+
 begin
 
     if (edtNome.Text = '') then
@@ -65,30 +87,53 @@ begin
     dmConexao.fdqLogin.SQL.Add('WHERE NOME =:UNOME AND SENHA =:USENHA');
     dmConexao.fdqLogin.ParamByName('UNOME').AsString   := edtNome.Text;
     dmConexao.fdqLogin.ParamByName('USENHA').AsInteger := strtoint(edtSenha.Text);
-   // dmConexao.fdqLogin.ParamByName('UTIPO').AsString  := cmbTipo.Text;
 
+    // Busca as atribuições do usuário
+    fdqBuscaTipouser.Close;
+    fdqBuscaTipouser.SQL.Add('');
+    fdqBuscaTipouser.SQL.Clear();
+    fdqBuscaTipouser.SQL.Add('SELECT TIPO FROM USUARIO');
+    fdqBuscaTipouser.SQL.Add('WHERE NOME =:TNOME');
+    fdqBuscaTipouser.ParamByName('TNOME').AsString := edtNome.Text;
+    fdqBuscaTipouser.Open();
     dmConexao.fdqLogin.Open;
+
 
 
       if dmConexao.fdqLogin.RecordCount = 0 then
     begin
       Application.MessageBox('Nome ou senha incorretos.','Zoia!', MB_OK + MB_ICONWARNING);
       abort;
-    end
+    end;
 
-    else
+
+    if fdqBuscaTipouser.RecordCount > 1 then
+
+    begin
+
+       dmConexao.usuario  := dmConexao.fdqLogin.FieldByName('NOME').AsString;
+
+        MessageDlg('Você possui mais de um perfil para logar no sistema, ecolha um deles e prossiga!',TMsgDlgType.mtInformation,[mbOk],0);
+
+        frmLogin.Hide;
+        frmSelecionaTipo := TfrmSelecionaTipo.Create(Self);
+        frmSelecionaTipo.Show;
+
+    end;
+
+     if fdqBuscaTipouser.RecordCount = 1 then
     begin
 
         dmConexao.usuario      := dmConexao.fdqLogin.FieldByName('NOME').AsString;
         dmConexao.tipo_usuario := dmConexao.fdqLogin.FieldByName('TIPO').AsString;
 
-        MessageDlg('Cola no baguio' + ' ' + dmConexao.usuario + ' ' + 'tu é bem vindo aqui!', mtConfirmation, [mbOk],0);
-
 
          frmPrincipal := TfrmPrincipal.Create(Self);
          frmPrincipal.Show;
+         MessageDlg('Cola no baguio' + ' ' + dmConexao.usuario + ' ' + 'tu é bem vindo aqui!', mtConfirmation, [mbOk],0);
          frmLogin.Hide;
     end;
+
 
 
 
@@ -98,7 +143,13 @@ end;
 
 procedure TfrmLogin.FormShow(Sender: TObject);
 begin
+
     edtNome.SetFocus();
+    edtNome.Clear;
+    edtSenha.Clear;
+
+
+
 end;
 
 end.

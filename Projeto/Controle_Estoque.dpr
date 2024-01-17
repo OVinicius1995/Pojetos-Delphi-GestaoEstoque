@@ -20,7 +20,8 @@ uses
   U_MovimentoPadrao in '..\Forms\U_MovimentoPadrao.pas' {frmPadraoMovimento},
   U_Compras in '..\Forms\U_Compras.pas' {frmCadastroDeCompras},
   U_PesqCompra in '..\Forms\U_PesqCompra.pas' {frmPesqComrpa},
-  U_Login in '..\Forms\U_Login.pas' {frmLogin};
+  U_Login in '..\Forms\U_Login.pas' {frmLogin},
+  u_Tipo in '..\Forms\u_Tipo.pas' {frmSelecionaTipo};
 
 {$R *.res}
 
@@ -29,5 +30,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TdmConexao, dmConexao);
+  Application.CreateForm(TfrmSelecionaTipo, frmSelecionaTipo);
   Application.Run;
 end.

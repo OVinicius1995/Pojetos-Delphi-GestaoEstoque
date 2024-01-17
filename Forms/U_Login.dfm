@@ -29,13 +29,6 @@ object frmLogin: TfrmLogin
     Height = 15
     Caption = 'Senha:'
   end
-  object Label3: TLabel
-    Left = 80
-    Top = 200
-    Width = 26
-    Height = 15
-    Caption = 'Tipo:'
-  end
   object edtNome: TEdit
     Left = 122
     Top = 109
@@ -51,23 +44,13 @@ object frmLogin: TfrmLogin
     PasswordChar = 'X'
     TabOrder = 1
   end
-  object cmbTipo: TComboBox
-    Left = 122
-    Top = 197
-    Width = 199
-    Height = 23
-    TabOrder = 2
-    Items.Strings = (
-      'ADMINISTRADOR'
-      'APOIO')
-  end
   object btnLogar: TBitBtn
     Left = 125
     Top = 248
     Width = 75
     Height = 25
     Caption = 'Logar'
-    TabOrder = 3
+    TabOrder = 2
     OnClick = btnLogarClick
   end
   object btnCancelar: TBitBtn
@@ -76,7 +59,19 @@ object frmLogin: TfrmLogin
     Width = 75
     Height = 25
     Caption = 'Cancelar'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = btnCancelarClick
+  end
+  object fdqBuscaTipouser: TFDQuery
+    Connection = dmConexao.fdcConexao
+    SQL.Strings = (
+      'SELECT COUNT(TIPO) FROM USUARIO')
+    Left = 368
+    Top = 40
+  end
+  object dsBuscaTipoUser: TDataSource
+    DataSet = fdqBuscaTipouser
+    Left = 368
+    Top = 112
   end
 end

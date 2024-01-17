@@ -544,6 +544,7 @@ object frmPrincipal: TfrmPrincipal
   Menu = mmuMenus
   Position = poOwnerFormCenter
   WindowState = wsMaximized
+  OnShow = FormShow
   TextHeight = 16
   object Panel1: TPanel
     Left = 0
@@ -5295,6 +5296,7 @@ object frmPrincipal: TfrmPrincipal
         000000000000}
       Layout = blGlyphTop
       StyleName = 'Windows'
+      OnClick = spbTrocaUsuariosClick
     end
     object spbFechar: TSpeedButton
       Left = 1166
@@ -5837,18 +5839,18 @@ object frmPrincipal: TfrmPrincipal
     Panels = <
       item
         Alignment = taCenter
-        Width = 400
+        Width = 300
       end
       item
         Alignment = taCenter
-        Width = 600
+        Width = 460
       end
       item
         Alignment = taCenter
-        Width = 50
+        Width = 100
       end
       item
-        Width = 50
+        Width = 100
       end>
     UseSystemFont = False
     ExplicitTop = 453
