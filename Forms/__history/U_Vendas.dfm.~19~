@@ -27,8 +27,8 @@ inherited frmVendas: TfrmVendas
   inherited Panel1: TPanel
     Width = 870
     Height = 260
-    ExplicitLeft = 8
-    ExplicitTop = 55
+    ExplicitLeft = -8
+    ExplicitTop = 21
     ExplicitWidth = 870
     ExplicitHeight = 260
     object Label1: TLabel
@@ -45,7 +45,7 @@ inherited frmVendas: TfrmVendas
       Width = 60
       Height = 15
       Caption = 'ID_CLIENTE'
-      FocusControl = dbIdClientes
+      FocusControl = dbeIdcliente
     end
     object Label3: TLabel
       Left = 37
@@ -104,7 +104,7 @@ inherited frmVendas: TfrmVendas
       DataSource = dtsPadrao
       TabOrder = 0
     end
-    object dbIdClientes: TDBEdit
+    object dbeIdcliente: TDBEdit
       Left = 37
       Top = 74
       Width = 200
@@ -112,7 +112,6 @@ inherited frmVendas: TfrmVendas
       DataField = 'ID_CLIENTE'
       DataSource = dtsPadrao
       TabOrder = 1
-      OnExit = dbIdClientesExit
     end
     object dbeIdformaPgto: TDBEdit
       Left = 37
@@ -122,7 +121,6 @@ inherited frmVendas: TfrmVendas
       DataField = 'ID_FORMA_PGTO'
       DataSource = dtsPadrao
       TabOrder = 2
-      OnExit = dbeIdFormaPgtoExit
     end
     object dbeUsuario: TDBEdit
       Left = 37
@@ -131,7 +129,6 @@ inherited frmVendas: TfrmVendas
       Height = 23
       DataField = 'USUARIO'
       DataSource = dtsPadrao
-      Enabled = False
       TabOrder = 3
     end
     object dbeValor: TDBEdit
@@ -185,10 +182,6 @@ inherited frmVendas: TfrmVendas
     Align = alNone
   end
   inherited fdqQueryPadrao: TFDQuery
-    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
-    UpdateOptions.FetchGeneratorsPoint = gpImmediate
-    UpdateOptions.GeneratorName = 'GEN_ID_VENDA'
-    UpdateOptions.AutoIncFields = 'ID_VENDA'
     SQL.Strings = (
       'SELECT '
       '     ID_VENDA,'
@@ -199,8 +192,8 @@ inherited frmVendas: TfrmVendas
       '     CADASTRO'
       'FROM VENDA'
       'ORDER BY ID_VENDA')
-    Left = 648
-    Top = 64
+    Left = 608
+    Top = 160
     object fdqQueryPadraoID_VENDA: TIntegerField
       FieldName = 'ID_VENDA'
       Origin = 'ID_VENDA'
@@ -258,7 +251,7 @@ inherited frmVendas: TfrmVendas
   end
   inherited dtsPadrao: TDataSource
     Left = 648
-    Top = 112
+    Top = 224
   end
   inherited q_PadraoItem: TFDQuery
     Active = True
@@ -277,8 +270,8 @@ inherited frmVendas: TfrmVendas
       '     CADASTRO'
       'FROM VENDA'
       'ORDER BY ID_VENDA')
-    Left = 800
-    Top = 88
+    Left = 688
+    Top = 96
     object q_PadraoItemID_VENDA: TIntegerField
       AutoGenerateValue = arAutoInc
       FieldName = 'ID_VENDA'
@@ -335,8 +328,8 @@ inherited frmVendas: TfrmVendas
     end
   end
   inherited dsPadraoItem: TDataSource
-    Left = 816
-    Top = 144
+    Left = 680
+    Top = 160
   end
   object fdqClientes: TFDQuery
     Active = True
@@ -347,8 +340,8 @@ inherited frmVendas: TfrmVendas
       '   NOME'
       'FROM CLIENTE'
       'ORDER BY ID_CLIENTE   ')
-    Left = 472
-    Top = 64
+    Left = 504
+    Top = 104
     object fdqClientesID_CLIENTE: TIntegerField
       FieldName = 'ID_CLIENTE'
       Origin = 'ID_CLIENTE'
@@ -371,8 +364,8 @@ inherited frmVendas: TfrmVendas
       '     DESCRICAO'
       'FROM FORMA_PGTO'
       'order by ID_FORMA_PGTO')
-    Left = 552
-    Top = 64
+    Left = 520
+    Top = 208
     object fdqFormaPgtoID_FORMA_PGTO: TIntegerField
       FieldName = 'ID_FORMA_PGTO'
       Origin = 'ID_FORMA_PGTO'
@@ -388,12 +381,12 @@ inherited frmVendas: TfrmVendas
   end
   object dsCliente: TDataSource
     DataSet = fdqClientes
-    Left = 480
-    Top = 112
+    Left = 616
+    Top = 88
   end
   object dsFormapgto: TDataSource
     DataSet = fdqFormaPgto
-    Left = 556
-    Top = 112
+    Left = 508
+    Top = 152
   end
 end

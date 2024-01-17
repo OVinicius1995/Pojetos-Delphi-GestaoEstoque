@@ -1,186 +1,263 @@
 inherited frmVendas: TfrmVendas
   Caption = 'Vendas'
-  ClientWidth = 747
-  ExplicitWidth = 759
+  ClientWidth = 870
+  ExplicitWidth = 882
   TextHeight = 15
   inherited pnlCabecalho: TPanel
-    Width = 747
+    Width = 870
     ExplicitWidth = 743
   end
   inherited pnlFooter: TPanel
-    Width = 747
-    ExplicitTop = 733
-    ExplicitWidth = 743
+    Top = 464
+    Width = 870
+    Height = 48
+    ExplicitTop = 1088
+    ExplicitWidth = 870
+    ExplicitHeight = 48
   end
   inherited dbnNavegacaoDadosBD: TDBNavigator
-    Top = 481
+    Left = 0
+    Top = 439
+    Width = 870
+    Align = alBottom
     Hints.Strings = ()
-    ExplicitTop = 481
+    ExplicitLeft = 522
+    ExplicitTop = 1085
   end
   inherited Panel1: TPanel
-    Width = 747
+    Width = 870
     Height = 260
-    ExplicitLeft = -8
-    ExplicitTop = 21
+    ExplicitLeft = 8
+    ExplicitTop = 55
+    ExplicitWidth = 870
     ExplicitHeight = 260
     object Label1: TLabel
-      Left = 56
-      Top = 32
+      Left = 37
+      Top = 6
       Width = 54
       Height = 15
       Caption = 'ID_VENDA'
-      FocusControl = dbeIdVenta
+      FocusControl = dbeIdVendas
     end
     object Label2: TLabel
-      Left = 56
-      Top = 80
+      Left = 37
+      Top = 56
       Width = 60
       Height = 15
       Caption = 'ID_CLIENTE'
-      FocusControl = dbeIdCliente
+      FocusControl = dbIdClientes
     end
     object Label3: TLabel
-      Left = 56
-      Top = 128
+      Left = 37
+      Top = 103
       Width = 91
       Height = 15
       Caption = 'ID_FORMA_PGTO'
-      FocusControl = dbeIdFormaPgto
+      FocusControl = dbeIdformaPgto
     end
     object Label4: TLabel
-      Left = 228
-      Top = 32
+      Left = 37
+      Top = 152
       Width = 49
       Height = 15
       Caption = 'USUARIO'
       FocusControl = dbeUsuario
     end
     object Label5: TLabel
-      Left = 228
-      Top = 125
+      Left = 280
+      Top = 8
       Width = 36
       Height = 15
       Caption = 'VALOR'
       FocusControl = dbeValor
     end
     object Label6: TLabel
-      Left = 228
-      Top = 75
+      Left = 281
+      Top = 55
       Width = 60
       Height = 15
       Caption = 'CADASTRO'
       FocusControl = dbeCadastro
     end
     object Label7: TLabel
-      Left = 489
-      Top = 32
+      Left = 280
+      Top = 103
       Width = 44
       Height = 15
       Caption = 'CLIENTE'
-      FocusControl = DBLookupComboBox1
+      FocusControl = cmbCliente
     end
     object Label8: TLabel
-      Left = 489
-      Top = 75
+      Left = 280
+      Top = 152
       Width = 63
       Height = 15
       Caption = 'DESCRICAO'
-      FocusControl = DBLookupComboBox2
+      FocusControl = cmbDescricao
     end
-    object dbeIdVenta: TDBEdit
-      Left = 56
-      Top = 48
-      Width = 154
+    object dbeIdVendas: TDBEdit
+      Left = 37
+      Top = 26
+      Width = 200
       Height = 23
       DataField = 'ID_VENDA'
-      DataSource = dsPadraoItem
+      DataSource = dtsPadrao
       TabOrder = 0
     end
-    object dbeIdCliente: TDBEdit
-      Left = 56
-      Top = 99
-      Width = 154
+    object dbIdClientes: TDBEdit
+      Left = 37
+      Top = 74
+      Width = 200
       Height = 23
       DataField = 'ID_CLIENTE'
-      DataSource = dsPadraoItem
+      DataSource = dtsPadrao
       TabOrder = 1
     end
-    object dbeIdFormaPgto: TDBEdit
-      Left = 56
-      Top = 144
-      Width = 154
+    object dbeIdformaPgto: TDBEdit
+      Left = 37
+      Top = 119
+      Width = 200
       Height = 23
       DataField = 'ID_FORMA_PGTO'
-      DataSource = dsPadraoItem
+      DataSource = dtsPadrao
       TabOrder = 2
+      OnExit = dbeIdFormaPgtoExit
     end
     object dbeUsuario: TDBEdit
-      Left = 228
-      Top = 48
-      Width = 255
+      Left = 37
+      Top = 168
+      Width = 200
       Height = 23
       DataField = 'USUARIO'
-      DataSource = dsPadraoItem
+      DataSource = dtsPadrao
+      Enabled = False
       TabOrder = 3
     end
     object dbeValor: TDBEdit
-      Left = 228
-      Top = 144
-      Width = 255
+      Left = 280
+      Top = 26
+      Width = 154
       Height = 23
       DataField = 'VALOR'
-      DataSource = dsPadraoItem
+      DataSource = dtsPadrao
       TabOrder = 4
     end
     object dbeCadastro: TDBEdit
-      Left = 228
-      Top = 96
-      Width = 255
+      Left = 280
+      Top = 74
+      Width = 154
       Height = 23
       DataField = 'CADASTRO'
-      DataSource = dsPadraoItem
+      DataSource = dtsPadrao
       TabOrder = 5
     end
-    object DBLookupComboBox1: TDBLookupComboBox
-      Left = 489
-      Top = 48
+    object cmbCliente: TDBLookupComboBox
+      Left = 280
+      Top = 119
       Width = 150
       Height = 23
       DataField = 'CLIENTE'
-      DataSource = dsPadraoItem
+      DataSource = dtsPadrao
       TabOrder = 6
     end
-    object DBLookupComboBox2: TDBLookupComboBox
-      Left = 489
-      Top = 96
+    object cmbDescricao: TDBLookupComboBox
+      Left = 280
+      Top = 168
       Width = 150
       Height = 23
       DataField = 'DESCRICAO'
-      DataSource = dsPadraoItem
+      DataSource = dtsPadrao
       TabOrder = 7
     end
   end
   inherited Panel2: TPanel
-    Width = 747
-    ExplicitTop = 663
-    ExplicitWidth = 743
+    Top = 369
+    Width = 870
+    ExplicitLeft = -24
+    ExplicitTop = 633
+    ExplicitWidth = 870
   end
   inherited DBGrid1: TDBGrid
-    Top = 248
-    Width = 747
-    Height = 193
+    Top = 257
+    Width = 870
+    Height = 176
     Align = alNone
   end
   inherited fdqQueryPadrao: TFDQuery
-    Active = True
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_ID_VENDA'
+    UpdateOptions.AutoIncFields = 'ID_VENDA'
     SQL.Strings = (
-      'SELECT * FROM VENDA')
-    Left = 688
-    Top = 376
+      'SELECT '
+      '     ID_VENDA,'
+      '     ID_CLIENTE,'
+      '     ID_FORMA_PGTO,'
+      '     USUARIO,'
+      '     VALOR,'
+      '     CADASTRO'
+      'FROM VENDA'
+      'ORDER BY ID_VENDA')
+    Left = 648
+    Top = 64
+    object fdqQueryPadraoID_VENDA: TIntegerField
+      FieldName = 'ID_VENDA'
+      Origin = 'ID_VENDA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object fdqQueryPadraoID_CLIENTE: TIntegerField
+      FieldName = 'ID_CLIENTE'
+      Origin = 'ID_CLIENTE'
+      Required = True
+    end
+    object fdqQueryPadraoID_FORMA_PGTO: TIntegerField
+      FieldName = 'ID_FORMA_PGTO'
+      Origin = 'ID_FORMA_PGTO'
+      Required = True
+    end
+    object fdqQueryPadraoUSUARIO: TStringField
+      FieldName = 'USUARIO'
+      Origin = 'USUARIO'
+      Required = True
+      Size = 100
+    end
+    object fdqQueryPadraoVALOR: TFMTBCDField
+      FieldName = 'VALOR'
+      Origin = 'VALOR'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object fdqQueryPadraoCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+    object fdqQueryPadraoCLIENTE: TStringField
+      FieldKind = fkLookup
+      FieldName = 'CLIENTE'
+      LookupDataSet = fdqClientes
+      LookupKeyFields = 'ID_CLIENTE'
+      LookupResultField = 'NOME'
+      KeyFields = 'ID_CLIENTE'
+      Size = 100
+      Lookup = True
+    end
+    object fdqQueryPadraoDESCRICAO: TStringField
+      FieldKind = fkLookup
+      FieldName = 'DESCRICAO'
+      LookupDataSet = fdqFormaPgto
+      LookupKeyFields = 'ID_FORMA_PGTO'
+      LookupResultField = 'DESCRICAO'
+      KeyFields = 'ID_FORMA_PGTO'
+      Size = 100
+      Lookup = True
+    end
   end
   inherited dtsPadrao: TDataSource
-    Left = 656
-    Top = 328
+    Left = 648
+    Top = 112
   end
   inherited q_PadraoItem: TFDQuery
     Active = True
@@ -199,8 +276,8 @@ inherited frmVendas: TfrmVendas
       '     CADASTRO'
       'FROM VENDA'
       'ORDER BY ID_VENDA')
-    Left = 688
-    Top = 96
+    Left = 800
+    Top = 88
     object q_PadraoItemID_VENDA: TIntegerField
       AutoGenerateValue = arAutoInc
       FieldName = 'ID_VENDA'
@@ -257,8 +334,8 @@ inherited frmVendas: TfrmVendas
     end
   end
   inherited dsPadraoItem: TDataSource
-    Left = 680
-    Top = 160
+    Left = 816
+    Top = 144
   end
   object fdqClientes: TFDQuery
     Active = True
@@ -269,8 +346,8 @@ inherited frmVendas: TfrmVendas
       '   NOME'
       'FROM CLIENTE'
       'ORDER BY ID_CLIENTE   ')
-    Left = 144
-    Top = 272
+    Left = 472
+    Top = 64
     object fdqClientesID_CLIENTE: TIntegerField
       FieldName = 'ID_CLIENTE'
       Origin = 'ID_CLIENTE'
@@ -293,17 +370,29 @@ inherited frmVendas: TfrmVendas
       '     DESCRICAO'
       'FROM FORMA_PGTO'
       'order by ID_FORMA_PGTO')
-    Left = 224
-    Top = 272
+    Left = 552
+    Top = 64
+    object fdqFormaPgtoID_FORMA_PGTO: TIntegerField
+      FieldName = 'ID_FORMA_PGTO'
+      Origin = 'ID_FORMA_PGTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object fdqFormaPgtoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Required = True
+      Size = 100
+    end
   end
   object dsCliente: TDataSource
     DataSet = fdqClientes
-    Left = 144
-    Top = 328
+    Left = 480
+    Top = 112
   end
   object dsFormapgto: TDataSource
     DataSet = fdqFormaPgto
-    Left = 220
-    Top = 328
+    Left = 556
+    Top = 112
   end
 end

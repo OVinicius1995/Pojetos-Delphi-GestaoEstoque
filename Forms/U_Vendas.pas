@@ -19,18 +19,6 @@ type
     q_PadraoItemUSUARIO: TStringField;
     q_PadraoItemVALOR: TFMTBCDField;
     q_PadraoItemCADASTRO: TDateField;
-    Label1: TLabel;
-    dbeIdVenta: TDBEdit;
-    Label2: TLabel;
-    dbeIdCliente: TDBEdit;
-    Label3: TLabel;
-    dbeIdFormaPgto: TDBEdit;
-    Label4: TLabel;
-    dbeUsuario: TDBEdit;
-    Label5: TLabel;
-    dbeValor: TDBEdit;
-    Label6: TLabel;
-    dbeCadastro: TDBEdit;
     fdqClientes: TFDQuery;
     fdqFormaPgto: TFDQuery;
     dsCliente: TDataSource;
@@ -38,16 +26,36 @@ type
     fdqClientesID_CLIENTE: TIntegerField;
     fdqClientesNOME: TStringField;
     cmdCliente: TStringField;
-    Label7: TLabel;
-    DBLookupComboBox1: TDBLookupComboBox;
     cmbDesc: TStringField;
-    Label8: TLabel;
-    DBLookupComboBox2: TDBLookupComboBox;
     fdqFormaPgtoID_FORMA_PGTO: TIntegerField;
     fdqFormaPgtoDESCRICAO: TStringField;
+    fdqQueryPadraoID_VENDA: TIntegerField;
+    fdqQueryPadraoID_CLIENTE: TIntegerField;
+    fdqQueryPadraoID_FORMA_PGTO: TIntegerField;
+    fdqQueryPadraoUSUARIO: TStringField;
+    fdqQueryPadraoVALOR: TFMTBCDField;
+    fdqQueryPadraoCADASTRO: TDateField;
+    fdqQueryPadraoCLIENTE: TStringField;
+    fdqQueryPadraoDESCRICAO: TStringField;
+    Label1: TLabel;
+    dbeIdVendas: TDBEdit;
+    Label2: TLabel;
+    dbIdClientes: TDBEdit;
+    Label3: TLabel;
+    dbeIdformaPgto: TDBEdit;
+    Label4: TLabel;
+    dbeUsuario: TDBEdit;
+    Label5: TLabel;
+    dbeValor: TDBEdit;
+    Label6: TLabel;
+    dbeCadastro: TDBEdit;
+    Label7: TLabel;
+    cmbCliente: TDBLookupComboBox;
+    Label8: TLabel;
+    cmbDescricao: TDBLookupComboBox;
     procedure btnNovoClick(Sender: TObject);
-    procedure dbeIdClienteExit(Sender: TObject);
     procedure dbeIdFormaPgtoExit(Sender: TObject);
+    procedure dbIdClientesExit(Sender: TObject);
 
   private
     { Private declarations }
@@ -67,39 +75,42 @@ uses U_DM;
 procedure TfrmVendas.btnNovoClick(Sender: TObject);
 begin
   inherited;
+
   dbeCadastro.Text := DateToStr(Date);
   dbeUsuario.Text  := dmConexao.usuario;
-  dbeIdCliente.SetFocus;
+  dbIdClientes.SetFocus;
   dbeValor.text := IntToStr(0);
 end;
 
-procedure TfrmVendas.dbeIdClienteExit(Sender: TObject);
-begin
-
-    //Valida cliente
-
-    if not fdqClientes.Locate('ID_CLIENTE',q_PadraoItemID_CLIENTE.AsInteger) then
-    begin
-      MessageDlg('Cliente 404!',TMsgDlgType.mtError,[mbOk],0);
-      dbeIdCliente.SetFocus;
-      abort;
-    end;
-
-
-end;
 
 
 procedure TfrmVendas.dbeIdFormaPgtoExit(Sender: TObject);
 begin
+  dbeUsuario.Text  := dmConexao.usuario;
     //Valida cliente
 
-    if not fdqFormaPgto.Locate('ID_FORMA_PGTO',q_PadraoItemID_FORMA_PGTO.AsInteger) then
+    if not fdqFormaPgto.Locate('ID_FORMA_PGTO',fdqQueryPadraoID_FORMA_PGTO.AsInteger) then
     begin
       MessageDlg('Forma de pagamento 404!',TMsgDlgType.mtError,[mbOk],0);
-      dbeIdCliente.SetFocus;
+      dbeIdFormaPgto.SetFocus;
       abort;
     end;
 
+
+end;
+
+procedure TfrmVendas.dbIdClientesExit(Sender: TObject);
+begin
+
+      dbeUsuario.Text  := dmConexao.usuario;
+    //Valida cliente
+
+    if not fdqClientes.Locate('ID_CLIENTE',fdqQueryPadraoID_CLIENTE.AsInteger) then
+    begin
+      MessageDlg('Cliente 404!',TMsgDlgType.mtError,[mbOk],0);
+      dbIdClientes.SetFocus;
+      abort;
+    end;
 
 end;
 

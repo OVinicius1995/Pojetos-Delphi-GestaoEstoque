@@ -67,6 +67,7 @@ uses U_DM;
 procedure TfrmVendas.btnNovoClick(Sender: TObject);
 begin
   inherited;
+
   dbeCadastro.Text := DateToStr(Date);
   dbeUsuario.Text  := dmConexao.usuario;
   dbeIdCliente.SetFocus;
@@ -75,7 +76,7 @@ end;
 
 procedure TfrmVendas.dbeIdClienteExit(Sender: TObject);
 begin
-
+  dbeUsuario.Text  := dmConexao.usuario;
     //Valida cliente
 
     if not fdqClientes.Locate('ID_CLIENTE',q_PadraoItemID_CLIENTE.AsInteger) then
@@ -91,12 +92,13 @@ end;
 
 procedure TfrmVendas.dbeIdFormaPgtoExit(Sender: TObject);
 begin
+  dbeUsuario.Text  := dmConexao.usuario;
     //Valida cliente
 
-    if not fdqClientes.Locate('ID_CLIENTE',q_PadraoItemID_CLIENTE.AsInteger) then
+    if not fdqFormaPgto.Locate('ID_FORMA_PGTO',q_PadraoItemID_FORMA_PGTO.AsInteger) then
     begin
-      MessageDlg('Cliente 404!',TMsgDlgType.mtError,[mbOk],0);
-      dbeIdCliente.SetFocus;
+      MessageDlg('Forma de pagamento 404!',TMsgDlgType.mtError,[mbOk],0);
+      dbeIdFormaPgto.SetFocus;
       abort;
     end;
 

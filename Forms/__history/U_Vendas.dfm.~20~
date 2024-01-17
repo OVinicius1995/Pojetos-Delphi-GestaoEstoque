@@ -45,7 +45,7 @@ inherited frmVendas: TfrmVendas
       Width = 60
       Height = 15
       Caption = 'ID_CLIENTE'
-      FocusControl = dbIdClientes
+      FocusControl = dbeIdcliente
     end
     object Label3: TLabel
       Left = 37
@@ -104,7 +104,7 @@ inherited frmVendas: TfrmVendas
       DataSource = dtsPadrao
       TabOrder = 0
     end
-    object dbIdClientes: TDBEdit
+    object dbeIdcliente: TDBEdit
       Left = 37
       Top = 74
       Width = 200
@@ -112,7 +112,6 @@ inherited frmVendas: TfrmVendas
       DataField = 'ID_CLIENTE'
       DataSource = dtsPadrao
       TabOrder = 1
-      OnExit = dbIdClientesExit
     end
     object dbeIdformaPgto: TDBEdit
       Left = 37
@@ -122,7 +121,6 @@ inherited frmVendas: TfrmVendas
       DataField = 'ID_FORMA_PGTO'
       DataSource = dtsPadrao
       TabOrder = 2
-      OnExit = dbeIdFormaPgtoExit
     end
     object dbeUsuario: TDBEdit
       Left = 37
@@ -185,10 +183,6 @@ inherited frmVendas: TfrmVendas
     Align = alNone
   end
   inherited fdqQueryPadrao: TFDQuery
-    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
-    UpdateOptions.FetchGeneratorsPoint = gpImmediate
-    UpdateOptions.GeneratorName = 'GEN_ID_VENDA'
-    UpdateOptions.AutoIncFields = 'ID_VENDA'
     SQL.Strings = (
       'SELECT '
       '     ID_VENDA,'
