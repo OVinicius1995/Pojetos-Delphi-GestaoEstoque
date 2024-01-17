@@ -19,23 +19,15 @@ uses
   U_PesqProdutos in '..\Forms\U_PesqProdutos.pas' {frmPesquisaProdutos},
   U_MovimentoPadrao in '..\Forms\U_MovimentoPadrao.pas' {frmPadraoMovimento},
   U_Compras in '..\Forms\U_Compras.pas' {frmCadastroDeCompras},
-  U_PesqCompra in '..\Forms\U_PesqCompra.pas' {frmPesqComrpa};
+  U_PesqCompra in '..\Forms\U_PesqCompra.pas' {frmPesqComrpa},
+  U_Login in '..\Forms\U_Login.pas' {frmLogin};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TdmConexao, dmConexao);
-  Application.CreateForm(TfrmPesquisaPadrao, frmPesquisaPadrao);
-  Application.CreateForm(TfrmPesqUsuario, frmPesqUsuario);
-  Application.CreateForm(TfrmPesquisaClientes, frmPesquisaClientes);
-  Application.CreateForm(TfrmPesquisaEmpresa, frmPesquisaEmpresa);
-  Application.CreateForm(TfrmPesquisaFornecedores, frmPesquisaFornecedores);
-  Application.CreateForm(TfrmPesquisaProdutos, frmPesquisaProdutos);
-  Application.CreateForm(TfrmPadraoMovimento, frmPadraoMovimento);
-  Application.CreateForm(TfrmCadastroDeCompras, frmCadastroDeCompras);
-  Application.CreateForm(TfrmPesqComrpa, frmPesqComrpa);
   Application.Run;
 end.
