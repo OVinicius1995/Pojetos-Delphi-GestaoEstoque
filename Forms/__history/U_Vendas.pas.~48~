@@ -1,0 +1,253 @@
+unit U_Vendas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_MovimentoPadrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Mask;
+
+type
+  TfrmVendas = class(TfrmPadraoMovimento)
+    fdqClientes: TFDQuery;
+    fdqFormaPgto: TFDQuery;
+    dsCliente: TDataSource;
+    dsFormapgto: TDataSource;
+    fdqClientesID_CLIENTE: TIntegerField;
+    fdqClientesNOME: TStringField;
+    fdqFormaPgtoID_FORMA_PGTO: TIntegerField;
+    fdqFormaPgtoDESCRICAO: TStringField;
+    fdqQueryPadraoID_VENDA: TIntegerField;
+    fdqQueryPadraoID_CLIENTE: TIntegerField;
+    fdqQueryPadraoID_FORMA_PGTO: TIntegerField;
+    fdqQueryPadraoUSUARIO: TStringField;
+    fdqQueryPadraoVALOR: TFMTBCDField;
+    fdqQueryPadraoCADASTRO: TDateField;
+    fdqQueryPadraoCLIENTE: TStringField;
+    fdqQueryPadraoDESCRICAO: TStringField;
+    Label1: TLabel;
+    dbeIdVendas: TDBEdit;
+    Label2: TLabel;
+    dbIdClientes: TDBEdit;
+    Label3: TLabel;
+    dbeIdformaPgto: TDBEdit;
+    Label4: TLabel;
+    dbeUsuario: TDBEdit;
+    Label5: TLabel;
+    dbeValor: TDBEdit;
+    Label6: TLabel;
+    dbeCadastro: TDBEdit;
+    Label7: TLabel;
+    cmbCliente: TDBLookupComboBox;
+    Label8: TLabel;
+    cmbDescricao: TDBLookupComboBox;
+    fdqQueryPadraoPARCELA: TIntegerField;
+    fdqQueryPadraoDINHEIRO: TFMTBCDField;
+    fdqQueryPadraoTROCO: TFMTBCDField;
+    Label9: TLabel;
+    dbeParcela: TDBEdit;
+    q_PadraoItemID_SEQUENCIA: TIntegerField;
+    q_PadraoItemID_VENDA: TFDAutoIncField;
+    q_PadraoItemID_PRODUTO: TIntegerField;
+    q_PadraoItemQTDE: TFMTBCDField;
+    q_PadraoItemDESCONTO: TFMTBCDField;
+    q_PadraoItemTOTAL_ITEM: TFMTBCDField;
+    Label10: TLabel;
+    dbIdProduto: TDBEdit;
+    dbQtde: TDBEdit;
+    Label15: TLabel;
+    dbVlCusto: TDBEdit;
+    Label16: TLabel;
+    dbDesconto: TDBEdit;
+    Label17: TLabel;
+    dbTotalItem: TDBEdit;
+    Label18: TLabel;
+    q_PadraoItemVL_VENDA: TFMTBCDField;
+    fdq_Produto: TFDQuery;
+    dsProduto: TDataSource;
+    fdq_ProdutoID_PRODUTO: TIntegerField;
+    fdq_ProdutoDESCRICAO: TStringField;
+    fdq_ProdutoESTOQUE: TFMTBCDField;
+    fdq_ProdutoVL_VENDA: TFMTBCDField;
+    q_PadraoItemSUBTOTAL: TAggregateField;
+    procedure btnNovoClick(Sender: TObject);
+    procedure dbeIdFormaPgtoExit(Sender: TObject);
+    procedure dbIdClientesExit(Sender: TObject);
+    procedure bibItemClick(Sender: TObject);
+    procedure bibOkClick(Sender: TObject);
+    procedure bibExcluirClick(Sender: TObject);
+    procedure dbIdProdutoExit(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmVendas: TfrmVendas;
+
+implementation
+
+{$R *.dfm}
+
+uses U_DM;
+
+procedure TfrmVendas.bibExcluirClick(Sender: TObject);
+var nomeProd : string;
+var IdProd : Integer;
+begin
+
+  if Application.MessageBox('Deseja remover este item da lista?','Removendo da lista',MB_YESNOCANCEL + MB_ICONQUESTION) = mrYes then
+    begin
+           IdProd := q_PadraoItemID_PRODUTO.AsInteger;
+
+        if  fdq_Produto.Locate('ID_PRODUTO',IdProd,[]) then
+
+          begin
+             fdq_Produto.Edit;
+             fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat + q_PadraoItemQTDE.AsFloat;
+             fdq_Produto.Refresh;
+             q_PadraoItem.Delete;
+
+                fdq_Produto.SQL.Text := 'SELECT * from PRODUTO WHERE ID_PRODUTO=:IDs_PRODUTO';
+                fdq_Produto.ParamByName('IDs_PRODUTO').Value:= IdProd;
+                fdq_Produto.Open();
+                nomeProd := fdq_Produto.FieldByName('DESCRICAO').text;
+
+             MessageDlg('O item: ' + ' "' + nomeProd + '" ' +' foi removido da lista com sucesso!',mtConfirmation,[mbOk],0);
+          end
+
+          else
+            begin
+              abort;
+            end;
+
+    end;
+
+
+end;
+
+procedure TfrmVendas.bibItemClick(Sender: TObject);
+var ID_SEQUENCIA_I : Integer;
+begin
+  //inherited;
+
+    q_PadraoItem.Open;
+    q_PadraoItem.Last;
+    ID_SEQUENCIA_I := q_PadraoItemID_SEQUENCIA.AsInteger +1;
+    q_PadraoItem.Append;
+   // dbIdProduto.Text := ID_SEQUENCIA_I.ToString;
+    q_PadraoItemID_SEQUENCIA.AsInteger := ID_SEQUENCIA_I;
+   // dbIdProduto.SetFocus;
+end;
+
+
+procedure TfrmVendas.bibOkClick(Sender: TObject);
+begin
+
+  fdqQueryPadrao.Edit;
+ // fdq_Produto.Edit;
+  fdqQueryPadraoVALOR.AsFloat     := q_PadraoItem.AggFields.FieldByName('SUBTOTAL').Value;
+  fdqQueryPadrao.Post;
+  q_PadraoItem.Open();
+
+
+
+  q_PadraoItem.First;
+
+  while not q_PadraoItem.Eof do
+    begin
+
+      if fdq_Produto.Locate('ID_PRODUTO',q_PadraoItemID_PRODUTO.AsInteger,[]) then
+        begin
+         fdq_Produto.Edit;
+         fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat - q_PadraoItemQTDE.AsFloat;
+         q_PadraoItem.Next;
+        end
+
+        else
+        begin
+          MessageDlg('erro',TMsgDlgType.mtWarning,[mbOk],0);
+        end;
+
+         fdq_Produto.Refresh;
+
+    end;
+          MessageDlg('Estoque atualizado com sucesso!',TMsgDlgType.mtConfirmation,[mbOk],0);
+end;
+
+procedure TfrmVendas.btnNovoClick(Sender: TObject);
+begin
+  inherited;
+
+  dbeCadastro.Text := DateToStr(Date);
+  dbeUsuario.Text  := dmConexao.usuario;
+  dbeValor.text    := IntToStr(0);
+  dbeParcela.Text  := IntToStr(0);
+    dbIdClientes.SetFocus;
+end;
+
+
+
+procedure TfrmVendas.dbeIdFormaPgtoExit(Sender: TObject);
+begin
+  dbeUsuario.Text  := dmConexao.usuario;
+    //Valida cliente
+
+    if not fdqFormaPgto.Locate('ID_FORMA_PGTO',fdqQueryPadraoID_FORMA_PGTO.AsInteger) then
+    begin
+      MessageDlg('Forma de pagamento 404!',TMsgDlgType.mtError,[mbOk],0);
+      dbeIdFormaPgto.SetFocus;
+      abort;
+    end;
+
+
+end;
+
+procedure TfrmVendas.dbIdClientesExit(Sender: TObject);
+begin
+
+      dbeUsuario.Text  := dmConexao.usuario;
+    //Valida cliente
+
+    if not fdqClientes.Locate('ID_CLIENTE',fdqQueryPadraoID_CLIENTE.AsInteger) then
+    begin
+      MessageDlg('Cliente 404!',TMsgDlgType.mtError,[mbOk],0);
+      dbIdClientes.SetFocus;
+      abort;
+    end;
+
+end;
+
+procedure TfrmVendas.dbIdProdutoExit(Sender: TObject);
+begin
+        q_PadraoItem.Open();
+
+    if   q_PadraoItemID_PRODUTO.AsInteger > 0   then
+
+    if fdq_Produto.Locate('ID_PRODUTO',q_PadraoItem.FieldByName('ID_PRODUTO').AsInteger,[]) then
+    begin
+      q_PadraoItem.Open();
+      fdq_Produto.Open();
+      q_PadraoItemQTDE.AsFloat       := 1;
+      q_PadraoItemDESCONTO.AsFloat   := 0;
+      q_PadraoItemVL_VENDA.AsFloat   := q_PadraoItem.FieldByName('vl_venda').AsFloat;
+      q_PadraoItemTOTAL_ITEM.AsFloat := (q_PadraoItemQTDE.AsFloat * q_PadraoItemVL_VENDA.AsFloat) - (q_PadraoItemDESCONTO.AsFloat);
+      q_PadraoItem.Post;
+      dbIdProduto.SetFocus;
+    end
+
+    else
+    begin
+      MessageDlg('Produto não encontrado', TMsgDlgType.mtInformation,[mbOk],0);
+      q_PadraoItem.Cancel;
+    end;
+
+end;
+
+end.
