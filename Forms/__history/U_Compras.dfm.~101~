@@ -97,6 +97,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
   end
   inherited btnPesquisar: TBitBtn
     TabOrder = 10
+    OnClick = btnPesquisarClick
   end
   inherited dbnNavegacaoDadosBD: TDBNavigator
     Left = 431
@@ -110,9 +111,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     Width = 918
     Height = 172
     TabOrder = 12
-    ExplicitLeft = -48
-    ExplicitTop = 287
-    ExplicitWidth = 918
+    ExplicitWidth = 914
     ExplicitHeight = 172
     object Label7: TLabel
       Left = 13
@@ -160,6 +159,14 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Height = 15
       Caption = 'ID DO FORNECEDOR E  SEU NOME:'
       FocusControl = dbIcompra
+    end
+    object Label19: TLabel
+      Left = 466
+      Top = 11
+      Width = 68
+      Height = 15
+      Caption = 'COND_PGTO'
+      FocusControl = DBEdit8
     end
     object dbIcompra: TDBEdit
       Left = 13
@@ -216,6 +223,15 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       TabOrder = 5
       TextHint = 'Descri'#231#227'o da forma de pagamento'
     end
+    object DBEdit8: TDBEdit
+      Left = 466
+      Top = 27
+      Width = 79
+      Height = 23
+      DataField = 'COND_PGTO'
+      DataSource = dtsPadrao
+      TabOrder = 6
+    end
   end
   inherited Panel2: TPanel
     Top = 512
@@ -270,6 +286,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Top = 30
       Width = 154
       Height = 23
+      AutoSelect = False
       DataField = 'ID_PRODUTO'
       DataSource = dsItensCompra
       TabOrder = 0
@@ -411,25 +428,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     DataSource = dsItensCompra
     TabOrder = 21
   end
-  object edtDescProd: TEdit [29]
-    Left = 111
-    Top = 483
-    Width = 207
-    Height = 23
-    TabOrder = 22
-    Text = 'edtDescProd'
-  end
-  object cmbIdProdutos: TComboBox [30]
-    Left = 75
-    Top = 542
-    Width = 97
-    Height = 23
-    TabOrder = 23
-    Text = 'ID do produto'
-    OnChange = cmbIdProdutosChange
-  end
   inherited fdqQueryPadrao: TFDQuery
-    Active = True
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_ID_COMPRA'
@@ -441,11 +440,12 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       'USUARIO,'
       'ID_FORMA_PGTO,'
       'VALOR,'
-      'CADASTRO'
+      'CADASTRO,'
+      'COND_PGTO'
       'FROM COMPRA'
       'ORDER BY ID_COMPRA')
-    Left = 688
-    Top = 136
+    Left = 752
+    Top = 144
     object fdqQueryPadraoID_COMPRA: TIntegerField
       AutoGenerateValue = arAutoInc
       FieldName = 'ID_COMPRA'
@@ -480,9 +480,13 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       Origin = 'CADASTRO'
       Required = True
     end
+    object fdqQueryPadraoCOND_PGTO: TIntegerField
+      FieldName = 'COND_PGTO'
+      Origin = 'COND_PGTO'
+    end
   end
   inherited dtsPadrao: TDataSource
-    Left = 696
+    Left = 752
     Top = 80
   end
   inherited q_PadraoItem: TFDQuery
@@ -498,8 +502,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     SQL.Strings = (
       'select ID_FORNECEDOR, NOME from FORNECEDOR'
       'order by ID_FORNECEDOR asc')
-    Left = 536
-    Top = 80
+    Left = 672
+    Top = 88
     object q_PadraoItemID_FORNECEDOR: TIntegerField
       FieldName = 'ID_FORNECEDOR'
       Origin = 'ID_FORNECEDOR'
@@ -514,8 +518,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     end
   end
   inherited dsPadraoItem: TDataSource
-    Left = 536
-    Top = 144
+    Left = 664
+    Top = 152
   end
   object fdq_FormaPgto: TFDQuery
     Connection = dmConexao.fdcConexao
@@ -542,6 +546,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
     Top = 152
   end
   object dsItensCompra: TDataSource
+    AutoEdit = False
     DataSet = fdq_ItensCompra
     Left = 456
     Top = 368
@@ -621,7 +626,7 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
         Name = 'ID_COMPRA'
         DataType = ftInteger
         ParamType = ptInput
-        Value = 4
+        Value = 6
       end>
     object fdq_ItensCompraID_SEQUENCIA: TIntegerField
       FieldName = 'ID_SEQUENCIA'

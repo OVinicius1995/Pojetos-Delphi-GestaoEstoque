@@ -81,6 +81,7 @@ type
     procedure bibOkClick(Sender: TObject);
     procedure bibExcluirClick(Sender: TObject);
     procedure dbIdProdutoExit(Sender: TObject);
+    procedure btnDeletarClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -179,6 +180,37 @@ begin
 
     end;
           MessageDlg('Estoque atualizado com sucesso!',TMsgDlgType.mtConfirmation,[mbOk],0);
+end;
+
+procedure TfrmVendas.btnDeletarClick(Sender: TObject);
+begin
+
+      if Application.MessageBox('Deseja remover os itens dessa lista?','Removendo da lista',MB_YESNOCANCEL + MB_ICONQUESTION) = mrYes then
+
+    begin
+
+     q_PadraoItem.First;
+
+    while q_PadraoItem.RecordCount > 0 do
+
+    begin
+         if fdq_Produto.Locate('ID_PRODUTO',q_PadraoItemID_PRODUTO.AsInteger,[]) then
+
+         begin
+             fdq_Produto.Edit;
+             fdq_Produto.FieldByName('ESTOQUE').AsFloat := fdq_Produto.FieldByName('ESTOQUE').AsFloat - q_PadraoItemQTDE.AsFloat;
+             fdq_Produto.Refresh;
+             q_PadraoItem.Delete;
+             q_PadraoItem.Next;
+
+         end;
+      end;
+       inherited;
+    end
+
+    else
+    abort;
+
 end;
 
 procedure TfrmVendas.btnNovoClick(Sender: TObject);

@@ -80,6 +80,7 @@ type
     procedure bibItemClick(Sender: TObject);
     procedure bibOkClick(Sender: TObject);
     procedure bibExcluirClick(Sender: TObject);
+    procedure dbIdProdutoExit(Sender: TObject);
 
   private
     { Private declarations }
@@ -149,10 +150,11 @@ end;
 procedure TfrmVendas.bibOkClick(Sender: TObject);
 begin
 
-  fdqQueryPadrao.Edit;
+    fdqQueryPadrao.Edit;
  // fdq_Produto.Edit;
-  fdqQueryPadraoVALOR.AsFloat     := q_PadraoItem.AggFields.FieldByName('SUBTOTAL').Value;
-  fdqQueryPadrao.Post;
+    fdqQueryPadraoVALOR.AsFloat     := q_PadraoItem.AggFields.FieldByName('SUBTOTAL').Value;
+//  fdqQueryPadrao.Post;
+  q_PadraoItem.Open();
 
 
 
@@ -218,6 +220,33 @@ begin
       MessageDlg('Cliente 404!',TMsgDlgType.mtError,[mbOk],0);
       dbIdClientes.SetFocus;
       abort;
+    end;
+
+end;
+
+procedure TfrmVendas.dbIdProdutoExit(Sender: TObject);
+begin
+        q_PadraoItem.Open();
+
+    if   q_PadraoItemID_PRODUTO.AsInteger > 0   then
+
+    if fdq_Produto.Locate('ID_PRODUTO',q_PadraoItem.FieldByName('ID_PRODUTO').AsInteger,[]) then
+    begin
+      q_PadraoItem.open();
+      fdq_Produto.Open();
+
+      q_PadraoItemQTDE.AsFloat       := 1;
+      q_PadraoItemDESCONTO.AsFloat   := 0;
+      q_PadraoItemVL_VENDA.AsFloat   := q_PadraoItem.FieldByName('vl_venda').AsFloat;
+      q_PadraoItemTOTAL_ITEM.AsFloat := (q_PadraoItemQTDE.AsFloat * q_PadraoItemVL_VENDA.AsFloat) - (q_PadraoItemDESCONTO.AsFloat);
+      q_PadraoItem.Post;
+      bibItem.SetFocus;
+    end
+
+    else
+    begin
+      MessageDlg('Produto não encontrado', TMsgDlgType.mtInformation,[mbOk],0);
+      q_PadraoItem.Cancel;
     end;
 
 end;
