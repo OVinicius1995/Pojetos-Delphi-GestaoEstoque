@@ -173,10 +173,12 @@
         </DCCReference>
         <DCCReference Include="..\Forms\U_Login.pas">
             <Form>frmLogin</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Forms\u_Tipo.pas">
             <Form>frmSelecionaTipo</Form>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_Vendas.pas">
+            <Form>frmVendas</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

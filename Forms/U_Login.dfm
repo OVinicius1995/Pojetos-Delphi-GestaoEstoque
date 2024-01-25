@@ -34,6 +34,7 @@ object frmLogin: TfrmLogin
     Top = 109
     Width = 196
     Height = 23
+    CharCase = ecUpperCase
     TabOrder = 0
   end
   object edtSenha: TEdit
