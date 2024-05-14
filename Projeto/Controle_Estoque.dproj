@@ -179,6 +179,9 @@
         </DCCReference>
         <DCCReference Include="..\Forms\U_Vendas.pas">
             <Form>frmVendas</Form>
+        </DCCReference>
+        <DCCReference Include="..\Forms\U_PesqVendas.pas">
+            <Form>frmPesquisaVenda</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

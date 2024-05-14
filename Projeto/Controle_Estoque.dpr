@@ -22,7 +22,8 @@ uses
   U_PesqCompra in '..\Forms\U_PesqCompra.pas' {frmPesqComrpa},
   U_Login in '..\Forms\U_Login.pas' {frmLogin},
   u_Tipo in '..\Forms\u_Tipo.pas' {frmSelecionaTipo},
-  U_Vendas in '..\Forms\U_Vendas.pas' {frmVendas};
+  U_Vendas in '..\Forms\U_Vendas.pas' {frmVendas},
+  U_PesqVendas in '..\Forms\U_PesqVendas.pas' {frmPesquisaVenda};
 
 {$R *.res}
 
@@ -33,5 +34,6 @@ begin
   Application.CreateForm(TdmConexao, dmConexao);
   Application.CreateForm(TfrmSelecionaTipo, frmSelecionaTipo);
   Application.CreateForm(TfrmVendas, frmVendas);
+  Application.CreateForm(TfrmPesquisaVenda, frmPesquisaVenda);
   Application.Run;
 end.
