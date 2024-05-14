@@ -94,6 +94,10 @@ type
     procedure btnDeletarClick(Sender: TObject);
     procedure AbreTelaPesquisa();
     procedure btnPesquisarClick(Sender: TObject);
+    procedure dbDescontoClick(Sender: TObject);
+    procedure dbDescontoExit(Sender: TObject);
+    procedure dbQtdeClick(Sender: TObject);
+    procedure dbQtdeExit(Sender: TObject);
 
 
 
@@ -316,6 +320,21 @@ begin
 end;
 
 
+procedure TfrmCadastroDeCompras.dbDescontoClick(Sender: TObject);
+begin
+
+    fdq_ItensCompra.Edit;
+
+end;
+
+procedure TfrmCadastroDeCompras.dbDescontoExit(Sender: TObject);
+begin
+
+      fdq_ItensCompraTOTAL_ITEM.AsFloat := (fdq_ItensCompraQTDE.AsFloat * fdq_ItensCompraVL_CUSTO.AsFloat) - (fdq_ItensCompraDESCONTO.AsFloat);
+      fdq_ItensCompra.Refresh;
+
+end;
+
 procedure TfrmCadastroDeCompras.dbIdProdutoExit(Sender: TObject);
 begin
   //inherited;
@@ -339,6 +358,33 @@ begin
 
 end;
 
+
+procedure TfrmCadastroDeCompras.dbQtdeClick(Sender: TObject);
+begin
+
+      fdq_ItensCompra.Edit;
+
+end;
+
+procedure TfrmCadastroDeCompras.dbQtdeExit(Sender: TObject);
+begin
+
+    if fdq_ItensCompraQTDE.AsFloat > fdq_ProdutoESTOQUE.AsFloat then
+    begin
+        ShowMessage('O valor digitado é maior do que o disponível no estoque' + fdq_ProdutoESTOQUE.AsString + '');
+        dbQtde.SetFocus;
+        abort;
+    end
+
+    else
+    begin
+        fdq_ItensCompraTOTAL_ITEM.AsFloat := (fdq_ItensCompraQTDE.AsFloat * fdq_ItensCompraVL_CUSTO.AsFloat) - (fdq_ItensCompraDESCONTO.AsFloat);
+        fdq_ItensCompra.Refresh;
+    end;
+
+
+
+end;
 
 procedure TfrmCadastroDeCompras.FormActivate(Sender: TObject);
 begin

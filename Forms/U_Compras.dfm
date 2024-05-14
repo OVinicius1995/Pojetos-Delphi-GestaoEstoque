@@ -300,6 +300,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       DataField = 'QTDE'
       DataSource = dsItensCompra
       TabOrder = 1
+      OnClick = dbQtdeClick
+      OnExit = dbQtdeExit
     end
     object dbVlCusto: TDBEdit
       Left = 503
@@ -318,6 +320,8 @@ inherited frmCadastroDeCompras: TfrmCadastroDeCompras
       DataField = 'DESCONTO'
       DataSource = dsItensCompra
       TabOrder = 3
+      OnClick = dbDescontoClick
+      OnExit = dbDescontoExit
     end
     object dbTotalItem: TDBEdit
       Left = 785

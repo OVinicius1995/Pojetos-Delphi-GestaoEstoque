@@ -9,8 +9,8 @@ inherited frmVendas: TfrmVendas
     Top = 464
     Width = 870
     Height = 67
-    ExplicitTop = 464
-    ExplicitWidth = 870
+    ExplicitTop = 463
+    ExplicitWidth = 866
     ExplicitHeight = 67
     object Label10: TLabel
       Left = 221
@@ -89,6 +89,7 @@ inherited frmVendas: TfrmVendas
       DataField = 'DESCONTO'
       DataSource = dsPadraoItem
       TabOrder = 3
+      OnClick = dbDescontoClick
     end
     object dbTotalItem: TDBEdit
       Left = 740
@@ -102,14 +103,14 @@ inherited frmVendas: TfrmVendas
   end
   inherited pnlCabecalho: TPanel [1]
     Width = 870
-    ExplicitWidth = 743
+    ExplicitWidth = 866
   end
   inherited pnlFooter: TPanel [2]
     Top = 531
     Width = 870
     Height = 48
-    ExplicitTop = 1088
-    ExplicitWidth = 870
+    ExplicitTop = 530
+    ExplicitWidth = 866
     ExplicitHeight = 48
     inherited bibItem: TBitBtn
       OnClick = bibItemClick
@@ -141,13 +142,14 @@ inherited frmVendas: TfrmVendas
     Width = 870
     Align = alBottom
     Hints.Strings = ()
-    ExplicitLeft = 522
-    ExplicitTop = 1085
+    ExplicitLeft = 0
+    ExplicitTop = 438
+    ExplicitWidth = 866
   end
   inherited Panel1: TPanel [11]
     Width = 870
     Height = 212
-    ExplicitWidth = 870
+    ExplicitWidth = 866
     ExplicitHeight = 212
     object Label1: TLabel
       Left = 37
@@ -442,7 +444,7 @@ inherited frmVendas: TfrmVendas
         Name = 'ID_VENDA'
         DataType = ftInteger
         ParamType = ptInput
-        Value = 2
+        Value = 4
       end>
     object q_PadraoItemID_SEQUENCIA: TIntegerField
       FieldName = 'ID_SEQUENCIA'

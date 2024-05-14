@@ -82,6 +82,7 @@ type
     procedure bibExcluirClick(Sender: TObject);
     procedure dbIdProdutoExit(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
+    procedure dbDescontoClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -225,6 +226,14 @@ begin
 end;
 
 
+
+procedure TfrmVendas.dbDescontoClick(Sender: TObject);
+begin
+
+    q_PadraoItem.Edit;
+
+
+end;
 
 procedure TfrmVendas.dbeIdFormaPgtoExit(Sender: TObject);
 begin
